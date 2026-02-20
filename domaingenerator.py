@@ -1,18 +1,16 @@
 from unified_planning.shortcuts import *
-from unified_planning.io import PDDLWriter
 
-def generate_classic_pddl(num_nodes, folder, knowledge=None, unique_id="default", agents_state=None):
-    # Create the problem with a UNIQUE name as requested
-    problem_name = f"chip_gt_problem_{unique_id}"
-    problem = Problem(problem_name)
+def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=None):
+    problem = Problem(f"chip_gt_problem_{unique_id}")
     
+    # TYPES
     location = UserType("Location")
     trap = UserType("trap")
     robot = UserType("robot")
     ranger = UserType("ranger")
     animal = UserType("animal")
 
-    # Define fluents
+    # FLUENTS
     problem.add_fluent("clear", BoolType(), l=location)
     problem.add_fluent("trap_at", BoolType(), t=trap, l=location)
     problem.add_fluent("robot_at", BoolType(), r=robot, l=location)
@@ -27,249 +25,173 @@ def generate_classic_pddl(num_nodes, folder, knowledge=None, unique_id="default"
     problem.add_fluent("animal_at", BoolType(), a=animal, l=location)
     problem.add_fluent("robot_carrying_animal", BoolType(), r=robot, a=animal)
     problem.add_fluent("ranger_carrying_animal", BoolType(), r=ranger, a=animal)
+    problem.add_fluent("inspected", BoolType(), l=location) 
 
-    # Define objects (fluents helpers)
+    # Fluent helpers
     robot_at = problem.fluent("robot_at")
+    ranger_at = problem.fluent("ranger_at")
     adjacent = problem.fluent("adjacent")
     traversable = problem.fluent("traversable")
     spot = problem.fluent("spot")
     drone = problem.fluent("drone")
-    ranger_at = problem.fluent("ranger_at")
     trap_at = problem.fluent("trap_at")
     trap_push = problem.fluent("trap_push")
-    clear = problem.fluent("clear")
     trap_pic = problem.fluent("trap_pic")
     trap_animal = problem.fluent("trap_animal")
+    clear = problem.fluent("clear")
     animal_at = problem.fluent("animal_at")
     robot_carrying_animal = problem.fluent("robot_carrying_animal")
     ranger_carrying_animal = problem.fluent("ranger_carrying_animal")
+    inspected = problem.fluent("inspected")
 
-    # --- ACTIONS DEFINITION ---
+    # --- ACTIONS ---
 
-    # Action move ground
+    robot_inspect = InstantaneousAction("robot_inspect", pos=location, target=location, r=robot)
+    robot_inspect.add_precondition(And(robot_at(robot_inspect.parameter("r"), robot_inspect.parameter("pos")), 
+                                       adjacent(robot_inspect.parameter("pos"), robot_inspect.parameter("target")), 
+                                       Not(inspected(robot_inspect.parameter("target")))))
+    robot_inspect.add_effect(inspected(robot_inspect.parameter("target")), True)
+    problem.add_action(robot_inspect)
+
+    ranger_inspect = InstantaneousAction("ranger_inspect", pos=location, target=location, ran=ranger)
+    ranger_inspect.add_precondition(And(ranger_at(ranger_inspect.parameter("ran"), ranger_inspect.parameter("pos")), 
+                                        adjacent(ranger_inspect.parameter("pos"), ranger_inspect.parameter("target")), 
+                                        Not(inspected(ranger_inspect.parameter("target")))))
+    ranger_inspect.add_effect(inspected(ranger_inspect.parameter("target")), True)
+    problem.add_action(ranger_inspect)
+
     move_ground = InstantaneousAction("move_ground", from_=location, to=location, r=robot)
-    from_ = move_ground.parameter("from_")
-    to = move_ground.parameter("to")
-    r = move_ground.parameter("r")
-    move_ground.add_precondition(And(robot_at(r, from_), Not(robot_at(r, to)), adjacent(from_, to), traversable(from_, to), spot(r)))
-    move_ground.add_effect(robot_at(r, to), True)
-    move_ground.add_effect(robot_at(r, from_), False)
+    move_ground.add_precondition(And(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), 
+                                     Not(robot_at(move_ground.parameter("r"), move_ground.parameter("to"))), 
+                                     adjacent(move_ground.parameter("from_"), move_ground.parameter("to")), 
+                                     traversable(move_ground.parameter("from_"), move_ground.parameter("to")), 
+                                     spot(move_ground.parameter("r")), 
+                                     inspected(move_ground.parameter("to")))) 
+    move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("to")), True)
+    move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), False)
     problem.add_action(move_ground)
 
-    # Action move air
     move_air = InstantaneousAction("move_air", from_=location, to=location, r=robot)
-    from_ = move_air.parameter("from_")
-    to = move_air.parameter("to")
-    r = move_air.parameter("r")
-    move_air.add_precondition(And(robot_at(r, from_), Not(robot_at(r, to)), drone(r)))
-    move_air.add_effect(robot_at(r, to), True)
-    move_air.add_effect(robot_at(r, from_), False)
+    move_air.add_precondition(And(robot_at(move_air.parameter("r"), move_air.parameter("from_")), 
+                                  Not(robot_at(move_air.parameter("r"), move_air.parameter("to"))), 
+                                  drone(move_air.parameter("r"))))
+    move_air.add_effect(robot_at(move_air.parameter("r"), move_air.parameter("to")), True)
+    move_air.add_effect(robot_at(move_air.parameter("r"), move_air.parameter("from_")), False)
     problem.add_action(move_air)
 
-    # Action move ranger
-    move_ranger = InstantaneousAction("move_ranger", from_=location, to=location, r=ranger)
-    from_ = move_ranger.parameter("from_")
-    to = move_ranger.parameter("to")
-    r = move_ranger.parameter("r")
-    move_ranger.add_precondition(And(ranger_at(r, from_), Not(ranger_at(r, to)), adjacent(from_, to)))
-    move_ranger.add_effect(ranger_at(r, to), True)
-    move_ranger.add_effect(ranger_at(r, from_), False)
+    move_ranger = InstantaneousAction("move_ranger", from_=location, to=location, ran=ranger)
+    move_ranger.add_precondition(And(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), 
+                                     Not(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("to"))), 
+                                     adjacent(move_ranger.parameter("from_"), move_ranger.parameter("to")),
+                                     inspected(move_ranger.parameter("to")))) 
+    move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("to")), True)
+    move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), False)
     problem.add_action(move_ranger)
 
-    # Action robot_disarm_trap_push
-    act_r_push = InstantaneousAction("robot_disarm_trap_push", t=trap, l=location, r=robot)
-    t = act_r_push.parameter("t")
-    l = act_r_push.parameter("l")
-    r = act_r_push.parameter("r")
-    act_r_push.add_precondition(And(robot_at(r, l), trap_at(t, l), trap_push(t), spot(r)))
-    act_r_push.add_effect(clear(l), True)
-    act_r_push.add_effect(trap_at(t, l), False)
+    act_r_push = InstantaneousAction("robot_disarm_trap_push", l=location, r=robot, t=trap)
+    act_r_push.add_precondition(And(robot_at(act_r_push.parameter("r"), act_r_push.parameter("l")), trap_at(act_r_push.parameter("t"), act_r_push.parameter("l")), trap_push(act_r_push.parameter("t")), spot(act_r_push.parameter("r"))))
+    act_r_push.add_effect(clear(act_r_push.parameter("l")), True)
+    act_r_push.add_effect(trap_at(act_r_push.parameter("t"), act_r_push.parameter("l")), False)
     problem.add_action(act_r_push)
 
-    # Action ranger_disarm_trap_push
-    act_ran_push = InstantaneousAction("ranger_disarm_trap_push", t=trap, l=location, r=ranger)
-    t = act_ran_push.parameter("t")
-    l = act_ran_push.parameter("l")
-    r = act_ran_push.parameter("r")
-    act_ran_push.add_precondition(And(ranger_at(r, l), trap_at(t, l), trap_push(t)))
-    act_ran_push.add_effect(clear(l), True)
-    act_ran_push.add_effect(trap_at(t, l), False)
-    problem.add_action(act_ran_push)
-
-    # Action ranger_disarm_trap_pic
-    act_ran_pic = InstantaneousAction("ranger_disarm_trap_pic", t=trap, l=location, r=robot)
-    t = act_ran_pic.parameter("t")
-    l = act_ran_pic.parameter("l")
-    r = act_ran_pic.parameter("r")
-    act_ran_pic.add_precondition(And(robot_at(r, l), trap_at(t, l), trap_pic(t)))
-    act_ran_pic.add_effect(clear(l), True)
-    act_ran_pic.add_effect(trap_at(t, l), False)
+    act_ran_pic = InstantaneousAction("ranger_disarm_trap_pic", l=location, ran=ranger, t=trap)
+    act_ran_pic.add_precondition(And(ranger_at(act_ran_pic.parameter("ran"), act_ran_pic.parameter("l")), trap_at(act_ran_pic.parameter("t"), act_ran_pic.parameter("l")), trap_pic(act_ran_pic.parameter("t"))))
+    act_ran_pic.add_effect(clear(act_ran_pic.parameter("l")), True)
+    act_ran_pic.add_effect(trap_at(act_ran_pic.parameter("t"), act_ran_pic.parameter("l")), False)
     problem.add_action(act_ran_pic)
 
-    # Action disarm_trap_animal
-    act_disarm_ani = InstantaneousAction("disarm_trap_animal", t=trap, l=location, r=robot)
-    t = act_disarm_ani.parameter("t")
-    l = act_disarm_ani.parameter("l")
-    r = act_disarm_ani.parameter("r")
-    act_disarm_ani.add_precondition(And(robot_at(r, l), trap_at(t, l), trap_animal(t)))
-    act_disarm_ani.add_effect(clear(l), True)
-    act_disarm_ani.add_effect(trap_at(t, l), False)
-    problem.add_action(act_disarm_ani)
+    act_ran_ani = InstantaneousAction("ranger_disarm_trap_animal", l=location, ran=ranger, t=trap)
+    act_ran_ani.add_precondition(And(ranger_at(act_ran_ani.parameter("ran"), act_ran_ani.parameter("l")), trap_at(act_ran_ani.parameter("t"), act_ran_ani.parameter("l")), trap_animal(act_ran_ani.parameter("t"))))
+    act_ran_ani.add_effect(clear(act_ran_ani.parameter("l")), True)
+    act_ran_ani.add_effect(trap_at(act_ran_ani.parameter("t"), act_ran_ani.parameter("l")), False)
+    problem.add_action(act_ran_ani)
 
-    # Action robot_carry_animal
     act_r_carry = InstantaneousAction("robot_carry_animal", l=location, r=robot, a=animal)
-    l = act_r_carry.parameter("l")
-    r = act_r_carry.parameter("r")
-    a = act_r_carry.parameter("a")
-    act_r_carry.add_precondition(And(robot_at(r, l), animal_at(a, l), clear(l), spot(r)))
-    act_r_carry.add_effect(animal_at(a, l), False)
-    act_r_carry.add_effect(robot_carrying_animal(r, a), True)
+    act_r_carry.add_precondition(And(robot_at(act_r_carry.parameter("r"), act_r_carry.parameter("l")), animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), clear(act_r_carry.parameter("l")), spot(act_r_carry.parameter("r"))))
+    act_r_carry.add_effect(animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), False)
+    act_r_carry.add_effect(robot_carrying_animal(act_r_carry.parameter("r"), act_r_carry.parameter("a")), True)
     problem.add_action(act_r_carry)
 
-    # Action robot_deliver_animal
     act_r_deliver = InstantaneousAction("robot_deliver_animal", l=location, r=robot, a=animal)
-    l = act_r_deliver.parameter("l")
-    r = act_r_deliver.parameter("r")
-    a = act_r_deliver.parameter("a")
-    act_r_deliver.add_precondition(And(robot_at(r, l), robot_carrying_animal(r, a), spot(r)))
-    act_r_deliver.add_effect(robot_carrying_animal(r, a), False)
-    act_r_deliver.add_effect(animal_at(a, l), True)
+    act_r_deliver.add_precondition(And(robot_at(act_r_deliver.parameter("r"), act_r_deliver.parameter("l")), robot_carrying_animal(act_r_deliver.parameter("r"), act_r_deliver.parameter("a")), spot(act_r_deliver.parameter("r"))))
+    act_r_deliver.add_effect(robot_carrying_animal(act_r_deliver.parameter("r"), act_r_deliver.parameter("a")), False)
+    act_r_deliver.add_effect(animal_at(act_r_deliver.parameter("a"), act_r_deliver.parameter("l")), True)
     problem.add_action(act_r_deliver)
 
-    # Action ranger_carry_animal
-    act_ran_carry = InstantaneousAction("ranger_carry_animal", l=location, r=ranger, a=animal)
-    l = act_ran_carry.parameter("l")
-    r = act_ran_carry.parameter("r")
-    a = act_ran_carry.parameter("a")
-    act_ran_carry.add_precondition(And(ranger_at(r, l), animal_at(a, l), clear(l)))
-    act_ran_carry.add_effect(animal_at(a, l), False)
-    act_ran_carry.add_effect(ranger_carrying_animal(r, a), True)
+    act_ran_carry = InstantaneousAction("ranger_carry_animal", l=location, ran=ranger, a=animal)
+    act_ran_carry.add_precondition(And(ranger_at(act_ran_carry.parameter("ran"), act_ran_carry.parameter("l")), animal_at(act_ran_carry.parameter("a"), act_ran_carry.parameter("l")), clear(act_ran_carry.parameter("l"))))
+    act_ran_carry.add_effect(animal_at(act_ran_carry.parameter("a"), act_ran_carry.parameter("l")), False)
+    act_ran_carry.add_effect(ranger_carrying_animal(act_ran_carry.parameter("ran"), act_ran_carry.parameter("a")), True)
     problem.add_action(act_ran_carry)
 
-    # Action ranger_deliver_animal
-    act_ran_deliver = InstantaneousAction("ranger_deliver_animal", l=location, r=ranger, a=animal)
-    l = act_ran_deliver.parameter("l")
-    r = act_ran_deliver.parameter("r")
-    a = act_ran_deliver.parameter("a")
-    act_ran_deliver.add_precondition(And(ranger_at(r, l), ranger_carrying_animal(r, a)))
-    act_ran_deliver.add_effect(ranger_carrying_animal(r, a), False)
-    act_ran_deliver.add_effect(animal_at(a, l), True)
+    act_ran_deliver = InstantaneousAction("ranger_deliver_animal", l=location, ran=ranger, a=animal)
+    act_ran_deliver.add_precondition(And(ranger_at(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("l")), ranger_carrying_animal(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("a"))))
+    act_ran_deliver.add_effect(ranger_carrying_animal(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("a")), False)
+    act_ran_deliver.add_effect(animal_at(act_ran_deliver.parameter("a"), act_ran_deliver.parameter("l")), True)
     problem.add_action(act_ran_deliver)
 
-    # --- OBJECTS INSTANTIATION ---
-    locations = {loc_name: problem.add_object(loc_name, location) for loc_name in [f"l_{i:02d}" for i in range(1, num_nodes+1)] + ["l_start", "l_end"]}
-    robots = {rob_name: problem.add_object(rob_name, robot) for rob_name in ["r_drone", "r_spot"]}
-    traps = {trap_name: problem.add_object(trap_name, trap) for trap_name in [f"t_{i:02d}" for i in range(1, num_nodes+1)]}
-    animals = {animal_name: problem.add_object(animal_name, animal) for animal_name in ["a_01"]}
-    rangers = {ranger_name: problem.add_object(ranger_name, ranger) for ranger_name in ["caro", "bapt"]}
+    # --- OBJECTS ---
+    loc_objs = {n: problem.add_object(n, location) for n in graph.graph.nodes()}
+    robots = {"r_drone": problem.add_object("r_drone", robot), "r_spot": problem.add_object("r_spot", robot)}
+    rangers = {"caro": problem.add_object("caro", ranger), "bapt": problem.add_object("bapt", ranger)}
+    traps = {f"t_{i:02d}": problem.add_object(f"t_{i:02d}", trap) for i in range(1, len(graph.locations)+1)}
+    animal_obj = problem.add_object("a_01", animal)
 
-    # --- INIT: STATIC FACTS ---
+    # --- INIT FACTS ---
     problem.set_initial_value(drone(robots["r_drone"]), True)
     problem.set_initial_value(spot(robots["r_spot"]), True)
     
-    default_state = {
-        "r_drone": "l_start",
-        "r_spot": "l_start",
-        "caro": "l_start",
-        "bapt": "l_start"
-    }
+    current_state = {"r_drone": "l_start", "r_spot": "l_start", "caro": "l_start", "bapt": "l_start"}
+    if agents_state: current_state.update(agents_state)
 
-    current_state = default_state.copy()
-    if agents_state:
-        current_state.update(agents_state)
+    for agent, loc in current_state.items():
+        if agent in robots: problem.set_initial_value(robot_at(robots[agent], loc_objs[loc]), True)
+        else: problem.set_initial_value(ranger_at(rangers[agent], loc_objs[loc]), True)
 
-    for agent_name, loc_name in current_state.items():
-        loc_obj = locations[loc_name]
+    for u, v in graph.graph.edges():
+        problem.set_initial_value(adjacent(loc_objs[u], loc_objs[v]), True)
+        problem.set_initial_value(adjacent(loc_objs[v], loc_objs[u]), True)
+    for u, v in graph.traversable_edges:
+        problem.set_initial_value(traversable(loc_objs[u], loc_objs[v]), True)
+        problem.set_initial_value(traversable(loc_objs[v], loc_objs[u]), True)
+
+    # 8. INIT: TRAPS AND KNOWLEDGE LOGIC (CORREGIDO)
+    # Start y End siempre están inspeccionados y limpios
+    problem.set_initial_value(inspected(loc_objs["l_start"]), True)
+    problem.set_initial_value(clear(loc_objs["l_start"]), True)
+    problem.set_initial_value(inspected(loc_objs["l_end"]), True)
+    problem.set_initial_value(clear(loc_objs["l_end"]), True)
+    
+    for loc_name in [l.name for l in graph.locations]:
+        loc_obj = loc_objs[loc_name]
+        trap_name = f"t_{loc_name.split('_')[1]}"
+        trap_obj = traps[trap_name]
+        state = knowledge.get(loc_name, "unknown")
         
-        if agent_name in robots:
-            rob_obj = robots[agent_name]
-            problem.set_initial_value(robot_at(rob_obj, loc_obj), True)
-        elif agent_name in rangers:
-            ran_obj = rangers[agent_name]
-            problem.set_initial_value(ranger_at(ran_obj, loc_obj), True)
-
-    # INIT: Adjacency (Linear Graph)
-    for i in range(1, num_nodes+1):
-        loc = f"l_{i:02d}"
-        if i == 1:
-            problem.set_initial_value(adjacent(locations["l_start"], locations[loc]), True)
-            problem.set_initial_value(adjacent(locations[loc], locations["l_start"]), True)
-            problem.set_initial_value(traversable(locations["l_start"], locations[loc]), True)
-            problem.set_initial_value(traversable(locations[loc], locations["l_start"]), True)
-        if i == num_nodes:
-            problem.set_initial_value(adjacent(locations[loc], locations["l_end"]), True)
-            problem.set_initial_value(adjacent(locations["l_end"], locations[loc]), True)
-            problem.set_initial_value(traversable(locations[loc], locations["l_end"]), True)
-            problem.set_initial_value(traversable(locations["l_end"], locations[loc]), True)
-        if i > 1:
-            prev = f"l_{i-1:02d}"
-            problem.set_initial_value(adjacent(locations[loc], locations[prev]), True)
-            problem.set_initial_value(adjacent(locations[prev], locations[loc]), True)
-            problem.set_initial_value(traversable(locations[loc], locations[prev]), True)
-            problem.set_initial_value(traversable(locations[prev], locations[loc]), True)
-
-    # --- INIT: TRAPS AND KNOWLEDGE LOGIC ---
-    for i in range(1, num_nodes+1):
-        trap_name = f"t_{i:02d}"
-        loc_name = f"l_{i:02d}"
-        trap = traps[trap_name]
-        loc = locations[loc_name]
-
-        # 1. GROUND TRUTH (Logic used for Simulation)
-        real_trap_type = "trap_pic" 
-        if i % 3 == 1: real_trap_type = "trap_push"
-        elif i % 3 == 2: real_trap_type = "trap_animal"
-        
-        # 2. DECISION (Sim vs Planner)
-        should_add_trap = False
-        final_trap_type = None
-
-        if knowledge is None:
-            # Simulation Mode: Add everything
-            should_add_trap = True
-            final_trap_type = real_trap_type
+        if state == "unknown":
+            problem.set_initial_value(inspected(loc_obj), False)
+            problem.set_initial_value(clear(loc_obj), True) # MODO OPTIMISTA
         else:
-            # Planner Mode: Use knowledge dict
-            state = knowledge.get(loc_name, "unknown")
-            if state == "unknown" or state == "clear":
-                # Optimistic: Assume clear
-                problem.set_initial_value(clear(loc), True)
-                should_add_trap = False
+            problem.set_initial_value(inspected(loc_obj), True)
+            if state == "clear":
+                problem.set_initial_value(clear(loc_obj), True)
             elif state.startswith("trap_"):
-                # Knowledge: Add trap
-                should_add_trap = True
-                final_trap_type = state
-        
-        # 3. APPLY
-        if should_add_trap:
-            problem.set_initial_value(trap_at(trap, loc), True)
-            if final_trap_type == "trap_push":
-                problem.set_initial_value(trap_push(trap), True)
-            elif final_trap_type == "trap_animal":
-                problem.set_initial_value(trap_animal(trap), True)
-            elif final_trap_type == "trap_pic":
-                problem.set_initial_value(trap_pic(trap), True)
+                problem.set_initial_value(trap_at(trap_obj, loc_obj), True)
+                if "push" in state: problem.set_initial_value(trap_push(trap_obj), True)
+                if "pic" in state: problem.set_initial_value(trap_pic(trap_obj), True)
+                if "animal" in state: problem.set_initial_value(trap_animal(trap_obj), True)
 
-    # INIT: Animal (Fixed at start/l_02 for simplicity)
-    animal_loc = "l_02" if num_nodes >= 2 else "l_01"
-    problem.set_initial_value(animal_at(animals["a_01"], locations[animal_loc]), True)
+    problem.set_initial_value(animal_at(animal_obj, loc_objs["l_02"]), True)
 
-    # GOAL
-    clear_goals = [clear(locations[f"l_{i:02d}"]) for i in range(1, num_nodes+1)]
+    # GOALS
+    clear_goals = [clear(loc_objs[l.name]) for l in graph.locations]
     problem.add_goal(And(
         *clear_goals,
-        robot_at(robots["r_drone"], locations["l_end"]),
-        robot_at(robots["r_spot"], locations["l_end"]),
-        ranger_at(rangers["caro"], locations["l_end"]),
-        ranger_at(rangers["bapt"], locations["l_end"]),
-        animal_at(animals["a_01"], locations["l_start"])
+        robot_at(robots["r_drone"], loc_objs["l_end"]),
+        robot_at(robots["r_spot"], loc_objs["l_end"]),
+        ranger_at(rangers["caro"], loc_objs["l_end"]),
+        ranger_at(rangers["bapt"], loc_objs["l_end"]),
+        animal_at(animal_obj, loc_objs["l_start"])
     ))
 
-    # --- MODIFIED: NO DOMAIN WRITING, NO PRINT SPAM ---
-    # We return the object directly. 
-    # If you really need the file, we write only the problem file silently.
-    
-    # writer = PDDLWriter(problem)
-    # writer.write_problem(f"{folder}/problem_{unique_id}.pddl") # Optional: write unique problem
-    
     return problem
