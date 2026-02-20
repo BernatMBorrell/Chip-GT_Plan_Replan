@@ -1,6 +1,6 @@
 from unified_planning.shortcuts import *
 
-def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=None):
+def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=None, animal_state="l_02"):
     problem = Problem(f"chip_gt_problem_{unique_id}")
     
     # TYPES
@@ -25,7 +25,9 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     problem.add_fluent("animal_at", BoolType(), a=animal, l=location)
     problem.add_fluent("robot_carrying_animal", BoolType(), r=robot, a=animal)
     problem.add_fluent("ranger_carrying_animal", BoolType(), r=ranger, a=animal)
+    
     problem.add_fluent("inspected", BoolType(), l=location) 
+    problem.add_fluent("unknown_loc", BoolType(), l=location) 
 
     # Fluent helpers
     robot_at = problem.fluent("robot_at")
@@ -43,23 +45,39 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     robot_carrying_animal = problem.fluent("robot_carrying_animal")
     ranger_carrying_animal = problem.fluent("ranger_carrying_animal")
     inspected = problem.fluent("inspected")
+    unknown_loc = problem.fluent("unknown_loc")
 
     # --- ACTIONS ---
 
-    robot_inspect = InstantaneousAction("robot_inspect", pos=location, target=location, r=robot)
-    robot_inspect.add_precondition(And(robot_at(robot_inspect.parameter("r"), robot_inspect.parameter("pos")), 
-                                       adjacent(robot_inspect.parameter("pos"), robot_inspect.parameter("target")), 
-                                       Not(inspected(robot_inspect.parameter("target")))))
-    robot_inspect.add_effect(inspected(robot_inspect.parameter("target")), True)
-    problem.add_action(robot_inspect)
+    # 1. DRONE INSPECT: The drone inspects the node IT IS CURRENTLY AT.
+    drone_inspect = InstantaneousAction("drone_inspect", pos=location, r=robot)
+    drone_inspect.add_precondition(And(robot_at(drone_inspect.parameter("r"), drone_inspect.parameter("pos")), 
+                                       drone(drone_inspect.parameter("r")), 
+                                       unknown_loc(drone_inspect.parameter("pos"))))
+    drone_inspect.add_effect(unknown_loc(drone_inspect.parameter("pos")), False)
+    drone_inspect.add_effect(inspected(drone_inspect.parameter("pos")), True)
+    problem.add_action(drone_inspect)
 
+    # 2. SPOT INSPECT: Spot inspects an ADJACENT node (minesweeper style)
+    spot_inspect = InstantaneousAction("spot_inspect", pos=location, target=location, r=robot)
+    spot_inspect.add_precondition(And(robot_at(spot_inspect.parameter("r"), spot_inspect.parameter("pos")), 
+                                      spot(spot_inspect.parameter("r")),
+                                      adjacent(spot_inspect.parameter("pos"), spot_inspect.parameter("target")), 
+                                      unknown_loc(spot_inspect.parameter("target"))))
+    spot_inspect.add_effect(unknown_loc(spot_inspect.parameter("target")), False)
+    spot_inspect.add_effect(inspected(spot_inspect.parameter("target")), True)
+    problem.add_action(spot_inspect)
+
+    # 3. RANGER INSPECT: Rangers inspect an ADJACENT node
     ranger_inspect = InstantaneousAction("ranger_inspect", pos=location, target=location, ran=ranger)
     ranger_inspect.add_precondition(And(ranger_at(ranger_inspect.parameter("ran"), ranger_inspect.parameter("pos")), 
                                         adjacent(ranger_inspect.parameter("pos"), ranger_inspect.parameter("target")), 
-                                        Not(inspected(ranger_inspect.parameter("target")))))
+                                        unknown_loc(ranger_inspect.parameter("target"))))
+    ranger_inspect.add_effect(unknown_loc(ranger_inspect.parameter("target")), False)
     ranger_inspect.add_effect(inspected(ranger_inspect.parameter("target")), True)
     problem.add_action(ranger_inspect)
 
+    # MOVEMENTS
     move_ground = InstantaneousAction("move_ground", from_=location, to=location, r=robot)
     move_ground.add_precondition(And(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), 
                                      Not(robot_at(move_ground.parameter("r"), move_ground.parameter("to"))), 
@@ -88,6 +106,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), False)
     problem.add_action(move_ranger)
 
+    # DISARMS
     act_r_push = InstantaneousAction("robot_disarm_trap_push", l=location, r=robot, t=trap)
     act_r_push.add_precondition(And(robot_at(act_r_push.parameter("r"), act_r_push.parameter("l")), trap_at(act_r_push.parameter("t"), act_r_push.parameter("l")), trap_push(act_r_push.parameter("t")), spot(act_r_push.parameter("r"))))
     act_r_push.add_effect(clear(act_r_push.parameter("l")), True)
@@ -106,6 +125,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     act_ran_ani.add_effect(trap_at(act_ran_ani.parameter("t"), act_ran_ani.parameter("l")), False)
     problem.add_action(act_ran_ani)
 
+    # ANIMAL HANDLING
     act_r_carry = InstantaneousAction("robot_carry_animal", l=location, r=robot, a=animal)
     act_r_carry.add_precondition(And(robot_at(act_r_carry.parameter("r"), act_r_carry.parameter("l")), animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), clear(act_r_carry.parameter("l")), spot(act_r_carry.parameter("r"))))
     act_r_carry.add_effect(animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), False)
@@ -130,14 +150,13 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     act_ran_deliver.add_effect(animal_at(act_ran_deliver.parameter("a"), act_ran_deliver.parameter("l")), True)
     problem.add_action(act_ran_deliver)
 
-    # --- OBJECTS ---
+    # OBJECTS & INIT
     loc_objs = {n: problem.add_object(n, location) for n in graph.graph.nodes()}
     robots = {"r_drone": problem.add_object("r_drone", robot), "r_spot": problem.add_object("r_spot", robot)}
     rangers = {"caro": problem.add_object("caro", ranger), "bapt": problem.add_object("bapt", ranger)}
     traps = {f"t_{i:02d}": problem.add_object(f"t_{i:02d}", trap) for i in range(1, len(graph.locations)+1)}
     animal_obj = problem.add_object("a_01", animal)
 
-    # --- INIT FACTS ---
     problem.set_initial_value(drone(robots["r_drone"]), True)
     problem.set_initial_value(spot(robots["r_spot"]), True)
     
@@ -155,11 +174,12 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
         problem.set_initial_value(traversable(loc_objs[u], loc_objs[v]), True)
         problem.set_initial_value(traversable(loc_objs[v], loc_objs[u]), True)
 
-    # 8. INIT: TRAPS AND KNOWLEDGE LOGIC (CORREGIDO)
-    # Start y End siempre están inspeccionados y limpios
     problem.set_initial_value(inspected(loc_objs["l_start"]), True)
+    problem.set_initial_value(unknown_loc(loc_objs["l_start"]), False)
     problem.set_initial_value(clear(loc_objs["l_start"]), True)
+    
     problem.set_initial_value(inspected(loc_objs["l_end"]), True)
+    problem.set_initial_value(unknown_loc(loc_objs["l_end"]), False)
     problem.set_initial_value(clear(loc_objs["l_end"]), True)
     
     for loc_name in [l.name for l in graph.locations]:
@@ -169,9 +189,11 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
         state = knowledge.get(loc_name, "unknown")
         
         if state == "unknown":
+            problem.set_initial_value(unknown_loc(loc_obj), True)
             problem.set_initial_value(inspected(loc_obj), False)
-            problem.set_initial_value(clear(loc_obj), True) # MODO OPTIMISTA
+            problem.set_initial_value(clear(loc_obj), True)
         else:
+            problem.set_initial_value(unknown_loc(loc_obj), False)
             problem.set_initial_value(inspected(loc_obj), True)
             if state == "clear":
                 problem.set_initial_value(clear(loc_obj), True)
@@ -181,12 +203,24 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
                 if "pic" in state: problem.set_initial_value(trap_pic(trap_obj), True)
                 if "animal" in state: problem.set_initial_value(trap_animal(trap_obj), True)
 
-    problem.set_initial_value(animal_at(animal_obj, loc_objs["l_02"]), True)
-
-    # GOALS
+    if animal_state.startswith("carried_by_"):
+        carrier = animal_state.replace("carried_by_", "")
+        if carrier in robots:
+            problem.set_initial_value(robot_carrying_animal(robots[carrier], animal_obj), True)
+        else:
+            problem.set_initial_value(ranger_carrying_animal(rangers[carrier], animal_obj), True)
+    else:
+        problem.set_initial_value(animal_at(animal_obj, loc_objs[animal_state]), True)
+    # 7. GOALS
+    # Goal 1: All traps must be disarmed (clear)
     clear_goals = [clear(loc_objs[l.name]) for l in graph.locations]
+    
+    # Goal 2: ALL FOG OF WAR MUST BE CLEARED (Every node must be inspected)
+    inspected_goals = [inspected(loc_objs[l.name]) for l in graph.locations]
+    
     problem.add_goal(And(
         *clear_goals,
+        *inspected_goals,  # <--- THIS FORCES TOTAL MAP EXPLORATION
         robot_at(robots["r_drone"], loc_objs["l_end"]),
         robot_at(robots["r_spot"], loc_objs["l_end"]),
         ranger_at(rangers["caro"], loc_objs["l_end"]),

@@ -1,6 +1,7 @@
 import networkx as nx
 import random
 from typing import Optional
+import matplotlib.pyplot as plt
 
 class Location:
     def __init__(self, name: str):
@@ -18,15 +19,16 @@ class Graph:
 
     def _build_icc_graph(self, num_nodes: int, extra_edges: Optional[int],
                         traversable_prob: float, seed: Optional[int]):
-        if seed is not None: random.seed(seed)
+        if seed is not None: 
+            random.seed(seed)
             
         nodes = [self.start] + self.locations + [self.end]
         for loc in nodes:
             self.graph.add_node(loc.name)
 
         all_names = [loc.name for loc in nodes]
-        # Eliminamos el shuffle para mantener una progresión lógica Start -> 01 -> ... -> End
-        # Si quieres un laberinto caótico total, descomenta el shuffle.
+        # Linear progression logic: Start -> 01 -> ... -> End
+        # If you want a totally chaotic maze, uncomment the shuffle below.
         # random.shuffle(all_names) 
 
         # Step 1: build a spanning tree (mandatory backbone)
@@ -37,7 +39,9 @@ class Graph:
             self.traversable_edges.add((b, a))
 
         # Step 2: add optional extra edges (branches/shortcuts)
-        if extra_edges is None: extra_edges = num_nodes // 2
+        if extra_edges is None: 
+            extra_edges = num_nodes // 2
+            
         for _ in range(extra_edges):
             a, b = random.sample(all_names, 2)
             if not self.graph.has_edge(a, b):
