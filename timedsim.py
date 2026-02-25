@@ -12,8 +12,7 @@ from unified_planning.engines import PlanGenerationResultStatus
 from graphgenerator import Graph
 from domaingenerator import generate_classic_pddl
 
-# Increased nodes and we will add many extra edges for complexity
-NUM_NODES = 12
+NUM_NODES = 50
 PDDL_FOLDER = "./pddl_files/"
 get_environment().credits_stream = None
 
@@ -26,10 +25,10 @@ def generate_ground_truth(graph):
     return gt
 
 # ==========================================
-# 🎨 VISUALIZATION ENGINE
+#  VISUALIZATION ENGINE
 # ==========================================
 def create_mission_gif(graph, history, filename="mission_replay.gif"):
-    print("\n🎬 Generating mission animation... (This might take a few seconds)")
+    print("\nGenerating mission animation... (This might take a few seconds)")
     
     fig, ax = plt.subplots(figsize=(12, 10))
     # Organic complex layout (k spaces the nodes out)
@@ -79,7 +78,7 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
                 
         # 3. Draw Nodes
         nx.draw_networkx_nodes(graph.graph, pos, ax=ax, node_color=node_colors, 
-                               edgecolors=edge_colors, linewidths=linewidths, node_size=800)
+                               edgecolors=edge_colors, linewidths=linewidths, node_size=600)
         nx.draw_networkx_labels(graph.graph, pos, ax=ax, font_size=9, font_weight="bold")
 
         # 4. Draw Agents
@@ -122,13 +121,13 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
     print(f"✅ Animation saved as '{filename}'!")
 
 # ==========================================
-# 🚀 CORE SIMULATION
+#  CORE SIMULATION
 # ==========================================
 def run_mission():
-    print(f"\n--- 🚀 STARTING FULL EXPLORATION MISSION ---")
+    print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
     
-    # We add 8 extra edges to make the graph highly interconnected and web-like
-    graph = Graph(num_nodes=NUM_NODES, seed=42, extra_edges=8, traversable_prob=0.7)
+    # 15 extra edges added to make the graph highly interconnected and web-like
+    graph = Graph(num_nodes=NUM_NODES, seed=42, extra_edges=15, traversable_prob=0.7)
     ground_truth = generate_ground_truth(graph)
     
     knowledge = {l.name: "unknown" for l in graph.locations}
@@ -163,14 +162,14 @@ def run_mission():
         result = planner.solve(up_problem)
         
         if result.status != PlanGenerationResultStatus.SOLVED_SATISFICING:
-            print("   ❌ FATAL ERROR: Path is blocked. Cannot clear all fog of war.")
+            print("   FATAL ERROR: Path is blocked. Cannot clear all fog of war.")
             break
 
         if not result.plan.actions:
             mission_complete = True
             break
             
-        print(f"   [🚗 EXEC] Executing planned sequence:")
+        print(f"   [EXEC] Executing planned sequence:")
         for action_instance in result.plan.actions:
             action_name = action_instance.action.name
             params = action_instance.actual_parameters
@@ -202,31 +201,27 @@ def run_mission():
                     target_loc = str(params[1])
                     agent = str(params[2])
                 
-                print(f"   [📡 SCOUT] {agent} is inspecting {target_loc}...")
+                print(f"   [SCOUT] {agent} is inspecting {target_loc}...")
                 real_state = ground_truth.get(target_loc, "clear")
                 
                 knowledge[target_loc] = real_state
                 inspected_nodes.add(target_loc)
-                print(f"      👀 Revealed: {real_state} at {target_loc}")
+                print(f"      Revealed: {real_state} at {target_loc}")
                 
                 save_state(action_text)
                 
                 if real_state != "clear":
-                    print("   [⚠️ ALERT] Obstacle found! Halting execution.")
+                    print("   [ALERT] Obstacle found! Halting execution.")
                     break 
                 continue 
 
             save_state(action_text)
 
-        # We don't check for victory in the python loop anymore.
-        # We let the planner tell us when there are no actions left (plan is empty),
-        # which means PDDL goals (including total exploration) are met!
-
     if mission_complete:
-        print("\n🏆 ALL FOG OF WAR CLEARED, ANIMAL RESCUED, AGENTS AT END! MISSION ACCOMPLISHED.")
+        print("\nALL FOG OF WAR CLEARED, ANIMAL RESCUED, AGENTS AT END! MISSION ACCOMPLISHED.")
         create_mission_gif(graph, history)
     else:
-        print("\n💥 MISSION FAILED OR ABORTED.")
+        print("\nMISSION FAILED OR ABORTED.")
 
 if __name__ == "__main__":
     if not os.path.exists(PDDL_FOLDER): os.makedirs(PDDL_FOLDER)
