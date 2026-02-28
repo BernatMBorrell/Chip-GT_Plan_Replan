@@ -1,5 +1,6 @@
 import os
 import random
+import time
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import networkx as nx
@@ -19,7 +20,7 @@ get_environment().credits_stream = None
 def generate_ground_truth(graph):
     """Generates random ground truth traps for the graph nodes."""
     gt = {}
-    trap_types = ["trap_push", "trap_pic", "trap_animal", "clear", "clear"] # Added more clears so it's not 100% traps
+    trap_types = ["trap_push", "trap_pic", "trap_animal", "clear", "clear"]
     for loc in graph.locations:
         gt[loc.name] = random.choice(trap_types)
     return gt
@@ -118,17 +119,20 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
     anim = FuncAnimation(fig, update, frames=len(history), interval=600)
     anim.save(filename, writer=PillowWriter(fps=2.0))
     plt.close()
-    print(f"✅ Animation saved as '{filename}'!")
+    print(f"Animation saved as '{filename}'!")
 
 # ==========================================
 #  CORE SIMULATION
 # ==========================================
-def run_mission():
-    print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
+def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None):
+    if verbose:
+        print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
+        print(f"   Planner: {planner_name}")
     
-    # 15 extra edges added to make the graph highly interconnected and web-like
-    graph = Graph(num_nodes=NUM_NODES, seed=42, extra_edges=15, traversable_prob=0.7)
-    ground_truth = generate_ground_truth(graph)
+    if graph is None:
+        graph = Graph(num_nodes=NUM_NODES, seed=42, extra_edges=8, traversable_prob=0.7)
+    if ground_truth is None:
+        ground_truth = generate_ground_truth(graph)
     
     knowledge = {l.name: "unknown" for l in graph.locations}
     knowledge["l_start"] = "clear"
@@ -136,92 +140,114 @@ def run_mission():
     
     agents_state = {"r_spot": "l_start", "r_drone": "l_start", "caro": "l_start", "bapt": "l_start"}
     inspected_nodes = {"l_start", "l_end"}
-    animal_state = "l_02"
+    animal_state = "l_02" if len(graph.locations) >= 2 else "l_01"
     
     history = []
     def save_state(action_text):
-        history.append({
-            "agents": deepcopy(agents_state),
-            "knowledge": deepcopy(knowledge),
-            "inspected": deepcopy(inspected_nodes),
-            "animal": animal_state,
-            "action": action_text
-        })
+        if make_gif:
+            history.append({
+                "agents": deepcopy(agents_state),
+                "knowledge": deepcopy(knowledge),
+                "inspected": deepcopy(inspected_nodes),
+                "animal": animal_state,
+                "action": action_text
+            })
     
     save_state("Mission Start")
 
-    planner = OneshotPlanner(name='fast-downward')
+    try:
+        planner = OneshotPlanner(name=planner_name)
+    except Exception as e:
+        if verbose: print(f"   [!] Error loading {planner_name}: {e}")
+        return 0.0, 0, 0, False
+
     mission_complete = False
     step = 0
+    total_compute_time = 0.0
+    total_actions_executed = 0
 
     while not mission_complete:
         step += 1
-        print(f"\n[STEP {step}] Computing strategy...")
+        if verbose: print(f"\n[STEP {step}] Computing strategy...")
         
-        up_problem = generate_classic_pddl(graph, knowledge, unique_id=str(step), agents_state=agents_state, animal_state=animal_state)
+        up_problem = generate_classic_pddl(
+            graph, 
+            knowledge, 
+            unique_id=f"{planner_name}_{step}", 
+            agents_state=agents_state,
+            animal_state=animal_state
+        )
+        
+        start_time = time.time()
         result = planner.solve(up_problem)
+        end_time = time.time()
         
-        if result.status != PlanGenerationResultStatus.SOLVED_SATISFICING:
-            print("   FATAL ERROR: Path is blocked. Cannot clear all fog of war.")
+        total_compute_time += (end_time - start_time)
+        
+        if result.status not in [PlanGenerationResultStatus.SOLVED_SATISFICING, PlanGenerationResultStatus.SOLVED_OPTIMALLY]:
+            if verbose: print("   FATAL ERROR: Path is blocked.")
             break
 
-        if not result.plan.actions:
+        if not result.plan or not result.plan.actions:
             mission_complete = True
             break
             
-        print(f"   [EXEC] Executing planned sequence:")
+        if verbose: print(f"   [EXEC] Executing planned sequence:")
+        
         for action_instance in result.plan.actions:
+            total_actions_executed += 1
+            
             action_name = action_instance.action.name
             params = action_instance.actual_parameters
             action_text = f"{action_name}({', '.join(map(str, params))})"
-            print(f"      -> {action_text}")
+            
+            if verbose: print(f"      -> {action_text}")
             
             if "move" in action_name:
-                agent = str(params[2]) 
-                dest = str(params[1])
-                agents_state[agent] = dest
-
+                agents_state[str(params[2])] = str(params[1])
             elif "disarm" in action_name:
-                loc = str(params[0]) 
-                knowledge[loc] = "clear"
-
+                knowledge[str(params[0])] = "clear"
             elif "carry" in action_name:
-                agent = str(params[1]) 
-                animal_state = f"carried_by_{agent}"
-                
+                animal_state = f"carried_by_{str(params[1])}"
             elif "deliver" in action_name:
-                loc = str(params[0]) 
-                animal_state = loc
-
+                animal_state = str(params[0])
             elif "inspect" in action_name:
-                if action_name == "drone_inspect":
-                    target_loc = str(params[0])
-                    agent = str(params[1])
-                else:
-                    target_loc = str(params[1])
-                    agent = str(params[2])
+                target_loc = str(params[0]) if action_name == "drone_inspect" else str(params[1])
+                agent = str(params[1]) if action_name == "drone_inspect" else str(params[2])
                 
-                print(f"   [SCOUT] {agent} is inspecting {target_loc}...")
+                if verbose: print(f"   [📡 SCOUT] {agent} is inspecting {target_loc}...")
                 real_state = ground_truth.get(target_loc, "clear")
                 
                 knowledge[target_loc] = real_state
                 inspected_nodes.add(target_loc)
-                print(f"      Revealed: {real_state} at {target_loc}")
                 
+                if verbose: print(f"      👀 Revealed: {real_state} at {target_loc}")
                 save_state(action_text)
                 
                 if real_state != "clear":
-                    print("   [ALERT] Obstacle found! Halting execution.")
+                    if verbose: print("   [ALERT] Obstacle found! Halting execution to replan.")
                     break 
                 continue 
 
             save_state(action_text)
 
+        if step > 250:
+            if verbose: print("   [!] Safety catch: Exceeded 250 replanning steps.")
+            break
+
     if mission_complete:
-        print("\nALL FOG OF WAR CLEARED, ANIMAL RESCUED, AGENTS AT END! MISSION ACCOMPLISHED.")
-        create_mission_gif(graph, history)
+        if verbose: print("\nMISSION ACCOMPLISHED.")
+        if make_gif:
+            if gif_path is None: gif_path = f"mission_{planner_name}.gif"
+            create_mission_gif(graph, history, filename=gif_path)
     else:
-        print("\nMISSION FAILED OR ABORTED.")
+        if verbose: print("\nMISSION FAILED OR ABORTED.")
+
+    planner.destroy()
+
+    # RETURN 4 VALUES NOW
+    return total_compute_time, step, total_actions_executed, mission_complete
+
 
 if __name__ == "__main__":
     if not os.path.exists(PDDL_FOLDER): os.makedirs(PDDL_FOLDER)
