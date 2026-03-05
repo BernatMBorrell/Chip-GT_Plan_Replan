@@ -7,579 +7,573 @@ Seeds per level: [42, 63, 57, 100, 59, 19, 58, 29, 68]
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 0.685s | Replans: 5 | Actions Executed: 19
+      [SUCCESS] Time: 1.126s | Replans: 5 | Actions Executed: 23
   Running ENHSP...
-      [SUCCESS] Time: 2.581s | Replans: 5 | Actions Executed: 20
+      [SUCCESS] Time: 3.851s | Replans: 5 | Actions Executed: 22
   Running LPG...
-      [SUCCESS] Time: 0.442s | Replans: 5 | Actions Executed: 19
+      [SUCCESS] Time: 0.885s | Replans: 5 | Actions Executed: 20
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 0.526s | Replans: 5 | Actions Executed: 21
+      [SUCCESS] Time: 1.137s | Replans: 5 | Actions Executed: 24
   Running ENHSP...
-      [SUCCESS] Time: 1.104s | Replans: 5 | Actions Executed: 23
+      [SUCCESS] Time: 2.359s | Replans: 5 | Actions Executed: 21
   Running LPG...
-      [SUCCESS] Time: 0.346s | Replans: 5 | Actions Executed: 26
+      [SUCCESS] Time: 0.750s | Replans: 5 | Actions Executed: 27
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 0.422s | Replans: 4 | Actions Executed: 23
+      [SUCCESS] Time: 1.136s | Replans: 4 | Actions Executed: 24
   Running ENHSP...
-      [SUCCESS] Time: 0.831s | Replans: 4 | Actions Executed: 18
+      [SUCCESS] Time: 2.298s | Replans: 4 | Actions Executed: 20
   Running LPG...
-      [SUCCESS] Time: 0.275s | Replans: 4 | Actions Executed: 21
+      [SUCCESS] Time: 0.772s | Replans: 4 | Actions Executed: 24
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 0.424s | Replans: 4 | Actions Executed: 20
+      [SUCCESS] Time: 1.157s | Replans: 4 | Actions Executed: 20
   Running ENHSP...
-      [SUCCESS] Time: 0.848s | Replans: 4 | Actions Executed: 21
+      [SUCCESS] Time: 2.411s | Replans: 4 | Actions Executed: 24
   Running LPG...
-      [SUCCESS] Time: 0.279s | Replans: 4 | Actions Executed: 17
+      [SUCCESS] Time: 0.766s | Replans: 4 | Actions Executed: 24
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 0.207s | Replans: 2 | Actions Executed: 15
+      [SUCCESS] Time: 1.163s | Replans: 2 | Actions Executed: 17
   Running ENHSP...
-      [SUCCESS] Time: 0.400s | Replans: 2 | Actions Executed: 14
+      [SUCCESS] Time: 2.302s | Replans: 2 | Actions Executed: 17
   Running LPG...
-      [SUCCESS] Time: 0.134s | Replans: 2 | Actions Executed: 14
+      [SUCCESS] Time: 0.767s | Replans: 2 | Actions Executed: 16
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 0.401s | Replans: 4 | Actions Executed: 21
+      [SUCCESS] Time: 1.166s | Replans: 4 | Actions Executed: 18
   Running ENHSP...
-      [SUCCESS] Time: 0.870s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 2.293s | Replans: 4 | Actions Executed: 20
   Running LPG...
-      [SUCCESS] Time: 0.273s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 0.772s | Replans: 4 | Actions Executed: 21
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 0.302s | Replans: 3 | Actions Executed: 22
+      [SUCCESS] Time: 1.158s | Replans: 3 | Actions Executed: 20
   Running ENHSP...
-      [SUCCESS] Time: 0.611s | Replans: 3 | Actions Executed: 19
+      [SUCCESS] Time: 2.351s | Replans: 3 | Actions Executed: 22
   Running LPG...
-      [SUCCESS] Time: 0.201s | Replans: 3 | Actions Executed: 19
+      [SUCCESS] Time: 0.783s | Replans: 3 | Actions Executed: 19
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 0.400s | Replans: 4 | Actions Executed: 18
+      [SUCCESS] Time: 1.136s | Replans: 4 | Actions Executed: 18
   Running ENHSP...
-      [SUCCESS] Time: 0.826s | Replans: 4 | Actions Executed: 16
+      [SUCCESS] Time: 2.407s | Replans: 4 | Actions Executed: 20
   Running LPG...
-      [SUCCESS] Time: 0.266s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 0.777s | Replans: 4 | Actions Executed: 20
 
  GENERATING MAP - COMPLEXITY: 3 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 0.405s | Replans: 4 | Actions Executed: 20
+      [SUCCESS] Time: 1.144s | Replans: 4 | Actions Executed: 19
   Running ENHSP...
-      [SUCCESS] Time: 0.836s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 2.374s | Replans: 4 | Actions Executed: 21
   Running LPG...
-      [SUCCESS] Time: 0.259s | Replans: 4 | Actions Executed: 22
+      [SUCCESS] Time: 0.774s | Replans: 4 | Actions Executed: 27
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 0.405s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 1.483s | Replans: 4 | Actions Executed: 24
   Running ENHSP...
-      [SUCCESS] Time: 0.850s | Replans: 4 | Actions Executed: 17
+      [SUCCESS] Time: 3.178s | Replans: 4 | Actions Executed: 20
   Running LPG...
-      [SUCCESS] Time: 0.278s | Replans: 4 | Actions Executed: 17
+      [SUCCESS] Time: 1.012s | Replans: 4 | Actions Executed: 22
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 0.535s | Replans: 5 | Actions Executed: 25
+      [SUCCESS] Time: 1.505s | Replans: 5 | Actions Executed: 27
   Running ENHSP...
-      [SUCCESS] Time: 1.118s | Replans: 5 | Actions Executed: 23
+      [SUCCESS] Time: 3.209s | Replans: 5 | Actions Executed: 23
   Running LPG...
-      [SUCCESS] Time: 0.348s | Replans: 5 | Actions Executed: 24
+      [SUCCESS] Time: 1.006s | Replans: 5 | Actions Executed: 29
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 0.318s | Replans: 3 | Actions Executed: 19
+      [SUCCESS] Time: 1.513s | Replans: 3 | Actions Executed: 22
   Running ENHSP...
-      [SUCCESS] Time: 0.677s | Replans: 3 | Actions Executed: 16
+      [SUCCESS] Time: 3.193s | Replans: 3 | Actions Executed: 19
   Running LPG...
-      [SUCCESS] Time: 0.208s | Replans: 3 | Actions Executed: 18
+      [SUCCESS] Time: 1.020s | Replans: 3 | Actions Executed: 19
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 0.641s | Replans: 6 | Actions Executed: 27
+      [SUCCESS] Time: 1.563s | Replans: 6 | Actions Executed: 25
   Running ENHSP...
-      [SUCCESS] Time: 1.374s | Replans: 6 | Actions Executed: 24
+      [SUCCESS] Time: 3.220s | Replans: 6 | Actions Executed: 25
   Running LPG...
-      [SUCCESS] Time: 0.411s | Replans: 6 | Actions Executed: 27
+      [SUCCESS] Time: 1.044s | Replans: 6 | Actions Executed: 24
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 0.523s | Replans: 5 | Actions Executed: 22
+      [SUCCESS] Time: 1.545s | Replans: 5 | Actions Executed: 23
   Running ENHSP...
-      [SUCCESS] Time: 1.105s | Replans: 5 | Actions Executed: 22
+      [SUCCESS] Time: 3.177s | Replans: 5 | Actions Executed: 25
   Running LPG...
-      [SUCCESS] Time: 0.337s | Replans: 5 | Actions Executed: 23
+      [SUCCESS] Time: 1.010s | Replans: 5 | Actions Executed: 23
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 0.631s | Replans: 6 | Actions Executed: 25
+      [SUCCESS] Time: 1.498s | Replans: 6 | Actions Executed: 26
   Running ENHSP...
-      [SUCCESS] Time: 1.344s | Replans: 6 | Actions Executed: 24
+      [SUCCESS] Time: 3.170s | Replans: 6 | Actions Executed: 30
   Running LPG...
-      [SUCCESS] Time: 0.411s | Replans: 6 | Actions Executed: 27
+      [SUCCESS] Time: 1.019s | Replans: 6 | Actions Executed: 26
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 0.426s | Replans: 4 | Actions Executed: 27
+      [SUCCESS] Time: 1.530s | Replans: 4 | Actions Executed: 23
   Running ENHSP...
-      [SUCCESS] Time: 0.902s | Replans: 4 | Actions Executed: 22
+      [SUCCESS] Time: 3.192s | Replans: 4 | Actions Executed: 24
   Running LPG...
-      [SUCCESS] Time: 0.276s | Replans: 4 | Actions Executed: 23
+      [SUCCESS] Time: 1.012s | Replans: 4 | Actions Executed: 25
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 0.405s | Replans: 4 | Actions Executed: 25
+      [SUCCESS] Time: 1.501s | Replans: 4 | Actions Executed: 28
   Running ENHSP...
-      [SUCCESS] Time: 0.834s | Replans: 4 | Actions Executed: 22
+      [SUCCESS] Time: 3.206s | Replans: 4 | Actions Executed: 27
   Running LPG...
-      [SUCCESS] Time: 0.275s | Replans: 4 | Actions Executed: 26
+      [SUCCESS] Time: 0.990s | Replans: 4 | Actions Executed: 29
 
  GENERATING MAP - COMPLEXITY: 4 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 0.417s | Replans: 4 | Actions Executed: 22
+      [SUCCESS] Time: 1.493s | Replans: 4 | Actions Executed: 22
   Running ENHSP...
-      [SUCCESS] Time: 0.874s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 3.235s | Replans: 4 | Actions Executed: 22
   Running LPG...
-      [SUCCESS] Time: 0.275s | Replans: 4 | Actions Executed: 20
+      [SUCCESS] Time: 0.975s | Replans: 4 | Actions Executed: 22
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 0.417s | Replans: 4 | Actions Executed: 21
+      [SUCCESS] Time: 1.906s | Replans: 4 | Actions Executed: 28
   Running ENHSP...
-      [SUCCESS] Time: 0.939s | Replans: 4 | Actions Executed: 19
+      [SUCCESS] Time: 4.060s | Replans: 4 | Actions Executed: 28
   Running LPG...
-      [SUCCESS] Time: 0.278s | Replans: 4 | Actions Executed: 20
+      [SUCCESS] Time: 1.232s | Replans: 4 | Actions Executed: 27
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 0.647s | Replans: 6 | Actions Executed: 25
+      [SUCCESS] Time: 1.873s | Replans: 6 | Actions Executed: 29
   Running ENHSP...
-      [SUCCESS] Time: 1.367s | Replans: 6 | Actions Executed: 23
+      [SUCCESS] Time: 3.957s | Replans: 6 | Actions Executed: 30
   Running LPG...
-      [SUCCESS] Time: 0.414s | Replans: 6 | Actions Executed: 26
+      [SUCCESS] Time: 1.272s | Replans: 6 | Actions Executed: 26
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 0.317s | Replans: 3 | Actions Executed: 27
+      [SUCCESS] Time: 1.884s | Replans: 3 | Actions Executed: 29
   Running ENHSP...
-      [SUCCESS] Time: 0.654s | Replans: 3 | Actions Executed: 22
+      [SUCCESS] Time: 3.968s | Replans: 3 | Actions Executed: 29
   Running LPG...
-      [SUCCESS] Time: 0.217s | Replans: 3 | Actions Executed: 22
+      [SUCCESS] Time: 1.226s | Replans: 3 | Actions Executed: 27
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 0.743s | Replans: 7 | Actions Executed: 29
+      [SUCCESS] Time: 1.892s | Replans: 7 | Actions Executed: 30
   Running ENHSP...
-      [SUCCESS] Time: 1.645s | Replans: 7 | Actions Executed: 27
+      [SUCCESS] Time: 4.153s | Replans: 7 | Actions Executed: 32
   Running LPG...
-      [SUCCESS] Time: 0.481s | Replans: 7 | Actions Executed: 28
+      [SUCCESS] Time: 1.240s | Replans: 7 | Actions Executed: 28
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 0.642s | Replans: 6 | Actions Executed: 33
+      [SUCCESS] Time: 1.891s | Replans: 6 | Actions Executed: 32
   Running ENHSP...
-      [SUCCESS] Time: 1.398s | Replans: 6 | Actions Executed: 28
+      [SUCCESS] Time: 4.060s | Replans: 6 | Actions Executed: 30
   Running LPG...
-      [SUCCESS] Time: 0.425s | Replans: 6 | Actions Executed: 25
+      [SUCCESS] Time: 1.246s | Replans: 6 | Actions Executed: 33
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 0.522s | Replans: 5 | Actions Executed: 30
+      [SUCCESS] Time: 1.888s | Replans: 5 | Actions Executed: 30
   Running ENHSP...
-      [SUCCESS] Time: 1.148s | Replans: 5 | Actions Executed: 25
+      [SUCCESS] Time: 3.985s | Replans: 5 | Actions Executed: 36
   Running LPG...
-      [SUCCESS] Time: 0.351s | Replans: 5 | Actions Executed: 28
+      [SUCCESS] Time: 1.260s | Replans: 5 | Actions Executed: 30
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 0.323s | Replans: 3 | Actions Executed: 25
+      [SUCCESS] Time: 1.893s | Replans: 3 | Actions Executed: 26
   Running ENHSP...
-      [SUCCESS] Time: 0.660s | Replans: 3 | Actions Executed: 17
+      [SUCCESS] Time: 3.960s | Replans: 3 | Actions Executed: 22
   Running LPG...
-      [SUCCESS] Time: 0.216s | Replans: 3 | Actions Executed: 17
+      [SUCCESS] Time: 1.252s | Replans: 3 | Actions Executed: 25
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 0.436s | Replans: 4 | Actions Executed: 21
+      [SUCCESS] Time: 1.887s | Replans: 4 | Actions Executed: 24
   Running ENHSP...
-      [SUCCESS] Time: 0.936s | Replans: 4 | Actions Executed: 20
+      [SUCCESS] Time: 3.958s | Replans: 4 | Actions Executed: 24
   Running LPG...
-      [SUCCESS] Time: 0.277s | Replans: 4 | Actions Executed: 18
+      [SUCCESS] Time: 1.269s | Replans: 4 | Actions Executed: 29
 
  GENERATING MAP - COMPLEXITY: 5 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 0.522s | Replans: 5 | Actions Executed: 30
+      [SUCCESS] Time: 1.906s | Replans: 5 | Actions Executed: 35
   Running ENHSP...
-      [SUCCESS] Time: 1.145s | Replans: 5 | Actions Executed: 32
+      [SUCCESS] Time: 4.097s | Replans: 5 | Actions Executed: 30
   Running LPG...
-      [SUCCESS] Time: 0.358s | Replans: 5 | Actions Executed: 34
+      [SUCCESS] Time: 1.272s | Replans: 5 | Actions Executed: 30
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 0.903s | Replans: 8 | Actions Executed: 43
+      [SUCCESS] Time: 2.731s | Replans: 8 | Actions Executed: 34
   Running ENHSP...
-      [SUCCESS] Time: 2.157s | Replans: 8 | Actions Executed: 38
+      [SUCCESS] Time: 6.288s | Replans: 8 | Actions Executed: 44
   Running LPG...
-      [SUCCESS] Time: 0.608s | Replans: 8 | Actions Executed: 42
+      [SUCCESS] Time: 1.759s | Replans: 8 | Actions Executed: 41
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 0.934s | Replans: 8 | Actions Executed: 36
+      [SUCCESS] Time: 2.689s | Replans: 8 | Actions Executed: 40
   Running ENHSP...
-      [SUCCESS] Time: 2.271s | Replans: 8 | Actions Executed: 39
+      [SUCCESS] Time: 6.509s | Replans: 8 | Actions Executed: 41
   Running LPG...
-      [SUCCESS] Time: 0.599s | Replans: 8 | Actions Executed: 33
+      [SUCCESS] Time: 1.725s | Replans: 8 | Actions Executed: 39
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 0.598s | Replans: 5 | Actions Executed: 31
+      [SUCCESS] Time: 2.679s | Replans: 5 | Actions Executed: 39
   Running ENHSP...
-      [SUCCESS] Time: 1.309s | Replans: 5 | Actions Executed: 32
+      [SUCCESS] Time: 6.238s | Replans: 5 | Actions Executed: 37
   Running LPG...
-      [SUCCESS] Time: 0.373s | Replans: 5 | Actions Executed: 30
+      [SUCCESS] Time: 1.765s | Replans: 5 | Actions Executed: 36
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 0.672s | Replans: 6 | Actions Executed: 36
+      [SUCCESS] Time: 2.798s | Replans: 6 | Actions Executed: 40
   Running ENHSP...
-      [SUCCESS] Time: 1.526s | Replans: 6 | Actions Executed: 36
+      [SUCCESS] Time: 5.987s | Replans: 6 | Actions Executed: 39
   Running LPG...
-      [SUCCESS] Time: 0.449s | Replans: 6 | Actions Executed: 34
+      [SUCCESS] Time: 1.771s | Replans: 6 | Actions Executed: 37
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 0.680s | Replans: 6 | Actions Executed: 34
+      [SUCCESS] Time: 2.679s | Replans: 6 | Actions Executed: 37
   Running ENHSP...
-      [SUCCESS] Time: 1.549s | Replans: 6 | Actions Executed: 36
+      [SUCCESS] Time: 5.967s | Replans: 6 | Actions Executed: 42
   Running LPG...
-      [SUCCESS] Time: 0.453s | Replans: 6 | Actions Executed: 33
+      [SUCCESS] Time: 1.752s | Replans: 6 | Actions Executed: 34
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 0.458s | Replans: 4 | Actions Executed: 32
+      [SUCCESS] Time: 2.679s | Replans: 4 | Actions Executed: 32
   Running ENHSP...
-      [SUCCESS] Time: 1.052s | Replans: 4 | Actions Executed: 30
+      [SUCCESS] Time: 6.097s | Replans: 4 | Actions Executed: 33
   Running LPG...
-      [SUCCESS] Time: 0.300s | Replans: 4 | Actions Executed: 30
+      [SUCCESS] Time: 1.731s | Replans: 4 | Actions Executed: 30
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 1.057s | Replans: 9 | Actions Executed: 44
+      [SUCCESS] Time: 2.722s | Replans: 9 | Actions Executed: 45
   Running ENHSP...
-      [SUCCESS] Time: 2.399s | Replans: 9 | Actions Executed: 38
+      [SUCCESS] Time: 6.140s | Replans: 9 | Actions Executed: 43
   Running LPG...
-      [SUCCESS] Time: 0.685s | Replans: 9 | Actions Executed: 37
+      [SUCCESS] Time: 1.746s | Replans: 9 | Actions Executed: 36
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 0.578s | Replans: 5 | Actions Executed: 39
+      [SUCCESS] Time: 2.684s | Replans: 5 | Actions Executed: 36
   Running ENHSP...
-      [SUCCESS] Time: 1.318s | Replans: 5 | Actions Executed: 31
+      [SUCCESS] Time: 5.922s | Replans: 5 | Actions Executed: 34
   Running LPG...
-      [SUCCESS] Time: 0.357s | Replans: 5 | Actions Executed: 32
+      [SUCCESS] Time: 1.790s | Replans: 5 | Actions Executed: 39
 
  GENERATING MAP - COMPLEXITY: 7 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 0.445s | Replans: 4 | Actions Executed: 30
+      [SUCCESS] Time: 2.705s | Replans: 4 | Actions Executed: 37
   Running ENHSP...
-      [SUCCESS] Time: 0.975s | Replans: 4 | Actions Executed: 35
+      [SUCCESS] Time: 5.881s | Replans: 4 | Actions Executed: 33
   Running LPG...
-      [SUCCESS] Time: 0.299s | Replans: 4 | Actions Executed: 31
+      [SUCCESS] Time: 1.740s | Replans: 4 | Actions Executed: 35
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 1.001s | Replans: 8 | Actions Executed: 46
+      [SUCCESS] Time: 4.022s | Replans: 8 | Actions Executed: 46
   Running ENHSP...
-      [SUCCESS] Time: 2.485s | Replans: 8 | Actions Executed: 43
+      [SUCCESS] Time: 9.932s | Replans: 8 | Actions Executed: 51
   Running LPG...
-      [SUCCESS] Time: 0.613s | Replans: 8 | Actions Executed: 47
+      [SUCCESS] Time: 2.544s | Replans: 8 | Actions Executed: 41
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 1.042s | Replans: 8 | Actions Executed: 42
+      [SUCCESS] Time: 3.978s | Replans: 8 | Actions Executed: 44
   Running ENHSP...
-      [SUCCESS] Time: 2.424s | Replans: 8 | Actions Executed: 39
+      [SUCCESS] Time: 10.187s | Replans: 8 | Actions Executed: 49
   Running LPG...
-      [SUCCESS] Time: 0.628s | Replans: 8 | Actions Executed: 40
+      [SUCCESS] Time: 2.631s | Replans: 8 | Actions Executed: 52
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 0.865s | Replans: 7 | Actions Executed: 46
+      [SUCCESS] Time: 4.032s | Replans: 7 | Actions Executed: 48
   Running ENHSP...
-      [SUCCESS] Time: 2.122s | Replans: 7 | Actions Executed: 43
+      [SUCCESS] Time: 9.793s | Replans: 7 | Actions Executed: 45
   Running LPG...
-      [SUCCESS] Time: 0.546s | Replans: 7 | Actions Executed: 47
+      [SUCCESS] Time: 2.595s | Replans: 7 | Actions Executed: 44
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 1.011s | Replans: 8 | Actions Executed: 49
+      [SUCCESS] Time: 4.033s | Replans: 8 | Actions Executed: 50
   Running ENHSP...
-      [SUCCESS] Time: 2.429s | Replans: 8 | Actions Executed: 40
+      [SUCCESS] Time: 9.692s | Replans: 8 | Actions Executed: 46
   Running LPG...
-      [SUCCESS] Time: 0.626s | Replans: 8 | Actions Executed: 49
+      [SUCCESS] Time: 2.570s | Replans: 8 | Actions Executed: 53
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 1.000s | Replans: 8 | Actions Executed: 49
+      [SUCCESS] Time: 4.007s | Replans: 8 | Actions Executed: 56
   Running ENHSP...
-      [SUCCESS] Time: 2.531s | Replans: 8 | Actions Executed: 49
+      [SUCCESS] Time: 10.627s | Replans: 8 | Actions Executed: 55
   Running LPG...
-      [SUCCESS] Time: 0.640s | Replans: 8 | Actions Executed: 43
+      [SUCCESS] Time: 2.623s | Replans: 8 | Actions Executed: 61
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 0.873s | Replans: 7 | Actions Executed: 42
+      [SUCCESS] Time: 4.140s | Replans: 7 | Actions Executed: 46
   Running ENHSP...
-      [SUCCESS] Time: 2.124s | Replans: 7 | Actions Executed: 35
+      [SUCCESS] Time: 10.075s | Replans: 7 | Actions Executed: 42
   Running LPG...
-      [SUCCESS] Time: 0.550s | Replans: 7 | Actions Executed: 35
+      [SUCCESS] Time: 2.560s | Replans: 7 | Actions Executed: 44
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 1.395s | Replans: 11 | Actions Executed: 56
+      [SUCCESS] Time: 4.033s | Replans: 11 | Actions Executed: 60
   Running ENHSP...
-      [SUCCESS] Time: 3.576s | Replans: 11 | Actions Executed: 60
+      [SUCCESS] Time: 10.288s | Replans: 11 | Actions Executed: 64
   Running LPG...
-      [SUCCESS] Time: 0.834s | Replans: 11 | Actions Executed: 63
+      [SUCCESS] Time: 2.567s | Replans: 11 | Actions Executed: 67
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 1.001s | Replans: 8 | Actions Executed: 38
+      [SUCCESS] Time: 4.028s | Replans: 8 | Actions Executed: 55
   Running ENHSP...
-      [SUCCESS] Time: 2.405s | Replans: 8 | Actions Executed: 37
+      [SUCCESS] Time: 9.738s | Replans: 8 | Actions Executed: 48
   Running LPG...
-      [SUCCESS] Time: 0.613s | Replans: 8 | Actions Executed: 44
+      [SUCCESS] Time: 2.611s | Replans: 8 | Actions Executed: 46
 
  GENERATING MAP - COMPLEXITY: 10 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 1.122s | Replans: 9 | Actions Executed: 47
+      [SUCCESS] Time: 4.013s | Replans: 9 | Actions Executed: 54
   Running ENHSP...
-      [SUCCESS] Time: 2.778s | Replans: 9 | Actions Executed: 37
+      [SUCCESS] Time: 9.810s | Replans: 9 | Actions Executed: 52
   Running LPG...
-      [SUCCESS] Time: 0.708s | Replans: 9 | Actions Executed: 46
+      [SUCCESS] Time: 2.589s | Replans: 9 | Actions Executed: 53
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 2.079s | Replans: 14 | Actions Executed: 74
+      [SUCCESS] Time: 6.905s | Replans: 14 | Actions Executed: 69
   Running ENHSP...
-      [SUCCESS] Time: 8.714s | Replans: 14 | Actions Executed: 68
+      [SUCCESS] Time: 37.237s | Replans: 14 | Actions Executed: 92
   Running LPG...
-      [SUCCESS] Time: 1.232s | Replans: 14 | Actions Executed: 68
+      [SUCCESS] Time: 4.305s | Replans: 14 | Actions Executed: 82
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 1.615s | Replans: 11 | Actions Executed: 63
+      [SUCCESS] Time: 6.958s | Replans: 11 | Actions Executed: 74
   Running ENHSP...
-      [SUCCESS] Time: 4.777s | Replans: 11 | Actions Executed: 59
+      [SUCCESS] Time: 20.579s | Replans: 11 | Actions Executed: 72
   Running LPG...
-      [SUCCESS] Time: 0.962s | Replans: 11 | Actions Executed: 61
+      [SUCCESS] Time: 4.234s | Replans: 11 | Actions Executed: 80
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 2.066s | Replans: 14 | Actions Executed: 75
+      [SUCCESS] Time: 6.981s | Replans: 14 | Actions Executed: 82
   Running ENHSP...
-      [SUCCESS] Time: 6.994s | Replans: 14 | Actions Executed: 65
+      [SUCCESS] Time: 22.695s | Replans: 14 | Actions Executed: 73
   Running LPG...
-      [SUCCESS] Time: 1.250s | Replans: 14 | Actions Executed: 60
+      [SUCCESS] Time: 4.209s | Replans: 14 | Actions Executed: 86
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 1.659s | Replans: 11 | Actions Executed: 72
+      [SUCCESS] Time: 6.675s | Replans: 11 | Actions Executed: 75
   Running ENHSP...
-      [SUCCESS] Time: 4.591s | Replans: 11 | Actions Executed: 64
+      [SUCCESS] Time: 19.567s | Replans: 11 | Actions Executed: 81
   Running LPG...
-      [SUCCESS] Time: 0.970s | Replans: 11 | Actions Executed: 61
+      [SUCCESS] Time: 4.178s | Replans: 11 | Actions Executed: 60
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 1.671s | Replans: 11 | Actions Executed: 66
+      [SUCCESS] Time: 6.753s | Replans: 11 | Actions Executed: 68
   Running ENHSP...
-      [SUCCESS] Time: 4.888s | Replans: 11 | Actions Executed: 61
+      [SUCCESS] Time: 20.926s | Replans: 11 | Actions Executed: 76
   Running LPG...
-      [SUCCESS] Time: 1.004s | Replans: 11 | Actions Executed: 61
+      [SUCCESS] Time: 4.167s | Replans: 11 | Actions Executed: 79
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 1.654s | Replans: 11 | Actions Executed: 62
+      [SUCCESS] Time: 6.676s | Replans: 11 | Actions Executed: 69
   Running ENHSP...
-      [SUCCESS] Time: 4.782s | Replans: 11 | Actions Executed: 73
+      [SUCCESS] Time: 22.289s | Replans: 11 | Actions Executed: 73
   Running LPG...
-      [SUCCESS] Time: 0.953s | Replans: 11 | Actions Executed: 74
+      [SUCCESS] Time: 4.192s | Replans: 11 | Actions Executed: 86
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 2.047s | Replans: 14 | Actions Executed: 76
+      [SUCCESS] Time: 6.891s | Replans: 14 | Actions Executed: 83
   Running ENHSP...
-      [SUCCESS] Time: 6.953s | Replans: 14 | Actions Executed: 72
+      [SUCCESS] Time: 23.133s | Replans: 14 | Actions Executed: 89
   Running LPG...
-      [SUCCESS] Time: 1.199s | Replans: 14 | Actions Executed: 72
+      [SUCCESS] Time: 4.188s | Replans: 14 | Actions Executed: 90
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 2.098s | Replans: 14 | Actions Executed: 68
+      [SUCCESS] Time: 6.671s | Replans: 14 | Actions Executed: 89
   Running ENHSP...
-      [SUCCESS] Time: 6.800s | Replans: 14 | Actions Executed: 72
+      [SUCCESS] Time: 23.728s | Replans: 14 | Actions Executed: 89
   Running LPG...
-      [SUCCESS] Time: 1.199s | Replans: 14 | Actions Executed: 64
+      [SUCCESS] Time: 4.134s | Replans: 14 | Actions Executed: 80
 
  GENERATING MAP - COMPLEXITY: 15 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 1.011s | Replans: 7 | Actions Executed: 53
+      [SUCCESS] Time: 6.730s | Replans: 7 | Actions Executed: 57
   Running ENHSP...
-      [SUCCESS] Time: 2.922s | Replans: 7 | Actions Executed: 51
+      [SUCCESS] Time: 18.431s | Replans: 7 | Actions Executed: 58
   Running LPG...
-      [SUCCESS] Time: 0.610s | Replans: 7 | Actions Executed: 49
+      [SUCCESS] Time: 4.189s | Replans: 7 | Actions Executed: 57
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 2.753s | Replans: 16 | Actions Executed: 93
+      [SUCCESS] Time: 10.382s | Replans: 16 | Actions Executed: 105
   Running ENHSP...
-      [SUCCESS] Time: 13.683s | Replans: 16 | Actions Executed: 97
+      [SUCCESS] Time: 43.873s | Replans: 16 | Actions Executed: 106
   Running LPG...
-      [SUCCESS] Time: 1.592s | Replans: 16 | Actions Executed: 82
+      [SUCCESS] Time: 6.214s | Replans: 16 | Actions Executed: 100
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 1.902s | Replans: 11 | Actions Executed: 79
+      [SUCCESS] Time: 10.196s | Replans: 11 | Actions Executed: 82
   Running ENHSP...
-      [SUCCESS] Time: 7.252s | Replans: 11 | Actions Executed: 79
+      [SUCCESS] Time: 31.750s | Replans: 11 | Actions Executed: 87
   Running LPG...
-      [SUCCESS] Time: 1.095s | Replans: 11 | Actions Executed: 71
+      [SUCCESS] Time: 6.185s | Replans: 11 | Actions Executed: 93
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 2.977s | Replans: 17 | Actions Executed: 96
+      [SUCCESS] Time: 10.222s | Replans: 17 | Actions Executed: 97
   Running ENHSP...
-      [SUCCESS] Time: 16.454s | Replans: 17 | Actions Executed: 94
+      [SUCCESS] Time: 61.156s | Replans: 17 | Actions Executed: 112
   Running LPG...
-      [SUCCESS] Time: 1.694s | Replans: 17 | Actions Executed: 91
+      [SUCCESS] Time: 6.239s | Replans: 17 | Actions Executed: 104
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 2.220s | Replans: 13 | Actions Executed: 85
+      [SUCCESS] Time: 10.260s | Replans: 13 | Actions Executed: 91
   Running ENHSP...
-      [SUCCESS] Time: 8.088s | Replans: 13 | Actions Executed: 69
+      [SUCCESS] Time: 41.656s | Replans: 13 | Actions Executed: 92
   Running LPG...
-      [SUCCESS] Time: 1.296s | Replans: 13 | Actions Executed: 73
+      [SUCCESS] Time: 6.347s | Replans: 13 | Actions Executed: 92
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 2.235s | Replans: 13 | Actions Executed: 72
+      [SUCCESS] Time: 10.351s | Replans: 13 | Actions Executed: 85
   Running ENHSP...
-      [SUCCESS] Time: 8.725s | Replans: 13 | Actions Executed: 81
+      [SUCCESS] Time: 36.546s | Replans: 13 | Actions Executed: 79
   Running LPG...
-      [SUCCESS] Time: 1.316s | Replans: 13 | Actions Executed: 67
+      [SUCCESS] Time: 6.444s | Replans: 13 | Actions Executed: 80
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 2.747s | Replans: 16 | Actions Executed: 90
+      [SUCCESS] Time: 10.546s | Replans: 16 | Actions Executed: 101
   Running ENHSP...
-      [SUCCESS] Time: 11.584s | Replans: 16 | Actions Executed: 86
+      [SUCCESS] Time: 48.745s | Replans: 16 | Actions Executed: 102
   Running LPG...
-      [SUCCESS] Time: 1.611s | Replans: 16 | Actions Executed: 85
+      [SUCCESS] Time: 6.489s | Replans: 16 | Actions Executed: 94
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 2.941s | Replans: 17 | Actions Executed: 92
+      [SUCCESS] Time: 10.805s | Replans: 17 | Actions Executed: 99
   Running ENHSP...
-      [SUCCESS] Time: 13.853s | Replans: 17 | Actions Executed: 97
+      [SUCCESS] Time: 51.891s | Replans: 17 | Actions Executed: 101
   Running LPG...
-      [SUCCESS] Time: 1.693s | Replans: 17 | Actions Executed: 86
+      [SUCCESS] Time: 6.439s | Replans: 17 | Actions Executed: 95
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 3.070s | Replans: 18 | Actions Executed: 94
+      [SUCCESS] Time: 10.233s | Replans: 18 | Actions Executed: 101
   Running ENHSP...
-      [SUCCESS] Time: 13.657s | Replans: 18 | Actions Executed: 89
+      [SUCCESS] Time: 35.971s | Replans: 18 | Actions Executed: 101
   Running LPG...
-      [SUCCESS] Time: 1.771s | Replans: 18 | Actions Executed: 90
+      [SUCCESS] Time: 6.223s | Replans: 18 | Actions Executed: 96
 
  GENERATING MAP - COMPLEXITY: 20 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 2.574s | Replans: 15 | Actions Executed: 87
+      [SUCCESS] Time: 10.340s | Replans: 15 | Actions Executed: 90
   Running ENHSP...
-      [SUCCESS] Time: 16.134s | Replans: 15 | Actions Executed: 90
+      [SUCCESS] Time: 59.273s | Replans: 15 | Actions Executed: 99
   Running LPG...
-      [SUCCESS] Time: 1.465s | Replans: 15 | Actions Executed: 78
+      [SUCCESS] Time: 6.419s | Replans: 15 | Actions Executed: 96
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 42
   Running Fast Downward...
-      [SUCCESS] Time: 4.366s | Replans: 19 | Actions Executed: 126
+      [SUCCESS] Time: 21.108s | Replans: 19 | Actions Executed: 131
   Running ENHSP...
-      [SUCCESS] Time: 29.251s | Replans: 19 | Actions Executed: 114
+      [SUCCESS] Time: 145.198s | Replans: 19 | Actions Executed: 139
   Running LPG...
-      [SUCCESS] Time: 2.428s | Replans: 19 | Actions Executed: 114
+      [SUCCESS] Time: 11.921s | Replans: 19 | Actions Executed: 139
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 63
   Running Fast Downward...
-      [SUCCESS] Time: 4.211s | Replans: 18 | Actions Executed: 111
+      [SUCCESS] Time: 20.692s | Replans: 18 | Actions Executed: 126
   Running ENHSP...
-      [SUCCESS] Time: 28.954s | Replans: 18 | Actions Executed: 102
+      [SUCCESS] Time: 143.279s | Replans: 18 | Actions Executed: 130
   Running LPG...
-      [SUCCESS] Time: 2.321s | Replans: 18 | Actions Executed: 97
+      [SUCCESS] Time: 12.014s | Replans: 18 | Actions Executed: 121
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 57
   Running Fast Downward...
-      [SUCCESS] Time: 5.682s | Replans: 24 | Actions Executed: 119
+      [SUCCESS] Time: 20.597s | Replans: 24 | Actions Executed: 139
   Running ENHSP...
-      [SUCCESS] Time: 50.278s | Replans: 24 | Actions Executed: 142
+      [TIMEOUT] ENHSP exceeded the 3.0 min limit.
   Running LPG...
-      [SUCCESS] Time: 3.123s | Replans: 24 | Actions Executed: 125
+      [SUCCESS] Time: 12.394s | Replans: 24 | Actions Executed: 146
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 100
   Running Fast Downward...
-      [SUCCESS] Time: 5.644s | Replans: 24 | Actions Executed: 132
-  Running ENHSP...
-      [SUCCESS] Time: 63.025s | Replans: 24 | Actions Executed: 151
+      [SUCCESS] Time: 21.288s | Replans: 24 | Actions Executed: 157
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 3.058s | Replans: 24 | Actions Executed: 123
+      [SUCCESS] Time: 12.488s | Replans: 24 | Actions Executed: 147
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 59
   Running Fast Downward...
-      [SUCCESS] Time: 4.592s | Replans: 20 | Actions Executed: 116
-  Running ENHSP...
-      [SUCCESS] Time: 29.766s | Replans: 20 | Actions Executed: 115
+      [SUCCESS] Time: 21.496s | Replans: 20 | Actions Executed: 125
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 2.506s | Replans: 20 | Actions Executed: 122
+      [SUCCESS] Time: 12.352s | Replans: 20 | Actions Executed: 137
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 19
   Running Fast Downward...
-      [SUCCESS] Time: 5.088s | Replans: 22 | Actions Executed: 128
-  Running ENHSP...
-      [SUCCESS] Time: 63.868s | Replans: 22 | Actions Executed: 132
+      [SUCCESS] Time: 21.585s | Replans: 22 | Actions Executed: 161
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 2.812s | Replans: 22 | Actions Executed: 122
+      [SUCCESS] Time: 12.408s | Replans: 22 | Actions Executed: 154
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 58
   Running Fast Downward...
-      [SUCCESS] Time: 5.090s | Replans: 22 | Actions Executed: 114
-  Running ENHSP...
-      [SUCCESS] Time: 80.323s | Replans: 22 | Actions Executed: 127
+      [SUCCESS] Time: 21.561s | Replans: 22 | Actions Executed: 139
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 2.821s | Replans: 22 | Actions Executed: 121
+      [SUCCESS] Time: 12.514s | Replans: 22 | Actions Executed: 128
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 29
   Running Fast Downward...
-      [SUCCESS] Time: 6.011s | Replans: 26 | Actions Executed: 130
-  Running ENHSP...
-      [SUCCESS] Time: 65.838s | Replans: 26 | Actions Executed: 153
+      [SUCCESS] Time: 21.369s | Replans: 26 | Actions Executed: 147
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 3.393s | Replans: 26 | Actions Executed: 146
+      [SUCCESS] Time: 12.372s | Replans: 26 | Actions Executed: 162
 
  GENERATING MAP - COMPLEXITY: 30 NODES | SEED: 68
   Running Fast Downward...
-      [SUCCESS] Time: 5.120s | Replans: 22 | Actions Executed: 131
-  Running ENHSP...
-      [SUCCESS] Time: 62.858s | Replans: 22 | Actions Executed: 121
+      [SUCCESS] Time: 21.378s | Replans: 22 | Actions Executed: 150
+   Skipping ENHSP (Blocked from previous timeout).
   Running LPG...
-      [SUCCESS] Time: 2.830s | Replans: 22 | Actions Executed: 128
+      [SUCCESS] Time: 12.363s | Replans: 22 | Actions Executed: 155
 
 
 ==================================================
@@ -587,31 +581,31 @@ AVERAGED BENCHMARK SUMMARY
 ==================================================
 
 Fast Downward:
-  Level 03: 0.419s avg | 3.9 avg replans | 19.9 avg actions | Success Rate: 100% (9/9)
-  Level 04: 0.478s avg | 4.6 avg replans | 23.4 avg actions | Success Rate: 100% (9/9)
-  Level 05: 0.508s avg | 4.8 avg replans | 26.8 avg actions | Success Rate: 100% (9/9)
-  Level 07: 0.702s avg | 6.1 avg replans | 36.1 avg actions | Success Rate: 100% (9/9)
-  Level 10: 1.034s avg | 8.2 avg replans | 46.1 avg actions | Success Rate: 100% (9/9)
-  Level 15: 1.767s avg | 11.9 avg replans | 67.7 avg actions | Success Rate: 100% (9/9)
-  Level 20: 2.602s avg | 15.1 avg replans | 87.6 avg actions | Success Rate: 100% (9/9)
-  Level 30: 5.089s avg | 21.9 avg replans | 123.0 avg actions | Success Rate: 100% (9/9)
+  Level 03: 1.147s avg | 3.9 avg replans | 20.3 avg actions | Success Rate: 100% (9/9)
+  Level 04: 1.515s avg | 4.6 avg replans | 24.4 avg actions | Success Rate: 100% (9/9)
+  Level 05: 1.891s avg | 4.8 avg replans | 29.2 avg actions | Success Rate: 100% (9/9)
+  Level 07: 2.707s avg | 6.1 avg replans | 37.8 avg actions | Success Rate: 100% (9/9)
+  Level 10: 4.032s avg | 8.2 avg replans | 51.0 avg actions | Success Rate: 100% (9/9)
+  Level 15: 6.804s avg | 11.9 avg replans | 74.0 avg actions | Success Rate: 100% (9/9)
+  Level 20: 10.370s avg | 15.1 avg replans | 94.6 avg actions | Success Rate: 100% (9/9)
+  Level 30: 21.230s avg | 21.9 avg replans | 141.7 avg actions | Success Rate: 100% (9/9)
 
 ENHSP:
-  Level 03: 0.989s avg | 3.9 avg replans | 18.8 avg actions | Success Rate: 100% (9/9)
-  Level 04: 1.009s avg | 4.6 avg replans | 21.0 avg actions | Success Rate: 100% (9/9)
-  Level 05: 1.099s avg | 4.8 avg replans | 23.7 avg actions | Success Rate: 100% (9/9)
-  Level 07: 1.617s avg | 6.1 avg replans | 35.0 avg actions | Success Rate: 100% (9/9)
-  Level 10: 2.542s avg | 8.2 avg replans | 42.6 avg actions | Success Rate: 100% (9/9)
-  Level 15: 5.713s avg | 11.9 avg replans | 65.0 avg actions | Success Rate: 100% (9/9)
-  Level 20: 12.159s avg | 15.1 avg replans | 86.9 avg actions | Success Rate: 100% (9/9)
-  Level 30: 52.685s avg | 21.9 avg replans | 128.6 avg actions | Success Rate: 100% (9/9)
+  Level 03: 2.516s avg | 3.9 avg replans | 20.8 avg actions | Success Rate: 100% (9/9)
+  Level 04: 3.198s avg | 4.6 avg replans | 23.9 avg actions | Success Rate: 100% (9/9)
+  Level 05: 4.022s avg | 4.8 avg replans | 29.0 avg actions | Success Rate: 100% (9/9)
+  Level 07: 6.114s avg | 6.1 avg replans | 38.4 avg actions | Success Rate: 100% (9/9)
+  Level 10: 10.016s avg | 8.2 avg replans | 50.2 avg actions | Success Rate: 100% (9/9)
+  Level 15: 23.176s avg | 11.9 avg replans | 78.1 avg actions | Success Rate: 100% (9/9)
+  Level 20: 45.651s avg | 15.1 avg replans | 97.7 avg actions | Success Rate: 100% (9/9)
+  Level 30: 172.053s avg | 18.5 avg replans | 134.5 avg actions | Success Rate: 22% (2/9)
 
 LPG:
-  Level 03: 0.275s avg | 3.9 avg replans | 19.6 avg actions | Success Rate: 100% (9/9)
-  Level 04: 0.313s avg | 4.6 avg replans | 22.8 avg actions | Success Rate: 100% (9/9)
-  Level 05: 0.335s avg | 4.8 avg replans | 24.2 avg actions | Success Rate: 100% (9/9)
-  Level 07: 0.458s avg | 6.1 avg replans | 33.6 avg actions | Success Rate: 100% (9/9)
-  Level 10: 0.640s avg | 8.2 avg replans | 46.0 avg actions | Success Rate: 100% (9/9)
-  Level 15: 1.042s avg | 11.9 avg replans | 63.3 avg actions | Success Rate: 100% (9/9)
-  Level 20: 1.503s avg | 15.1 avg replans | 80.3 avg actions | Success Rate: 100% (9/9)
-  Level 30: 2.810s avg | 21.9 avg replans | 122.0 avg actions | Success Rate: 100% (9/9)
+  Level 03: 0.783s avg | 3.9 avg replans | 22.0 avg actions | Success Rate: 100% (9/9)
+  Level 04: 1.010s avg | 4.6 avg replans | 24.3 avg actions | Success Rate: 100% (9/9)
+  Level 05: 1.252s avg | 4.8 avg replans | 28.3 avg actions | Success Rate: 100% (9/9)
+  Level 07: 1.753s avg | 6.1 avg replans | 36.3 avg actions | Success Rate: 100% (9/9)
+  Level 10: 2.588s avg | 8.2 avg replans | 51.2 avg actions | Success Rate: 100% (9/9)
+  Level 15: 4.200s avg | 11.9 avg replans | 77.8 avg actions | Success Rate: 100% (9/9)
+  Level 20: 6.333s avg | 15.1 avg replans | 94.4 avg actions | Success Rate: 100% (9/9)
+  Level 30: 12.314s avg | 21.9 avg replans | 143.2 avg actions | Success Rate: 100% (9/9)

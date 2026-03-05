@@ -49,7 +49,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
 
     # --- ACTIONS ---
 
-    # 1. DRONE INSPECT: The drone inspects the node IT IS CURRENTLY AT.
+    # 1. DRONE INSPECT
     drone_inspect = InstantaneousAction("drone_inspect", pos=location, r=robot)
     drone_inspect.add_precondition(And(robot_at(drone_inspect.parameter("r"), drone_inspect.parameter("pos")), 
                                        drone(drone_inspect.parameter("r")), 
@@ -58,33 +58,30 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     drone_inspect.add_effect(inspected(drone_inspect.parameter("pos")), True)
     problem.add_action(drone_inspect)
 
-    # 2. SPOT INSPECT: Spot inspects an ADJACENT node (minesweeper style)
-    spot_inspect = InstantaneousAction("spot_inspect", pos=location, target=location, r=robot)
+    # 2. SPOT INSPECT (Now inspects from INSIDE the location)
+    spot_inspect = InstantaneousAction("spot_inspect", pos=location, r=robot)
     spot_inspect.add_precondition(And(robot_at(spot_inspect.parameter("r"), spot_inspect.parameter("pos")), 
                                       spot(spot_inspect.parameter("r")),
-                                      adjacent(spot_inspect.parameter("pos"), spot_inspect.parameter("target")), 
-                                      unknown_loc(spot_inspect.parameter("target"))))
-    spot_inspect.add_effect(unknown_loc(spot_inspect.parameter("target")), False)
-    spot_inspect.add_effect(inspected(spot_inspect.parameter("target")), True)
+                                      unknown_loc(spot_inspect.parameter("pos"))))
+    spot_inspect.add_effect(unknown_loc(spot_inspect.parameter("pos")), False)
+    spot_inspect.add_effect(inspected(spot_inspect.parameter("pos")), True)
     problem.add_action(spot_inspect)
 
-    # 3. RANGER INSPECT: Rangers inspect an ADJACENT node
-    ranger_inspect = InstantaneousAction("ranger_inspect", pos=location, target=location, ran=ranger)
+    # 3. RANGER INSPECT (Now inspects from INSIDE the location)
+    ranger_inspect = InstantaneousAction("ranger_inspect", pos=location, ran=ranger)
     ranger_inspect.add_precondition(And(ranger_at(ranger_inspect.parameter("ran"), ranger_inspect.parameter("pos")), 
-                                        adjacent(ranger_inspect.parameter("pos"), ranger_inspect.parameter("target")), 
-                                        unknown_loc(ranger_inspect.parameter("target"))))
-    ranger_inspect.add_effect(unknown_loc(ranger_inspect.parameter("target")), False)
-    ranger_inspect.add_effect(inspected(ranger_inspect.parameter("target")), True)
+                                        unknown_loc(ranger_inspect.parameter("pos"))))
+    ranger_inspect.add_effect(unknown_loc(ranger_inspect.parameter("pos")), False)
+    ranger_inspect.add_effect(inspected(ranger_inspect.parameter("pos")), True)
     problem.add_action(ranger_inspect)
 
-    # MOVEMENTS
+    # MOVEMENTS (Removed 'inspected' requirement so they can walk into the unknown)
     move_ground = InstantaneousAction("move_ground", from_=location, to=location, r=robot)
     move_ground.add_precondition(And(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), 
                                      Not(robot_at(move_ground.parameter("r"), move_ground.parameter("to"))), 
                                      adjacent(move_ground.parameter("from_"), move_ground.parameter("to")), 
                                      traversable(move_ground.parameter("from_"), move_ground.parameter("to")), 
-                                     spot(move_ground.parameter("r")), 
-                                     inspected(move_ground.parameter("to")))) 
+                                     spot(move_ground.parameter("r")))) 
     move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("to")), True)
     move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), False)
     problem.add_action(move_ground)
@@ -100,8 +97,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     move_ranger = InstantaneousAction("move_ranger", from_=location, to=location, ran=ranger)
     move_ranger.add_precondition(And(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), 
                                      Not(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("to"))), 
-                                     adjacent(move_ranger.parameter("from_"), move_ranger.parameter("to")),
-                                     inspected(move_ranger.parameter("to")))) 
+                                     adjacent(move_ranger.parameter("from_"), move_ranger.parameter("to")))) 
     move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("to")), True)
     move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), False)
     problem.add_action(move_ranger)
@@ -211,16 +207,14 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
             problem.set_initial_value(ranger_carrying_animal(rangers[carrier], animal_obj), True)
     else:
         problem.set_initial_value(animal_at(animal_obj, loc_objs[animal_state]), True)
+
     # 7. GOALS
-    # Goal 1: All traps must be disarmed (clear)
     clear_goals = [clear(loc_objs[l.name]) for l in graph.locations]
-    
-    # Goal 2: ALL FOG OF WAR MUST BE CLEARED (Every node must be inspected)
     inspected_goals = [inspected(loc_objs[l.name]) for l in graph.locations]
     
     problem.add_goal(And(
         *clear_goals,
-        *inspected_goals,  # <--- THIS FORCES TOTAL MAP EXPLORATION
+        *inspected_goals, 
         robot_at(robots["r_drone"], loc_objs["l_end"]),
         robot_at(robots["r_spot"], loc_objs["l_end"]),
         ranger_at(rangers["caro"], loc_objs["l_end"]),

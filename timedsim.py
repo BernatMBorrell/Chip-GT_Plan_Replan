@@ -13,7 +13,7 @@ from unified_planning.engines import PlanGenerationResultStatus
 from graphgenerator import Graph
 from domaingenerator import generate_classic_pddl
 
-NUM_NODES = 50
+NUM_NODES = 15
 PDDL_FOLDER = "./pddl_files/"
 get_environment().credits_stream = None
 
@@ -126,7 +126,7 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
 # ==========================================
 def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None, save_pddl=False):
     if verbose:
-        print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
+        print(f"\n--- STARTING FULL EXPLORATION MISSION (PORTFOLIO MODE) ---")
         print(f"   Planner: {planner_name}")
     
     if graph is None:
@@ -166,35 +166,58 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
     total_compute_time = 0.0
     total_actions_executed = 0
 
+    # --- PORTFOLIO VARIABLES ---
+    portfolio = {}
+    precomputed_plan_ready = False
+    real_state_discovered = ""
+    current_plan = None
+
     while not mission_complete:
         step += 1
-        if verbose: print(f"\n[STEP {step}] Computing strategy...")
         
-        up_problem = generate_classic_pddl(
-            graph, 
-            knowledge, 
-            unique_id=f"{planner_name}_{step}", 
-            agents_state=agents_state,
-            animal_state=animal_state
-        )
-        
-        start_time = time.time()
-        result = planner.solve(up_problem)
-        end_time = time.time()
-        
-        total_compute_time += (end_time - start_time)
-        
-        if result.status not in [PlanGenerationResultStatus.SOLVED_SATISFICING, PlanGenerationResultStatus.SOLVED_OPTIMALLY]:
-            if verbose: print("   FATAL ERROR: Path is blocked.")
-            break
+        # --- 1. PLAN SELECTION ---
+        if precomputed_plan_ready and real_state_discovered in portfolio:
+            if verbose: print(f"\n[STEP {step}] SWAP: Hypothesis match! Using precomputed plan for '{real_state_discovered}'.")
+            current_plan = portfolio[real_state_discovered]
+            precomputed_plan_ready = False 
+        else:
+            if verbose: print(f"\n[STEP {step}] Computing strategy (Optimistic)...")
+            up_problem = generate_classic_pddl(
+                graph, 
+                knowledge, 
+                unique_id=f"{planner_name}_{step}", 
+                agents_state=agents_state,
+                animal_state=animal_state
+            )
+            
+            # Save physical PDDL files if the flag is active
+            if save_pddl:
+                from unified_planning.io import PDDLWriter
+                w = PDDLWriter(up_problem)
+                if step == 1:
+                    w.write_domain(f"{PDDL_FOLDER}domain_{planner_name}.pddl")
+                w.write_problem(f"{PDDL_FOLDER}problem_{planner_name}_step_{step}.pddl")
 
-        if not result.plan or not result.plan.actions:
+            start_time = time.time()
+            result = planner.solve(up_problem)
+            end_time = time.time()
+            
+            total_compute_time += (end_time - start_time)
+            
+            if result.status not in [PlanGenerationResultStatus.SOLVED_SATISFICING, PlanGenerationResultStatus.SOLVED_OPTIMALLY]:
+                if verbose: print("   FATAL ERROR: Path is blocked.")
+                break
+                
+            current_plan = result.plan
+
+        if not current_plan or not current_plan.actions:
             mission_complete = True
             break
             
         if verbose: print(f"   [EXEC] Executing planned sequence:")
         
-        for action_instance in result.plan.actions:
+        # --- 2. EXECUTION LOOP ---
+        for action_instance in current_plan.actions:
             total_actions_executed += 1
             
             action_name = action_instance.action.name
@@ -202,13 +225,6 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             action_text = f"{action_name}({', '.join(map(str, params))})"
             
             if verbose: print(f"      -> {action_text}")
-
-            if save_pddl:
-                from unified_planning.io import PDDLWriter
-                w = PDDLWriter(up_problem)
-                if step == 1:
-                    w.write_domain(f"{PDDL_FOLDER}domain_{planner_name}.pddl")
-                w.write_problem(f"{PDDL_FOLDER}problem_{planner_name}_step_{step}.pddl")
             
             if "move" in action_name:
                 agents_state[str(params[2])] = str(params[1])
@@ -219,9 +235,32 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             elif "deliver" in action_name:
                 animal_state = str(params[0])
             elif "inspect" in action_name:
-                target_loc = str(params[0]) if action_name == "drone_inspect" else str(params[1])
-                agent = str(params[1]) if action_name == "drone_inspect" else str(params[2])
+                # All inspect actions are now strictly (pos, agent)
+                target_loc = str(params[0]) 
+                agent = str(params[1]) 
                 
+                # ========================================================
+                # PRECOMPUTATION PHASE (The Portfolio)
+                # ========================================================
+                if verbose: print(f"   [BACKGROUND] Precomputing hypotheses for {target_loc} before arriving...")
+                portfolio = {} # Clear old portfolio
+                possible_states = ["trap_push", "trap_pic", "trap_animal"] 
+                
+                bg_start = time.time() 
+                for hypothesis in possible_states:
+                    hypo_knowledge = deepcopy(knowledge)
+                    hypo_knowledge[target_loc] = hypothesis
+                    hypo_problem = generate_classic_pddl(graph, hypo_knowledge, unique_id=f"hypo_{hypothesis}", agents_state=agents_state, animal_state=animal_state)
+                    
+                    hypo_result = planner.solve(hypo_problem)
+                    if hypo_result and hypo_result.plan:
+                        portfolio[hypothesis] = hypo_result.plan
+                
+                total_compute_time += (time.time() - bg_start) 
+                
+                # ========================================================
+                # ACTUAL INSPECTION PHASE
+                # ========================================================
                 if verbose: print(f"   [SCOUT] {agent} is inspecting {target_loc}...")
                 real_state = ground_truth.get(target_loc, "clear")
                 
@@ -231,10 +270,19 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 if verbose: print(f"       Revealed: {real_state} at {target_loc}")
                 save_state(action_text)
                 
+                # ========================================================
+                # EVALUATION AND SWAP
+                # ========================================================
                 if real_state != "clear":
-                    if verbose: print("   [ALERT] Obstacle found! Halting execution to replan.")
+                    if real_state in portfolio:
+                        precomputed_plan_ready = True
+                        real_state_discovered = real_state
+                        if verbose: print(f"   [ALERT] Obstacle found! But we have the plan for '{real_state}' in the Portfolio.")
+                    else:
+                        precomputed_plan_ready = False
+                        if verbose: print("   [ALERT] Obstacle found! Forcing classic replan from scratch.")
                     break 
-                continue 
+                continue
 
             save_state(action_text)
 
@@ -252,10 +300,11 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
 
     planner.destroy()
 
-    # RETURN 4 VALUES NOW
     return total_compute_time, step, total_actions_executed, mission_complete
 
 
 if __name__ == "__main__":
     if not os.path.exists(PDDL_FOLDER): os.makedirs(PDDL_FOLDER)
+    import warnings
+    warnings.filterwarnings("ignore", module="unified_planning")
     run_mission()
