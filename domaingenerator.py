@@ -1,4 +1,5 @@
 from unified_planning.shortcuts import *
+from unified_planning.model.metrics import MinimizeExpressionOnFinalState
 
 def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=None, animal_state="l_02"):
     problem = Problem(f"chip_gt_problem_{unique_id}")
@@ -10,7 +11,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     ranger = UserType("ranger")
     animal = UserType("animal")
 
-    # FLUENTS
+    # BOOLEAN FLUENTS
     problem.add_fluent("clear", BoolType(), l=location)
     problem.add_fluent("trap_at", BoolType(), t=trap, l=location)
     problem.add_fluent("robot_at", BoolType(), r=robot, l=location)
@@ -25,9 +26,12 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     problem.add_fluent("animal_at", BoolType(), a=animal, l=location)
     problem.add_fluent("robot_carrying_animal", BoolType(), r=robot, a=animal)
     problem.add_fluent("ranger_carrying_animal", BoolType(), r=ranger, a=animal)
-    
     problem.add_fluent("inspected", BoolType(), l=location) 
     problem.add_fluent("unknown_loc", BoolType(), l=location) 
+
+    # NUMERIC FLUENTS (Action Costs)
+    problem.add_fluent("robot_cost", IntType(), r=robot)
+    problem.add_fluent("ranger_cost", IntType(), ran=ranger)
 
     # Fluent helpers
     robot_at = problem.fluent("robot_at")
@@ -46,6 +50,8 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     ranger_carrying_animal = problem.fluent("ranger_carrying_animal")
     inspected = problem.fluent("inspected")
     unknown_loc = problem.fluent("unknown_loc")
+    robot_cost = problem.fluent("robot_cost")
+    ranger_cost = problem.fluent("ranger_cost")
 
     # --- ACTIONS ---
 
@@ -56,26 +62,29 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
                                        unknown_loc(drone_inspect.parameter("pos"))))
     drone_inspect.add_effect(unknown_loc(drone_inspect.parameter("pos")), False)
     drone_inspect.add_effect(inspected(drone_inspect.parameter("pos")), True)
+    drone_inspect.add_increase_effect(robot_cost(drone_inspect.parameter("r")), 1)
     problem.add_action(drone_inspect)
 
-    # 2. SPOT INSPECT (Now inspects from INSIDE the location)
+    # 2. SPOT INSPECT 
     spot_inspect = InstantaneousAction("spot_inspect", pos=location, r=robot)
     spot_inspect.add_precondition(And(robot_at(spot_inspect.parameter("r"), spot_inspect.parameter("pos")), 
                                       spot(spot_inspect.parameter("r")),
                                       unknown_loc(spot_inspect.parameter("pos"))))
     spot_inspect.add_effect(unknown_loc(spot_inspect.parameter("pos")), False)
     spot_inspect.add_effect(inspected(spot_inspect.parameter("pos")), True)
+    spot_inspect.add_increase_effect(robot_cost(spot_inspect.parameter("r")), 1)
     problem.add_action(spot_inspect)
 
-    # 3. RANGER INSPECT (Now inspects from INSIDE the location)
+    # 3. RANGER INSPECT 
     ranger_inspect = InstantaneousAction("ranger_inspect", pos=location, ran=ranger)
     ranger_inspect.add_precondition(And(ranger_at(ranger_inspect.parameter("ran"), ranger_inspect.parameter("pos")), 
                                         unknown_loc(ranger_inspect.parameter("pos"))))
     ranger_inspect.add_effect(unknown_loc(ranger_inspect.parameter("pos")), False)
     ranger_inspect.add_effect(inspected(ranger_inspect.parameter("pos")), True)
+    ranger_inspect.add_increase_effect(ranger_cost(ranger_inspect.parameter("ran")), 1)
     problem.add_action(ranger_inspect)
 
-    # MOVEMENTS (Removed 'inspected' requirement so they can walk into the unknown)
+    # MOVEMENTS
     move_ground = InstantaneousAction("move_ground", from_=location, to=location, r=robot)
     move_ground.add_precondition(And(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), 
                                      Not(robot_at(move_ground.parameter("r"), move_ground.parameter("to"))), 
@@ -84,6 +93,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
                                      spot(move_ground.parameter("r")))) 
     move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("to")), True)
     move_ground.add_effect(robot_at(move_ground.parameter("r"), move_ground.parameter("from_")), False)
+    move_ground.add_increase_effect(robot_cost(move_ground.parameter("r")), 1)
     problem.add_action(move_ground)
 
     move_air = InstantaneousAction("move_air", from_=location, to=location, r=robot)
@@ -92,6 +102,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
                                   drone(move_air.parameter("r"))))
     move_air.add_effect(robot_at(move_air.parameter("r"), move_air.parameter("to")), True)
     move_air.add_effect(robot_at(move_air.parameter("r"), move_air.parameter("from_")), False)
+    move_air.add_increase_effect(robot_cost(move_air.parameter("r")), 1)
     problem.add_action(move_air)
 
     move_ranger = InstantaneousAction("move_ranger", from_=location, to=location, ran=ranger)
@@ -100,6 +111,7 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
                                      adjacent(move_ranger.parameter("from_"), move_ranger.parameter("to")))) 
     move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("to")), True)
     move_ranger.add_effect(ranger_at(move_ranger.parameter("ran"), move_ranger.parameter("from_")), False)
+    move_ranger.add_increase_effect(ranger_cost(move_ranger.parameter("ran")), 1)
     problem.add_action(move_ranger)
 
     # DISARMS
@@ -107,18 +119,21 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     act_r_push.add_precondition(And(robot_at(act_r_push.parameter("r"), act_r_push.parameter("l")), trap_at(act_r_push.parameter("t"), act_r_push.parameter("l")), trap_push(act_r_push.parameter("t")), spot(act_r_push.parameter("r"))))
     act_r_push.add_effect(clear(act_r_push.parameter("l")), True)
     act_r_push.add_effect(trap_at(act_r_push.parameter("t"), act_r_push.parameter("l")), False)
+    act_r_push.add_increase_effect(robot_cost(act_r_push.parameter("r")), 1)
     problem.add_action(act_r_push)
 
     act_ran_pic = InstantaneousAction("ranger_disarm_trap_pic", l=location, ran=ranger, t=trap)
     act_ran_pic.add_precondition(And(ranger_at(act_ran_pic.parameter("ran"), act_ran_pic.parameter("l")), trap_at(act_ran_pic.parameter("t"), act_ran_pic.parameter("l")), trap_pic(act_ran_pic.parameter("t"))))
     act_ran_pic.add_effect(clear(act_ran_pic.parameter("l")), True)
     act_ran_pic.add_effect(trap_at(act_ran_pic.parameter("t"), act_ran_pic.parameter("l")), False)
+    act_ran_pic.add_increase_effect(ranger_cost(act_ran_pic.parameter("ran")), 1)
     problem.add_action(act_ran_pic)
 
     act_ran_ani = InstantaneousAction("ranger_disarm_trap_animal", l=location, ran=ranger, t=trap)
     act_ran_ani.add_precondition(And(ranger_at(act_ran_ani.parameter("ran"), act_ran_ani.parameter("l")), trap_at(act_ran_ani.parameter("t"), act_ran_ani.parameter("l")), trap_animal(act_ran_ani.parameter("t"))))
     act_ran_ani.add_effect(clear(act_ran_ani.parameter("l")), True)
     act_ran_ani.add_effect(trap_at(act_ran_ani.parameter("t"), act_ran_ani.parameter("l")), False)
+    act_ran_ani.add_increase_effect(ranger_cost(act_ran_ani.parameter("ran")), 1)
     problem.add_action(act_ran_ani)
 
     # ANIMAL HANDLING
@@ -126,24 +141,28 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
     act_r_carry.add_precondition(And(robot_at(act_r_carry.parameter("r"), act_r_carry.parameter("l")), animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), clear(act_r_carry.parameter("l")), spot(act_r_carry.parameter("r"))))
     act_r_carry.add_effect(animal_at(act_r_carry.parameter("a"), act_r_carry.parameter("l")), False)
     act_r_carry.add_effect(robot_carrying_animal(act_r_carry.parameter("r"), act_r_carry.parameter("a")), True)
+    act_r_carry.add_increase_effect(robot_cost(act_r_carry.parameter("r")), 1)
     problem.add_action(act_r_carry)
 
     act_r_deliver = InstantaneousAction("robot_deliver_animal", l=location, r=robot, a=animal)
     act_r_deliver.add_precondition(And(robot_at(act_r_deliver.parameter("r"), act_r_deliver.parameter("l")), robot_carrying_animal(act_r_deliver.parameter("r"), act_r_deliver.parameter("a")), spot(act_r_deliver.parameter("r"))))
     act_r_deliver.add_effect(robot_carrying_animal(act_r_deliver.parameter("r"), act_r_deliver.parameter("a")), False)
     act_r_deliver.add_effect(animal_at(act_r_deliver.parameter("a"), act_r_deliver.parameter("l")), True)
+    act_r_deliver.add_increase_effect(robot_cost(act_r_deliver.parameter("r")), 1)
     problem.add_action(act_r_deliver)
 
     act_ran_carry = InstantaneousAction("ranger_carry_animal", l=location, ran=ranger, a=animal)
     act_ran_carry.add_precondition(And(ranger_at(act_ran_carry.parameter("ran"), act_ran_carry.parameter("l")), animal_at(act_ran_carry.parameter("a"), act_ran_carry.parameter("l")), clear(act_ran_carry.parameter("l"))))
     act_ran_carry.add_effect(animal_at(act_ran_carry.parameter("a"), act_ran_carry.parameter("l")), False)
     act_ran_carry.add_effect(ranger_carrying_animal(act_ran_carry.parameter("ran"), act_ran_carry.parameter("a")), True)
+    act_ran_carry.add_increase_effect(ranger_cost(act_ran_carry.parameter("ran")), 1)
     problem.add_action(act_ran_carry)
 
     act_ran_deliver = InstantaneousAction("ranger_deliver_animal", l=location, ran=ranger, a=animal)
     act_ran_deliver.add_precondition(And(ranger_at(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("l")), ranger_carrying_animal(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("a"))))
     act_ran_deliver.add_effect(ranger_carrying_animal(act_ran_deliver.parameter("ran"), act_ran_deliver.parameter("a")), False)
     act_ran_deliver.add_effect(animal_at(act_ran_deliver.parameter("a"), act_ran_deliver.parameter("l")), True)
+    act_ran_deliver.add_increase_effect(ranger_cost(act_ran_deliver.parameter("ran")), 1)
     problem.add_action(act_ran_deliver)
 
     # OBJECTS & INIT
@@ -155,6 +174,12 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
 
     problem.set_initial_value(drone(robots["r_drone"]), True)
     problem.set_initial_value(spot(robots["r_spot"]), True)
+    
+    # Initialize costs to 0
+    for agent_obj in robots.values():
+        problem.set_initial_value(robot_cost(agent_obj), 0)
+    for agent_obj in rangers.values():
+        problem.set_initial_value(ranger_cost(agent_obj), 0)
     
     current_state = {"r_drone": "l_start", "r_spot": "l_start", "caro": "l_start", "bapt": "l_start"}
     if agents_state: current_state.update(agents_state)
@@ -221,5 +246,14 @@ def generate_classic_pddl(graph, knowledge, unique_id="default", agents_state=No
         ranger_at(rangers["bapt"], loc_objs["l_end"]),
         animal_at(animal_obj, loc_objs["l_start"])
     ))
+
+    # 8. METRIC MINIMIZATION (The "Lazy Ranger" Equation)
+    cost_expr = (
+        6 * ranger_cost(rangers["caro"]) +
+        4 * ranger_cost(rangers["bapt"]) +
+        1 * robot_cost(robots["r_drone"]) +
+        2 * robot_cost(robots["r_spot"])
+    )
+    problem.add_quality_metric(MinimizeExpressionOnFinalState(cost_expr))
 
     return problem

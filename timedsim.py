@@ -31,8 +31,11 @@ def generate_ground_truth(graph):
 def create_mission_gif(graph, history, filename="mission_replay.gif"):
     print("\nGenerating mission animation... (This might take a few seconds)")
     
-    fig, ax = plt.subplots(figsize=(12, 10))
-    # Organic complex layout (k spaces the nodes out)
+    # Increased width to 15 to make room for the scoreboard on the right
+    fig, ax = plt.subplots(figsize=(15, 10))
+    plt.subplots_adjust(right=0.75) 
+    
+    # Organic complex layout
     pos = nx.spring_layout(graph.graph, seed=10, k=0.8) 
 
     legend_elements = [
@@ -114,6 +117,24 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
         ax.set_title(f"Step {frame_idx + 1}/{len(history)}\nAction: {state['action']}", 
                      fontsize=12, fontweight="bold")
         ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=(0.5, -0.15))
+        
+        # 7. Draw the Cost Scoreboard
+        costs = state.get("costs", {"r_drone": 0, "r_spot": 0, "caro": 0, "bapt": 0})
+        total_cost = sum(costs.values())
+        cost_text = (
+            f"TEAM COSTS (Weighted)\n"
+            f"---------------------\n"
+            f"Drone (x1): {costs['r_drone']}\n"
+            f"Spot  (x2): {costs['r_spot']}\n"
+            f"Bapt  (x4): {costs['bapt']}\n"
+            f"Caro  (x6): {costs['caro']}\n"
+            f"---------------------\n"
+            f"TOTAL: {total_cost}"
+        )
+        ax.text(1.05, 0.5, cost_text, transform=ax.transAxes, fontsize=12,
+                verticalalignment='center', fontfamily='monospace',
+                bbox=dict(boxstyle='round,pad=0.8', facecolor='lightyellow', edgecolor='black'))
+        
         ax.axis('off')
 
     anim = FuncAnimation(fig, update, frames=len(history), interval=600)
@@ -142,6 +163,12 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
     inspected_nodes = {"l_start", "l_end"}
     animal_state = "l_02" if len(graph.locations) >= 2 else "l_01"
     
+    # --- COST TRACKING ---
+    COST_WEIGHTS = {"r_drone": 1, "r_spot": 2, "bapt": 4, "caro": 6}
+    agent_costs = {"r_drone": 0, "r_spot": 0, "caro": 0, "bapt": 0}
+    portfolio_swaps = 0
+    full_replans = 0
+    
     history = []
     def save_state(action_text):
         if make_gif:
@@ -150,7 +177,8 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 "knowledge": deepcopy(knowledge),
                 "inspected": deepcopy(inspected_nodes),
                 "animal": animal_state,
-                "action": action_text
+                "action": action_text,
+                "costs": deepcopy(agent_costs)
             })
     
     save_state("Mission Start")
@@ -190,7 +218,6 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 animal_state=animal_state
             )
             
-            # Save physical PDDL files if the flag is active
             if save_pddl:
                 from unified_planning.io import PDDLWriter
                 w = PDDLWriter(up_problem)
@@ -226,6 +253,13 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             
             if verbose: print(f"      -> {action_text}")
             
+            # --- UPDATE AGENT COSTS ---
+            for param in params:
+                param_str = str(param)
+                if param_str in agent_costs:
+                    agent_costs[param_str] += COST_WEIGHTS[param_str]
+                    break
+            
             if "move" in action_name:
                 agents_state[str(params[2])] = str(params[1])
             elif "disarm" in action_name:
@@ -235,7 +269,6 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             elif "deliver" in action_name:
                 animal_state = str(params[0])
             elif "inspect" in action_name:
-                # All inspect actions are now strictly (pos, agent)
                 target_loc = str(params[0]) 
                 agent = str(params[1]) 
                 
@@ -243,7 +276,7 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 # PRECOMPUTATION PHASE (The Portfolio)
                 # ========================================================
                 if verbose: print(f"   [BACKGROUND] Precomputing hypotheses for {target_loc} before arriving...")
-                portfolio = {} # Clear old portfolio
+                portfolio = {} 
                 possible_states = ["trap_push", "trap_pic", "trap_animal"] 
                 
                 bg_start = time.time() 
@@ -300,11 +333,11 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
 
     planner.destroy()
 
-    return total_compute_time, step, total_actions_executed, mission_complete
+    return total_compute_time, step, total_actions_executed, mission_complete, agent_costs, portfolio_swaps, full_replans
 
 
 if __name__ == "__main__":
     if not os.path.exists(PDDL_FOLDER): os.makedirs(PDDL_FOLDER)
     import warnings
     warnings.filterwarnings("ignore", module="unified_planning")
-    run_mission()
+    run_mission(planner_name='enhsp')
