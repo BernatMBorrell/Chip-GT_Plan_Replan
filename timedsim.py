@@ -124,7 +124,7 @@ def create_mission_gif(graph, history, filename="mission_replay.gif"):
 # ==========================================
 #  CORE SIMULATION
 # ==========================================
-def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None):
+def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None, save_pddl=False):
     if verbose:
         print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
         print(f"   Planner: {planner_name}")
@@ -202,6 +202,13 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             action_text = f"{action_name}({', '.join(map(str, params))})"
             
             if verbose: print(f"      -> {action_text}")
+
+            if save_pddl:
+                from unified_planning.io import PDDLWriter
+                w = PDDLWriter(up_problem)
+                if step == 1:
+                    w.write_domain(f"{PDDL_FOLDER}domain_{planner_name}.pddl")
+                w.write_problem(f"{PDDL_FOLDER}problem_{planner_name}_step_{step}.pddl")
             
             if "move" in action_name:
                 agents_state[str(params[2])] = str(params[1])
@@ -215,13 +222,13 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 target_loc = str(params[0]) if action_name == "drone_inspect" else str(params[1])
                 agent = str(params[1]) if action_name == "drone_inspect" else str(params[2])
                 
-                if verbose: print(f"   [📡 SCOUT] {agent} is inspecting {target_loc}...")
+                if verbose: print(f"   [SCOUT] {agent} is inspecting {target_loc}...")
                 real_state = ground_truth.get(target_loc, "clear")
                 
                 knowledge[target_loc] = real_state
                 inspected_nodes.add(target_loc)
                 
-                if verbose: print(f"      👀 Revealed: {real_state} at {target_loc}")
+                if verbose: print(f"       Revealed: {real_state} at {target_loc}")
                 save_state(action_text)
                 
                 if real_state != "clear":
