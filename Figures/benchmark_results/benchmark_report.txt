@@ -1,189 +1,199 @@
---- STARTING NUMERIC CUMULATIVE COST BENCHMARK ---
+--- STARTING NUMERIC BENCHMARK ---
 
  LEVEL: 3 NODES | SEED: 42
-      [SUCCESS] Time: 4.43s | Cost: 47
+      [SUCCESS] Time: 2.50s | Cost: 47
 
  LEVEL: 3 NODES | SEED: 63
-      [SUCCESS] Time: 4.26s | Cost: 79
+      [SUCCESS] Time: 2.54s | Cost: 79
 
  LEVEL: 3 NODES | SEED: 57
-      [SUCCESS] Time: 4.35s | Cost: 55
+      [SUCCESS] Time: 2.50s | Cost: 55
 
  LEVEL: 3 NODES | SEED: 100
-      [SUCCESS] Time: 4.19s | Cost: 47
+      [SUCCESS] Time: 2.54s | Cost: 47
 
  LEVEL: 3 NODES | SEED: 59
-      [SUCCESS] Time: 4.26s | Cost: 39
+      [SUCCESS] Time: 2.49s | Cost: 39
 
  LEVEL: 3 NODES | SEED: 19
-      [SUCCESS] Time: 4.32s | Cost: 49
+      [SUCCESS] Time: 2.51s | Cost: 49
 
  LEVEL: 3 NODES | SEED: 58
-      [SUCCESS] Time: 4.26s | Cost: 55
+      [SUCCESS] Time: 2.57s | Cost: 55
 
  LEVEL: 3 NODES | SEED: 29
-      [SUCCESS] Time: 4.33s | Cost: 45
+      [SUCCESS] Time: 2.57s | Cost: 45
 
  LEVEL: 3 NODES | SEED: 68
-      [SUCCESS] Time: 4.37s | Cost: 51
+      [SUCCESS] Time: 2.63s | Cost: 51
 
  LEVEL: 4 NODES | SEED: 42
-      [SUCCESS] Time: 5.85s | Cost: 65
+      [SUCCESS] Time: 3.48s | Cost: 65
 
  LEVEL: 4 NODES | SEED: 63
-      [SUCCESS] Time: 6.16s | Cost: 59
+      [SUCCESS] Time: 3.49s | Cost: 59
 
  LEVEL: 4 NODES | SEED: 57
-      [SUCCESS] Time: 5.90s | Cost: 61
+      [SUCCESS] Time: 3.40s | Cost: 61
 
  LEVEL: 4 NODES | SEED: 100
-      [SUCCESS] Time: 6.03s | Cost: 87
+      [SUCCESS] Time: 3.49s | Cost: 87
 
  LEVEL: 4 NODES | SEED: 59
-      [SUCCESS] Time: 6.11s | Cost: 97
+      [SUCCESS] Time: 3.47s | Cost: 97
 
  LEVEL: 4 NODES | SEED: 19
-      [SUCCESS] Time: 5.56s | Cost: 71
+      [SUCCESS] Time: 3.43s | Cost: 71
 
  LEVEL: 4 NODES | SEED: 58
-      [SUCCESS] Time: 6.13s | Cost: 61
+      [SUCCESS] Time: 3.47s | Cost: 61
 
  LEVEL: 4 NODES | SEED: 29
-      [SUCCESS] Time: 6.14s | Cost: 67
+      [SUCCESS] Time: 3.49s | Cost: 67
 
  LEVEL: 4 NODES | SEED: 68
-      [SUCCESS] Time: 5.71s | Cost: 53
+      [SUCCESS] Time: 3.41s | Cost: 53
 
  LEVEL: 5 NODES | SEED: 42
-      [SUCCESS] Time: 7.43s | Cost: 67
+      [SUCCESS] Time: 4.42s | Cost: 67
 
  LEVEL: 5 NODES | SEED: 63
-      [SUCCESS] Time: 8.06s | Cost: 109
+      [SUCCESS] Time: 4.62s | Cost: 109
 
  LEVEL: 5 NODES | SEED: 57
-      [SUCCESS] Time: 7.11s | Cost: 63
+      [SUCCESS] Time: 4.29s | Cost: 63
 
  LEVEL: 5 NODES | SEED: 100
-      [SUCCESS] Time: 7.54s | Cost: 99
+      [SUCCESS] Time: 4.45s | Cost: 99
 
  LEVEL: 5 NODES | SEED: 59
-      [SUCCESS] Time: 7.35s | Cost: 91
+      [SUCCESS] Time: 4.37s | Cost: 91
 
  LEVEL: 5 NODES | SEED: 19
-      [SUCCESS] Time: 7.34s | Cost: 111
+      [SUCCESS] Time: 4.27s | Cost: 111
 
  LEVEL: 5 NODES | SEED: 58
-      [SUCCESS] Time: 7.50s | Cost: 39
+      [SUCCESS] Time: 4.41s | Cost: 39
 
  LEVEL: 5 NODES | SEED: 29
-      [SUCCESS] Time: 7.91s | Cost: 61
+      [SUCCESS] Time: 4.49s | Cost: 61
 
  LEVEL: 5 NODES | SEED: 68
-      [SUCCESS] Time: 7.49s | Cost: 79
+      [SUCCESS] Time: 4.26s | Cost: 79
 
  LEVEL: 7 NODES | SEED: 42
-      [SUCCESS] Time: 12.74s | Cost: 101
+      [SUCCESS] Time: 7.03s | Cost: 101
 
  LEVEL: 7 NODES | SEED: 63
-      [SUCCESS] Time: 11.83s | Cost: 99
+      [SUCCESS] Time: 6.79s | Cost: 99
 
  LEVEL: 7 NODES | SEED: 57
-      [SUCCESS] Time: 12.53s | Cost: 99
+      [SUCCESS] Time: 7.02s | Cost: 99
 
  LEVEL: 7 NODES | SEED: 100
-      [SUCCESS] Time: 11.62s | Cost: 111
+      [SUCCESS] Time: 6.57s | Cost: 107
 
  LEVEL: 7 NODES | SEED: 59
-      [SUCCESS] Time: 12.13s | Cost: 95
+      [SUCCESS] Time: 6.59s | Cost: 95
 
  LEVEL: 7 NODES | SEED: 19
-      [SUCCESS] Time: 11.42s | Cost: 77
+      [SUCCESS] Time: 6.53s | Cost: 77
 
  LEVEL: 7 NODES | SEED: 58
-      [SUCCESS] Time: 11.50s | Cost: 131
+      [SUCCESS] Time: 6.62s | Cost: 131
 
  LEVEL: 7 NODES | SEED: 29
-      [SUCCESS] Time: 11.54s | Cost: 103
+      [SUCCESS] Time: 6.56s | Cost: 103
 
  LEVEL: 7 NODES | SEED: 68
-      [SUCCESS] Time: 11.34s | Cost: 101
+      [SUCCESS] Time: 6.28s | Cost: 101
 
  LEVEL: 10 NODES | SEED: 42
-      [SUCCESS] Time: 20.75s | Cost: 119
+      [SUCCESS] Time: 11.49s | Cost: 119
 
  LEVEL: 10 NODES | SEED: 63
-      [SUCCESS] Time: 23.23s | Cost: 115
+      [SUCCESS] Time: 12.75s | Cost: 115
 
  LEVEL: 10 NODES | SEED: 57
-      [SUCCESS] Time: 20.32s | Cost: 147
+      [SUCCESS] Time: 11.26s | Cost: 147
 
  LEVEL: 10 NODES | SEED: 100
-      [SUCCESS] Time: 19.49s | Cost: 147
+      [SUCCESS] Time: 10.77s | Cost: 151
 
  LEVEL: 10 NODES | SEED: 59
-      [SUCCESS] Time: 20.71s | Cost: 123
+      [SUCCESS] Time: 11.29s | Cost: 123
 
  LEVEL: 10 NODES | SEED: 19
-      [SUCCESS] Time: 20.80s | Cost: 133
+      [SUCCESS] Time: 11.48s | Cost: 133
 
  LEVEL: 10 NODES | SEED: 58
-      [SUCCESS] Time: 20.23s | Cost: 177
+      [SUCCESS] Time: 11.05s | Cost: 177
 
  LEVEL: 10 NODES | SEED: 29
-      [SUCCESS] Time: 20.58s | Cost: 131
+      [SUCCESS] Time: 10.98s | Cost: 131
 
  LEVEL: 10 NODES | SEED: 68
-      [SUCCESS] Time: 19.99s | Cost: 115
+      [SUCCESS] Time: 10.70s | Cost: 115
 
  LEVEL: 15 NODES | SEED: 42
-      [SUCCESS] Time: 95.22s | Cost: 255
+      [SUCCESS] Time: 63.18s | Cost: 255
 
  LEVEL: 15 NODES | SEED: 63
-      [SUCCESS] Time: 54.37s | Cost: 173
+      [SUCCESS] Time: 31.73s | Cost: 173
 
  LEVEL: 15 NODES | SEED: 57
-      [SUCCESS] Time: 63.95s | Cost: 223
+      [SUCCESS] Time: 38.61s | Cost: 223
 
  LEVEL: 15 NODES | SEED: 100
-      [SUCCESS] Time: 40.26s | Cost: 189
+      [SUCCESS] Time: 22.31s | Cost: 189
 
  LEVEL: 15 NODES | SEED: 59
-      [SUCCESS] Time: 42.37s | Cost: 161
+      [SUCCESS] Time: 23.57s | Cost: 161
 
  LEVEL: 15 NODES | SEED: 19
-      [SUCCESS] Time: 45.46s | Cost: 205
+      [SUCCESS] Time: 26.45s | Cost: 205
 
  LEVEL: 15 NODES | SEED: 58
-      [SUCCESS] Time: 47.72s | Cost: 199
+      [SUCCESS] Time: 27.83s | Cost: 199
 
  LEVEL: 15 NODES | SEED: 29
-      [SUCCESS] Time: 41.49s | Cost: 189
+      [SUCCESS] Time: 23.70s | Cost: 189
 
  LEVEL: 15 NODES | SEED: 68
-      [SUCCESS] Time: 36.07s | Cost: 151
+      [SUCCESS] Time: 20.31s | Cost: 151
 
  LEVEL: 20 NODES | SEED: 42
-      [TIMEOUT] ENHSP (Lazy Rangers)
+      [SUCCESS] Time: 137.32s | Cost: 289
 
  LEVEL: 20 NODES | SEED: 63
+      [SUCCESS] Time: 54.31s | Cost: 197
 
  LEVEL: 20 NODES | SEED: 57
+      [SUCCESS] Time: 200.50s | Cost: 331
 
  LEVEL: 20 NODES | SEED: 100
+      [SUCCESS] Time: 55.02s | Cost: 229
 
  LEVEL: 20 NODES | SEED: 59
+      [SUCCESS] Time: 59.34s | Cost: 213
 
  LEVEL: 20 NODES | SEED: 19
+      [SUCCESS] Time: 101.72s | Cost: 269
 
  LEVEL: 20 NODES | SEED: 58
+      [SUCCESS] Time: 170.29s | Cost: 351
 
  LEVEL: 20 NODES | SEED: 29
+      [SUCCESS] Time: 121.17s | Cost: 289
 
  LEVEL: 20 NODES | SEED: 68
+      [SUCCESS] Time: 130.39s | Cost: 301
 
  LEVEL: 30 NODES | SEED: 42
+      [SUCCESS] Time: 418.93s | Cost: 329
 
  LEVEL: 30 NODES | SEED: 63
+      [TIMEOUT] ENHSP (Lazy Rangers)
 
  LEVEL: 30 NODES | SEED: 57
 
@@ -198,5 +208,3 @@
  LEVEL: 30 NODES | SEED: 29
 
  LEVEL: 30 NODES | SEED: 68
-
-[ANALYSIS] Plot saved to Figures/benchmark_results/cumulative_cost_analysis.png

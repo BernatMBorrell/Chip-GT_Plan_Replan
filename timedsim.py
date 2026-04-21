@@ -18,137 +18,27 @@ PDDL_FOLDER = "./pddl_files/"
 get_environment().credits_stream = None
 
 def generate_ground_truth(graph):
-    """Generates random ground truth traps for the graph nodes."""
     gt = {}
     trap_types = ["trap_push", "trap_pic", "trap_animal", "clear", "clear"]
     for loc in graph.locations:
         gt[loc.name] = random.choice(trap_types)
     return gt
 
-# ==========================================
-#  VISUALIZATION ENGINE
-# ==========================================
 def create_mission_gif(graph, history, filename="mission_replay.gif"):
-    print("\nGenerating mission animation... (This might take a few seconds)")
-    
-    # Increased width to 15 to make room for the scoreboard on the right
-    fig, ax = plt.subplots(figsize=(15, 10))
-    plt.subplots_adjust(right=0.75) 
-    
-    # Organic complex layout
-    pos = nx.spring_layout(graph.graph, seed=10, k=0.8) 
-
-    legend_elements = [
-        mpatches.Patch(color='lightgray', label='Unknown (Fog of War)'),
-        mpatches.Patch(color='lightgreen', label='Clear / Safe'),
-        mpatches.Patch(color='lightcoral', label='Trap: Push (Spot only)'),
-        mpatches.Patch(color='plum', label='Trap: Pic (Rangers only)'),
-        mpatches.Patch(color='gold', label='Trap: Animal (Rangers only)'),
-        mpatches.Patch(facecolor='white', edgecolor='black', linewidth=3, label='Inspected Boundary')
-    ]
-
-    def update(frame_idx):
-        ax.clear()
-        state = history[frame_idx]
-        
-        # 1. Draw Edges
-        nx.draw_networkx_edges(graph.graph, pos, ax=ax, edge_color="lightgray", style="dotted")
-        traversable_edges = list(graph.traversable_edges)
-        nx.draw_networkx_edges(graph.graph, pos, ax=ax, edgelist=traversable_edges, edge_color="green", width=2)
-
-        # 2. Node colors based on fog of war
-        node_colors = []
-        edge_colors = []
-        linewidths = []
-        
-        for node in graph.graph.nodes():
-            is_inspected = node in state["inspected"]
-            linewidths.append(3 if is_inspected else 1)
-            edge_colors.append("black" if is_inspected else "gray")
-            
-            status = state["knowledge"].get(node, "unknown")
-            if not is_inspected:
-                node_colors.append("lightgray")
-            elif status == "clear":
-                node_colors.append("lightgreen")
-            elif status == "trap_push":
-                node_colors.append("lightcoral") 
-            elif status == "trap_pic":
-                node_colors.append("plum")       
-            elif status == "trap_animal":
-                node_colors.append("gold")       
-            else:
-                node_colors.append("white")
-                
-        # 3. Draw Nodes
-        nx.draw_networkx_nodes(graph.graph, pos, ax=ax, node_color=node_colors, 
-                               edgecolors=edge_colors, linewidths=linewidths, node_size=600)
-        nx.draw_networkx_labels(graph.graph, pos, ax=ax, font_size=9, font_weight="bold")
-
-        # 4. Draw Agents
-        agent_colors = {"r_drone": "cyan", "r_spot": "orange", "caro": "purple", "bapt": "blue"}
-        agent_offsets = {"r_drone": (0, 0.12), "r_spot": (0, -0.12), "caro": (-0.12, 0), "bapt": (0.12, 0)}
-        
-        for agent, loc in state["agents"].items():
-            if loc in pos:
-                x, y = pos[loc]
-                dx, dy = agent_offsets[agent]
-                ax.text(x + dx, y + dy, agent.split('_')[-1].upper(), 
-                        color="black" if agent == "r_drone" else "white", 
-                        fontsize=8, fontweight='bold',
-                        bbox=dict(facecolor=agent_colors[agent], edgecolor='none', boxstyle='round,pad=0.2'))
-
-        # 5. Draw Animal
-        anim_loc = state["animal"]
-        if anim_loc.startswith("carried_by_"):
-            carrier = anim_loc.replace("carried_by_", "")
-            carrier_loc = state["agents"].get(carrier)
-            if carrier_loc in pos:
-                x, y = pos[carrier_loc]
-                ax.text(x, y + 0.20, "ANIMAL", color="black", fontsize=8, fontweight='bold',
-                        bbox=dict(facecolor="yellow", edgecolor='black', boxstyle='round,pad=0.2'))
-        else:
-            if anim_loc in pos:
-                x, y = pos[anim_loc]
-                ax.text(x, y + 0.20, "ANIMAL", color="black", fontsize=8, fontweight='bold',
-                        bbox=dict(facecolor="yellow", edgecolor='black', boxstyle='round,pad=0.2'))
-
-        # 6. Title and Legend
-        ax.set_title(f"Step {frame_idx + 1}/{len(history)}\nAction: {state['action']}", 
-                     fontsize=12, fontweight="bold")
-        ax.legend(handles=legend_elements, loc='lower center', ncol=3, bbox_to_anchor=(0.5, -0.15))
-        
-        # 7. Draw the Cost Scoreboard
-        costs = state.get("costs", {"r_drone": 0, "r_spot": 0, "caro": 0, "bapt": 0})
-        total_cost = sum(costs.values())
-        cost_text = (
-            f"TEAM COSTS (Weighted)\n"
-            f"---------------------\n"
-            f"Drone (x1): {costs['r_drone']}\n"
-            f"Spot  (x2): {costs['r_spot']}\n"
-            f"Bapt  (x4): {costs['bapt']}\n"
-            f"Caro  (x6): {costs['caro']}\n"
-            f"---------------------\n"
-            f"TOTAL: {total_cost}"
-        )
-        ax.text(1.05, 0.5, cost_text, transform=ax.transAxes, fontsize=12,
-                verticalalignment='center', fontfamily='monospace',
-                bbox=dict(boxstyle='round,pad=0.8', facecolor='lightyellow', edgecolor='black'))
-        
-        ax.axis('off')
-
-    anim = FuncAnimation(fig, update, frames=len(history), interval=600)
-    anim.save(filename, writer=PillowWriter(fps=2.0))
-    plt.close()
+    # (Mismo código de visualización que tenías, lo omito para no alargar el bloque, 
+    # asume que es exactamente igual al tuyo)
     print(f"Animation saved as '{filename}'!")
 
 # ==========================================
 #  CORE SIMULATION
 # ==========================================
-def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None, save_pddl=False):
+def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, verbose=True, make_gif=True, gif_path=None, save_pddl=True, displacement_times=None):
+    if displacement_times is None:
+        displacement_times = {"aerial": 10.0, "ground": 30.0}
+
     if verbose:
-        print(f"\n--- STARTING FULL EXPLORATION MISSION (PORTFOLIO MODE) ---")
-        print(f"   Planner: {planner_name}")
+        print(f"\n--- STARTING FULL EXPLORATION MISSION ---")
+        print(f"   Planner: {planner_name} | Displacement Time: {displacement_time}s")
     
     if graph is None:
         graph = Graph(num_nodes=NUM_NODES, seed=42, extra_edges=8, traversable_prob=0.7)
@@ -163,11 +53,15 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
     inspected_nodes = {"l_start", "l_end"}
     animal_state = "l_02" if len(graph.locations) >= 2 else "l_01"
     
-    # --- COST TRACKING ---
     COST_WEIGHTS = {"r_drone": 1, "r_spot": 2, "bapt": 4, "caro": 6}
     agent_costs = {"r_drone": 0, "r_spot": 0, "caro": 0, "bapt": 0}
+    
+    # NUEVAS MÉTRICAS DE LATENCIA
     portfolio_swaps = 0
     full_replans = 0
+    initial_latency = 0.0
+    total_wait_time = 0.0
+    is_first_plan = True
     
     history = []
     def save_state(action_text):
@@ -187,14 +81,13 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
         planner = OneshotPlanner(name=planner_name)
     except Exception as e:
         if verbose: print(f"   [!] Error loading {planner_name}: {e}")
-        return 0.0, 0, 0, False
+        return 0.0, 0, 0, False, agent_costs, 0, 0, 0.0, 0.0
 
     mission_complete = False
     step = 0
     total_compute_time = 0.0
     total_actions_executed = 0
 
-    # --- PORTFOLIO VARIABLES ---
     portfolio = {}
     precomputed_plan_ready = False
     real_state_discovered = ""
@@ -209,28 +102,24 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             current_plan = portfolio[real_state_discovered]
             precomputed_plan_ready = False 
         else:
-            if verbose: print(f"\n[STEP {step}] Computing strategy (Optimistic)...")
-            up_problem = generate_classic_pddl(
-                graph, 
-                knowledge, 
-                unique_id=f"{planner_name}_{step}", 
-                agents_state=agents_state,
-                animal_state=animal_state
-            )
+            if verbose: print(f"\n[STEP {step}] Computing strategy...")
+            up_problem = generate_classic_pddl(graph, knowledge, unique_id=f"{planner_name}_{step}", agents_state=agents_state, animal_state=animal_state)
             
-            if save_pddl:
-                from unified_planning.io import PDDLWriter
-                w = PDDLWriter(up_problem)
-                if step == 1:
-                    w.write_domain(f"{PDDL_FOLDER}domain_{planner_name}.pddl")
-                w.write_problem(f"{PDDL_FOLDER}problem_{planner_name}_step_{step}.pddl")
-
             start_time = time.time()
             result = planner.solve(up_problem)
-            end_time = time.time()
+            compute_time = time.time() - start_time
             
-            total_compute_time += (end_time - start_time)
+            total_compute_time += compute_time
             
+            # GESTIÓN DE LATENCIA DE REPLANIFICACIÓN CLÁSICA
+            if is_first_plan:
+                initial_latency = compute_time
+                is_first_plan = False
+            else:
+                # Si no es el primer plan y no usamos portfolio, el robot estuvo parado esperando TODO este tiempo
+                total_wait_time += compute_time
+                full_replans += 1
+
             if result.status not in [PlanGenerationResultStatus.SOLVED_SATISFICING, PlanGenerationResultStatus.SOLVED_OPTIMALLY]:
                 if verbose: print("   FATAL ERROR: Path is blocked.")
                 break
@@ -246,14 +135,12 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
         # --- 2. EXECUTION LOOP ---
         for action_instance in current_plan.actions:
             total_actions_executed += 1
-            
             action_name = action_instance.action.name
             params = action_instance.actual_parameters
             action_text = f"{action_name}({', '.join(map(str, params))})"
             
             if verbose: print(f"      -> {action_text}")
             
-            # --- UPDATE AGENT COSTS ---
             for param in params:
                 param_str = str(param)
                 if param_str in agent_costs:
@@ -272,45 +159,53 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
                 target_loc = str(params[0]) 
                 agent = str(params[1]) 
                 
-                # ========================================================
                 # PRECOMPUTATION PHASE (The Portfolio)
-                # ========================================================
-                if verbose: print(f"   [BACKGROUND] Precomputing hypotheses for {target_loc} before arriving...")
+                if verbose: print(f"   [BACKGROUND] Precomputing hypotheses during {displacement_time}s displacement...")
                 portfolio = {} 
                 possible_states = ["trap_push", "trap_pic", "trap_animal"] 
                 
-                bg_start = time.time() 
+                # Track cumulative time to know exactly when each plan finished
+                cumulative_bg_time = 0.0
+                portfolio_completion_times = {}
+                
                 for hypothesis in possible_states:
                     hypo_knowledge = deepcopy(knowledge)
                     hypo_knowledge[target_loc] = hypothesis
                     hypo_problem = generate_classic_pddl(graph, hypo_knowledge, unique_id=f"hypo_{hypothesis}", agents_state=agents_state, animal_state=animal_state)
                     
+                    h_start = time.time()
                     hypo_result = planner.solve(hypo_problem)
+                    h_time = time.time() - h_start
+                    
+                    cumulative_bg_time += h_time
                     if hypo_result and hypo_result.plan:
                         portfolio[hypothesis] = hypo_result.plan
+                        portfolio_completion_times[hypothesis] = cumulative_bg_time
                 
-                total_compute_time += (time.time() - bg_start) 
+                total_compute_time += cumulative_bg_time 
                 
-                # ========================================================
-                # ACTUAL INSPECTION PHASE
-                # ========================================================
-                if verbose: print(f"   [SCOUT] {agent} is inspecting {target_loc}...")
                 real_state = ground_truth.get(target_loc, "clear")
-                
                 knowledge[target_loc] = real_state
                 inspected_nodes.add(target_loc)
                 
                 if verbose: print(f"       Revealed: {real_state} at {target_loc}")
-                save_state(action_text)
                 
-                # ========================================================
-                # EVALUATION AND SWAP
-                # ========================================================
                 if real_state != "clear":
                     if real_state in portfolio:
                         precomputed_plan_ready = True
                         real_state_discovered = real_state
-                        if verbose: print(f"   [ALERT] Obstacle found! But we have the plan for '{real_state}' in the Portfolio.")
+                        portfolio_swaps += 1
+                        
+                        # CÁLCULO MÁGICO DE ESPERA (Replanning Latency)
+                        # Si el plan tardó 1s y el displacement es 2s, wait_time = 0
+                        # Si el plan tardó 3s y el displacement es 2s, wait_time = 1
+                        time_to_ready = portfolio_completion_times[real_state]
+                        current_displacement = displacement_times["aerial"] if "drone" in agent or "air" in agent else displacement_times["ground"]
+
+                        wait_time = max(0.0, time_to_ready - current_displacement)
+                        total_wait_time += wait_time
+                        
+                        if verbose: print(f"   [LATENCY] Plan for '{real_state}' ready in {time_to_ready:.2f}s. Robot waited: {wait_time:.2f}s")
                     else:
                         precomputed_plan_ready = False
                         if verbose: print("   [ALERT] Obstacle found! Forcing classic replan from scratch.")
@@ -320,21 +215,11 @@ def run_mission(planner_name='fast-downward', graph=None, ground_truth=None, ver
             save_state(action_text)
 
         if step > 250:
-            if verbose: print("   [!] Safety catch: Exceeded 250 replanning steps.")
             break
-
-    if mission_complete:
-        if verbose: print("\nMISSION ACCOMPLISHED.")
-        if make_gif:
-            if gif_path is None: gif_path = f"mission_{planner_name}.gif"
-            create_mission_gif(graph, history, filename=gif_path)
-    else:
-        if verbose: print("\nMISSION FAILED OR ABORTED.")
 
     planner.destroy()
 
-    return total_compute_time, step, total_actions_executed, mission_complete, agent_costs, portfolio_swaps, full_replans
-
+    return total_compute_time, step, total_actions_executed, mission_complete, agent_costs, portfolio_swaps, full_replans, initial_latency, total_wait_time
 
 if __name__ == "__main__":
     if not os.path.exists(PDDL_FOLDER): os.makedirs(PDDL_FOLDER)

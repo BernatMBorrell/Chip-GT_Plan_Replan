@@ -1,0 +1,24 @@
+(define (problem disarm_traps)
+    (:domain chip-gt)
+    (:objects
+        ${locations}
+        ${robots}
+        ${objectives}
+    )
+    (:init
+        ${robots_types}
+        ${robots_locations}
+        ${unreachable_locations}
+        ${objectives_locations}
+        ${objectives_detect_types}
+        ${initial_costs}
+    )
+    (:goal
+        (and
+            ${goals}
+        )
+    )
+    (:metric minimize (+ 0 
+        ${metric_costs}
+    ))
+)

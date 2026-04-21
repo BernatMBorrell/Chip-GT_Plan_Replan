@@ -1,0 +1,28 @@
+--- STARTING NUMERIC BENCHMARK (ID: 20260316_181011) ---
+
+ LEVEL: 3 NODES | SEED: 42
+      [SUCCESS] CPU Time: 2.57s | Robot Wait: 0.23s
+
+ LEVEL: 3 NODES | SEED: 63
+      [SUCCESS] CPU Time: 2.57s | Robot Wait: 0.22s
+
+ LEVEL: 3 NODES | SEED: 57
+      [SUCCESS] CPU Time: 2.54s | Robot Wait: 0.23s
+
+ LEVEL: 4 NODES | SEED: 42
+      [SUCCESS] CPU Time: 3.60s | Robot Wait: 0.20s
+
+ LEVEL: 4 NODES | SEED: 63
+      [SUCCESS] CPU Time: 3.56s | Robot Wait: 0.23s
+
+ LEVEL: 4 NODES | SEED: 57
+      [SUCCESS] CPU Time: 3.47s | Robot Wait: 0.19s
+
+ LEVEL: 5 NODES | SEED: 42
+      [SUCCESS] CPU Time: 4.44s | Robot Wait: 0.23s
+
+ LEVEL: 5 NODES | SEED: 63
+      [SUCCESS] CPU Time: 4.49s | Robot Wait: 0.22s
+
+ LEVEL: 5 NODES | SEED: 57
+      [SUCCESS] CPU Time: 4.19s | Robot Wait: 0.22s

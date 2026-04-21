@@ -1,0 +1,210 @@
+--- STARTING NUMERIC BENCHMARK (ID: 20260316_205743) ---
+
+ LEVEL: 3 NODES | SEED: 42
+      [SUCCESS] CPU Time: 2.58s | Robot Wait: 0.23s
+
+ LEVEL: 3 NODES | SEED: 63
+      [SUCCESS] CPU Time: 2.56s | Robot Wait: 0.24s
+
+ LEVEL: 3 NODES | SEED: 57
+      [SUCCESS] CPU Time: 2.52s | Robot Wait: 0.25s
+
+ LEVEL: 3 NODES | SEED: 100
+      [SUCCESS] CPU Time: 2.50s | Robot Wait: 0.18s
+
+ LEVEL: 3 NODES | SEED: 59
+      [SUCCESS] CPU Time: 2.48s | Robot Wait: 0.20s
+
+ LEVEL: 3 NODES | SEED: 19
+      [SUCCESS] CPU Time: 2.53s | Robot Wait: 0.22s
+
+ LEVEL: 3 NODES | SEED: 58
+      [SUCCESS] CPU Time: 2.56s | Robot Wait: 0.20s
+
+ LEVEL: 3 NODES | SEED: 29
+      [SUCCESS] CPU Time: 2.53s | Robot Wait: 0.20s
+
+ LEVEL: 3 NODES | SEED: 68
+      [SUCCESS] CPU Time: 2.49s | Robot Wait: 0.20s
+
+ LEVEL: 4 NODES | SEED: 42
+      [SUCCESS] CPU Time: 3.44s | Robot Wait: 0.20s
+
+ LEVEL: 4 NODES | SEED: 63
+      [SUCCESS] CPU Time: 3.45s | Robot Wait: 0.20s
+
+ LEVEL: 4 NODES | SEED: 57
+      [SUCCESS] CPU Time: 3.42s | Robot Wait: 0.20s
+
+ LEVEL: 4 NODES | SEED: 100
+      [SUCCESS] CPU Time: 3.49s | Robot Wait: 0.22s
+
+ LEVEL: 4 NODES | SEED: 59
+      [SUCCESS] CPU Time: 3.37s | Robot Wait: 0.22s
+
+ LEVEL: 4 NODES | SEED: 19
+      [SUCCESS] CPU Time: 3.36s | Robot Wait: 0.21s
+
+ LEVEL: 4 NODES | SEED: 58
+      [SUCCESS] CPU Time: 3.44s | Robot Wait: 0.23s
+
+ LEVEL: 4 NODES | SEED: 29
+      [SUCCESS] CPU Time: 3.41s | Robot Wait: 0.22s
+
+ LEVEL: 4 NODES | SEED: 68
+      [SUCCESS] CPU Time: 3.37s | Robot Wait: 0.21s
+
+ LEVEL: 5 NODES | SEED: 42
+      [SUCCESS] CPU Time: 4.35s | Robot Wait: 0.22s
+
+ LEVEL: 5 NODES | SEED: 63
+      [SUCCESS] CPU Time: 4.48s | Robot Wait: 0.23s
+
+ LEVEL: 5 NODES | SEED: 57
+      [SUCCESS] CPU Time: 4.15s | Robot Wait: 0.23s
+
+ LEVEL: 5 NODES | SEED: 100
+      [SUCCESS] CPU Time: 4.37s | Robot Wait: 0.23s
+
+ LEVEL: 5 NODES | SEED: 59
+      [SUCCESS] CPU Time: 4.28s | Robot Wait: 0.22s
+
+ LEVEL: 5 NODES | SEED: 19
+      [SUCCESS] CPU Time: 4.24s | Robot Wait: 0.21s
+
+ LEVEL: 5 NODES | SEED: 58
+      [SUCCESS] CPU Time: 4.36s | Robot Wait: 0.22s
+
+ LEVEL: 5 NODES | SEED: 29
+      [SUCCESS] CPU Time: 4.39s | Robot Wait: 0.22s
+
+ LEVEL: 5 NODES | SEED: 68
+      [SUCCESS] CPU Time: 4.23s | Robot Wait: 0.20s
+
+ LEVEL: 7 NODES | SEED: 42
+      [SUCCESS] CPU Time: 6.79s | Robot Wait: 0.24s
+
+ LEVEL: 7 NODES | SEED: 63
+      [SUCCESS] CPU Time: 6.66s | Robot Wait: 0.22s
+
+ LEVEL: 7 NODES | SEED: 57
+      [SUCCESS] CPU Time: 6.95s | Robot Wait: 0.23s
+
+ LEVEL: 7 NODES | SEED: 100
+      [SUCCESS] CPU Time: 6.35s | Robot Wait: 0.24s
+
+ LEVEL: 7 NODES | SEED: 59
+      [SUCCESS] CPU Time: 6.36s | Robot Wait: 0.24s
+
+ LEVEL: 7 NODES | SEED: 19
+      [SUCCESS] CPU Time: 6.36s | Robot Wait: 0.22s
+
+ LEVEL: 7 NODES | SEED: 58
+      [SUCCESS] CPU Time: 6.49s | Robot Wait: 0.23s
+
+ LEVEL: 7 NODES | SEED: 29
+      [SUCCESS] CPU Time: 6.38s | Robot Wait: 0.22s
+
+ LEVEL: 7 NODES | SEED: 68
+      [SUCCESS] CPU Time: 6.21s | Robot Wait: 0.21s
+
+ LEVEL: 10 NODES | SEED: 42
+      [SUCCESS] CPU Time: 11.49s | Robot Wait: 0.26s
+
+ LEVEL: 10 NODES | SEED: 63
+      [SUCCESS] CPU Time: 12.78s | Robot Wait: 0.23s
+
+ LEVEL: 10 NODES | SEED: 57
+      [SUCCESS] CPU Time: 11.10s | Robot Wait: 0.26s
+
+ LEVEL: 10 NODES | SEED: 100
+      [SUCCESS] CPU Time: 10.66s | Robot Wait: 0.26s
+
+ LEVEL: 10 NODES | SEED: 59
+      [SUCCESS] CPU Time: 11.05s | Robot Wait: 0.25s
+
+ LEVEL: 10 NODES | SEED: 19
+      [SUCCESS] CPU Time: 11.43s | Robot Wait: 0.25s
+
+ LEVEL: 10 NODES | SEED: 58
+      [SUCCESS] CPU Time: 10.95s | Robot Wait: 0.25s
+
+ LEVEL: 10 NODES | SEED: 29
+      [SUCCESS] CPU Time: 10.86s | Robot Wait: 0.24s
+
+ LEVEL: 10 NODES | SEED: 68
+      [SUCCESS] CPU Time: 10.65s | Robot Wait: 0.25s
+
+ LEVEL: 15 NODES | SEED: 42
+      [SUCCESS] CPU Time: 62.62s | Robot Wait: 7.16s
+
+ LEVEL: 15 NODES | SEED: 63
+      [SUCCESS] CPU Time: 32.52s | Robot Wait: 0.31s
+
+ LEVEL: 15 NODES | SEED: 57
+      [SUCCESS] CPU Time: 38.56s | Robot Wait: 1.21s
+
+ LEVEL: 15 NODES | SEED: 100
+      [SUCCESS] CPU Time: 22.18s | Robot Wait: 0.28s
+
+ LEVEL: 15 NODES | SEED: 59
+      [SUCCESS] CPU Time: 23.44s | Robot Wait: 0.29s
+
+ LEVEL: 15 NODES | SEED: 19
+      [SUCCESS] CPU Time: 26.50s | Robot Wait: 0.29s
+
+ LEVEL: 15 NODES | SEED: 58
+      [SUCCESS] CPU Time: 27.96s | Robot Wait: 0.29s
+
+ LEVEL: 15 NODES | SEED: 29
+      [SUCCESS] CPU Time: 23.64s | Robot Wait: 0.31s
+
+ LEVEL: 15 NODES | SEED: 68
+      [SUCCESS] CPU Time: 20.14s | Robot Wait: 0.31s
+
+ LEVEL: 20 NODES | SEED: 42
+      [SUCCESS] CPU Time: 137.86s | Robot Wait: 23.46s
+
+ LEVEL: 20 NODES | SEED: 63
+      [SUCCESS] CPU Time: 53.43s | Robot Wait: 0.33s
+
+ LEVEL: 20 NODES | SEED: 57
+      [SUCCESS] CPU Time: 197.47s | Robot Wait: 46.90s
+
+ LEVEL: 20 NODES | SEED: 100
+      [SUCCESS] CPU Time: 54.31s | Robot Wait: 0.32s
+
+ LEVEL: 20 NODES | SEED: 59
+      [SUCCESS] CPU Time: 58.97s | Robot Wait: 0.74s
+
+ LEVEL: 20 NODES | SEED: 19
+      [SUCCESS] CPU Time: 100.41s | Robot Wait: 12.08s
+
+ LEVEL: 20 NODES | SEED: 58
+      [SUCCESS] CPU Time: 165.70s | Robot Wait: 29.15s
+
+ LEVEL: 20 NODES | SEED: 29
+      [SUCCESS] CPU Time: 121.01s | Robot Wait: 16.90s
+
+ LEVEL: 20 NODES | SEED: 68
+      [SUCCESS] CPU Time: 133.22s | Robot Wait: 36.84s
+
+ LEVEL: 30 NODES | SEED: 42
+      [SUCCESS] CPU Time: 424.88s | Robot Wait: 113.39s
+
+ LEVEL: 30 NODES | SEED: 63
+      [TIMEOUT] ENHSP (Lazy Rangers)
+
+ LEVEL: 30 NODES | SEED: 57
+
+ LEVEL: 30 NODES | SEED: 100
+
+ LEVEL: 30 NODES | SEED: 59
+
+ LEVEL: 30 NODES | SEED: 19
+
+ LEVEL: 30 NODES | SEED: 58
+
+ LEVEL: 30 NODES | SEED: 29
+
+ LEVEL: 30 NODES | SEED: 68

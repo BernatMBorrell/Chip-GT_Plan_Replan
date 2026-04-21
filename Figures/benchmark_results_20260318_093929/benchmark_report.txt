@@ -1,0 +1,96 @@
+--- STARTING MULTIPROCESSING BENCHMARK (ID: 20260318_093929) ---
+Using asymmetric displacements: Drones 10.0s | Ground 10.0s
+Running up to 5 simulations in parallel...
+
+[01/90] [SUCCESS] Lvl:  3 | Seed:  42 | CPU:   3.99s | Wait:   0.30s
+[02/90] [SUCCESS] Lvl:  3 | Seed:  63 | CPU:   4.09s | Wait:   0.31s
+[03/90] [SUCCESS] Lvl:  3 | Seed:  57 | CPU:   4.10s | Wait:   0.30s
+[04/90] [SUCCESS] Lvl:  3 | Seed: 100 | CPU:   4.12s | Wait:   0.30s
+[05/90] [SUCCESS] Lvl:  3 | Seed:  59 | CPU:   4.02s | Wait:   0.34s
+[06/90] [SUCCESS] Lvl:  3 | Seed:  19 | CPU:   4.17s | Wait:   0.33s
+[07/90] [SUCCESS] Lvl:  3 | Seed:  58 | CPU:   4.07s | Wait:   0.33s
+[08/90] [SUCCESS] Lvl:  3 | Seed:  29 | CPU:   4.14s | Wait:   0.31s
+[09/90] [SUCCESS] Lvl:  3 | Seed:  68 | CPU:   4.16s | Wait:   0.31s
+[10/90] [SUCCESS] Lvl:  4 | Seed:  42 | CPU:   5.17s | Wait:   0.30s
+[11/90] [SUCCESS] Lvl:  4 | Seed:  63 | CPU:   5.84s | Wait:   0.25s
+[12/90] [SUCCESS] Lvl:  4 | Seed:  57 | CPU:   5.52s | Wait:   0.34s
+[13/90] [SUCCESS] Lvl:  4 | Seed: 100 | CPU:   5.67s | Wait:   0.30s
+[14/90] [SUCCESS] Lvl:  4 | Seed:  59 | CPU:   5.53s | Wait:   0.36s
+[15/90] [SUCCESS] Lvl:  4 | Seed:  19 | CPU:   5.28s | Wait:   0.34s
+[16/90] [SUCCESS] Lvl:  4 | Seed:  58 | CPU:   5.66s | Wait:   0.32s
+[17/90] [SUCCESS] Lvl:  4 | Seed:  29 | CPU:   5.69s | Wait:   0.30s
+[18/90] [SUCCESS] Lvl:  4 | Seed:  68 | CPU:   5.62s | Wait:   0.35s
+[19/90] [SUCCESS] Lvl:  5 | Seed:  42 | CPU:   6.98s | Wait:   0.34s
+[20/90] [SUCCESS] Lvl:  5 | Seed:  63 | CPU:   7.24s | Wait:   0.35s
+[21/90] [SUCCESS] Lvl:  5 | Seed:  57 | CPU:   6.58s | Wait:   0.40s
+[22/90] [SUCCESS] Lvl:  5 | Seed: 100 | CPU:   7.12s | Wait:   0.31s
+[23/90] [SUCCESS] Lvl:  5 | Seed:  59 | CPU:   7.02s | Wait:   0.35s
+[24/90] [SUCCESS] Lvl:  5 | Seed:  19 | CPU:   6.67s | Wait:   0.34s
+[25/90] [SUCCESS] Lvl:  5 | Seed:  58 | CPU:   6.96s | Wait:   0.37s
+[26/90] [SUCCESS] Lvl:  5 | Seed:  29 | CPU:   7.13s | Wait:   0.37s
+[27/90] [SUCCESS] Lvl:  5 | Seed:  68 | CPU:   6.99s | Wait:   0.37s
+[28/90] [SUCCESS] Lvl:  7 | Seed:  42 | CPU:  11.35s | Wait:   0.42s
+[29/90] [SUCCESS] Lvl:  7 | Seed:  63 | CPU:  11.48s | Wait:   0.40s
+[30/90] [SUCCESS] Lvl:  7 | Seed:  57 | CPU:  12.07s | Wait:   0.43s
+[31/90] [SUCCESS] Lvl:  7 | Seed: 100 | CPU:  10.85s | Wait:   0.43s
+[32/90] [SUCCESS] Lvl:  7 | Seed:  59 | CPU:  11.14s | Wait:   0.36s
+[33/90] [SUCCESS] Lvl:  7 | Seed:  19 | CPU:  10.97s | Wait:   0.39s
+[34/90] [SUCCESS] Lvl:  7 | Seed:  58 | CPU:  10.71s | Wait:   0.32s
+[35/90] [SUCCESS] Lvl:  7 | Seed:  29 | CPU:  11.08s | Wait:   0.35s
+[36/90] [SUCCESS] Lvl:  7 | Seed:  68 | CPU:  11.25s | Wait:   0.39s
+[37/90] [SUCCESS] Lvl: 10 | Seed:  42 | CPU:  20.53s | Wait:   0.49s
+[38/90] [SUCCESS] Lvl: 10 | Seed:  57 | CPU:  20.79s | Wait:   0.46s
+[39/90] [SUCCESS] Lvl: 10 | Seed:  63 | CPU:  23.42s | Wait:   0.50s
+[40/90] [SUCCESS] Lvl: 10 | Seed: 100 | CPU:  19.92s | Wait:   0.39s
+[41/90] [SUCCESS] Lvl: 10 | Seed:  59 | CPU:  20.40s | Wait:   0.46s
+[42/90] [SUCCESS] Lvl: 10 | Seed:  19 | CPU:  21.31s | Wait:   0.56s
+[43/90] [SUCCESS] Lvl: 10 | Seed:  58 | CPU:  20.39s | Wait:   0.47s
+[44/90] [SUCCESS] Lvl: 10 | Seed:  29 | CPU:  19.96s | Wait:   0.55s
+[45/90] [SUCCESS] Lvl: 10 | Seed:  68 | CPU:  19.37s | Wait:   0.36s
+[46/90] [SUCCESS] Lvl: 15 | Seed: 100 | CPU:  36.02s | Wait:   0.49s
+[47/90] [SUCCESS] Lvl: 15 | Seed:  59 | CPU:  38.05s | Wait:   0.51s
+[48/90] [SUCCESS] Lvl: 15 | Seed:  63 | CPU:  50.26s | Wait:   0.54s
+[49/90] [SUCCESS] Lvl: 15 | Seed:  57 | CPU:  60.75s | Wait:   0.45s
+[50/90] [SUCCESS] Lvl: 15 | Seed:  19 | CPU:  41.25s | Wait:   0.41s
+[51/90] [SUCCESS] Lvl: 15 | Seed:  42 | CPU:  96.89s | Wait:   0.48s
+[52/90] [SUCCESS] Lvl: 15 | Seed:  58 | CPU:  43.73s | Wait:   0.57s
+[53/90] [SUCCESS] Lvl: 15 | Seed:  29 | CPU:  38.34s | Wait:   0.56s
+[54/90] [SUCCESS] Lvl: 15 | Seed:  68 | CPU:  33.46s | Wait:   0.36s
+[55/90] [SUCCESS] Lvl: 20 | Seed:  63 | CPU:  77.80s | Wait:   0.50s
+[56/90] [SUCCESS] Lvl: 20 | Seed: 100 | CPU:  78.06s | Wait:   0.47s
+[57/90] [SUCCESS] Lvl: 20 | Seed:  59 | CPU:  82.25s | Wait:   0.48s
+[58/90] [SUCCESS] Lvl: 20 | Seed:  42 | CPU: 181.83s | Wait:   0.45s
+[59/90] [SUCCESS] Lvl: 20 | Seed:  19 | CPU: 125.36s | Wait:   0.40s
+[60/90] [SUCCESS] Lvl: 20 | Seed:  29 | CPU: 144.73s | Wait:   0.40s
+[61/90] [SUCCESS] Lvl: 20 | Seed:  57 | CPU: 254.71s | Wait:  21.73s
+[62/90] [SUCCESS] Lvl: 20 | Seed:  58 | CPU: 206.26s | Wait:   5.04s
+[63/90] [SUCCESS] Lvl: 20 | Seed:  68 | CPU: 160.80s | Wait:   6.46s
+[64/90] [SUCCESS] Lvl: 30 | Seed:  42 | CPU: 477.36s | Wait:  70.17s
+[65/90] [SUCCESS] Lvl: 30 | Seed: 100 | CPU: 469.08s | Wait: 124.02s
+[66/90] [TIMEOUT] Lvl: 30 | Seed:  63 | Exceeded 600s
+[67/90] [TIMEOUT] Lvl: 30 | Seed:  57 | Exceeded 600s
+[68/90] [TIMEOUT] Lvl: 30 | Seed:  59 | Exceeded 600s
+[69/90] [SUCCESS] Lvl: 30 | Seed:  19 | CPU: 455.63s | Wait:  85.62s
+[70/90] [SUCCESS] Lvl: 30 | Seed:  58 | CPU: 555.25s | Wait: 147.47s
+[71/90] [SUCCESS] Lvl: 30 | Seed:  68 | CPU: 524.24s | Wait: 107.98s
+[72/90] [TIMEOUT] Lvl: 30 | Seed:  29 | Exceeded 600s
+[73/90] [TIMEOUT] Lvl: 40 | Seed:  42 | Exceeded 600s
+[74/90] [TIMEOUT] Lvl: 40 | Seed:  63 | Exceeded 600s
+[75/90] [TIMEOUT] Lvl: 40 | Seed:  57 | Exceeded 600s
+[76/90] [TIMEOUT] Lvl: 40 | Seed: 100 | Exceeded 600s
+[77/90] [TIMEOUT] Lvl: 40 | Seed:  59 | Exceeded 600s
+[78/90] [TIMEOUT] Lvl: 40 | Seed:  19 | Exceeded 600s
+[79/90] [TIMEOUT] Lvl: 40 | Seed:  58 | Exceeded 600s
+[80/90] [TIMEOUT] Lvl: 40 | Seed:  29 | Exceeded 600s
+[81/90] [TIMEOUT] Lvl: 40 | Seed:  68 | Exceeded 600s
+[82/90] [TIMEOUT] Lvl: 50 | Seed:  42 | Exceeded 600s
+[83/90] [TIMEOUT] Lvl: 50 | Seed:  63 | Exceeded 600s
+[84/90] [TIMEOUT] Lvl: 50 | Seed:  57 | Exceeded 600s
+[85/90] [TIMEOUT] Lvl: 50 | Seed: 100 | Exceeded 600s
+[86/90] [TIMEOUT] Lvl: 50 | Seed:  59 | Exceeded 600s
+[87/90] [TIMEOUT] Lvl: 50 | Seed:  19 | Exceeded 600s
+[88/90] [TIMEOUT] Lvl: 50 | Seed:  58 | Exceeded 600s
+[89/90] [TIMEOUT] Lvl: 50 | Seed:  29 | Exceeded 600s
+[90/90] [TIMEOUT] Lvl: 50 | Seed:  68 | Exceeded 600s
+
+All simulations completed! Aggregating data and generating plots...

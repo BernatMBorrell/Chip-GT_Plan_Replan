@@ -1,0 +1,495 @@
+root@webots_jazzy:/opt/jazzy_ws# ros2 launch icaps2026_bringup bench.launch.py planner:=up
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-03-13-11-15-23-777381-webots_jazzy-2914644
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [valkey-server-1]: process started with pid [2914654]
+Generating new world...
+Creating new world of size 40x40...
+Success! Wrote to: /opt/jazzy_ws/install/webots_ros2_manager/share/webots_ros2_manager/resource/gridworld.wbt
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.799 * oO0OoO0OoO0Oo Valkey is starting oO0OoO0OoO0Oo
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.799 * Valkey version=255.255.255, bits=64, commit=51f871ae, modified=0, pid=2914654, just started
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.799 * Configuration loaded
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.799 * monotonic clock: POSIX clock_gettime
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.800 * Running mode=standalone, port=6379.
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.874 * Module 'json' loaded from /opt/jazzy_ws/src/auspex/valkeyJSON/build/src/libjson.so
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.875 * Server initialized
+[valkey-server-1] 2914654:M 13 Mar 2026 11:15:23.875 * Ready to accept connections tcp
+[INFO] [ample_up_impl.py-19]: process started with pid [2914701]
+[INFO] [env_manager_node-2]: process started with pid [2914679]
+[INFO] [webots-3]: process started with pid [2914680]
+[INFO] [team_manager_node-4]: process started with pid [2914681]
+[INFO] [webots_controller_r_air-5]: process started with pid [2914682]
+[INFO] [webots_controller_r_ground-6]: process started with pid [2914683]
+[INFO] [control_node.py-7]: process started with pid [2914684]
+[INFO] [basic_detector.py-8]: process started with pid [2914685]
+[INFO] [basic_disarmer.py-9]: process started with pid [2914686]
+[INFO] [relay_field-10]: process started with pid [2914687]
+[INFO] [move_to_node-11]: process started with pid [2914689]
+[INFO] [uav_ranger_manager_node-12]: process started with pid [2914691]
+[INFO] [control_node.py-13]: process started with pid [2914692]
+[INFO] [basic_detector.py-14]: process started with pid [2914693]
+[INFO] [basic_disarmer.py-15]: process started with pid [2914694]
+[INFO] [relay_field-16]: process started with pid [2914695]
+[INFO] [move_to_node-17]: process started with pid [2914696]
+[INFO] [ugv_ranger_manager_node-18]: process started with pid [2914698]
+[INFO] [knowledge_main-20]: process started with pid [2914702]
+[move_to_node-11] [INFO] [1773400524.110866805] [chipgt.r_air.move_to]: Loaded parameters:
+[move_to_node-11] [INFO] [1773400524.110956051] [chipgt.r_air.move_to]:   - controller_frequency: 20 Hz
+[move_to_node-11] [INFO] [1773400524.110980404] [chipgt.r_air.move_to]:   - position_tolerance: 0.3 m
+[move_to_node-11] [INFO] [1773400524.110992580] [chipgt.r_air.move_to]:   - angle_start_move: 15°
+[move_to_node-11] [INFO] [1773400524.111002431] [chipgt.r_air.move_to]:   - angle_start_rotate_only: 30°
+[move_to_node-11] [INFO] [1773400524.111012179] [chipgt.r_air.move_to]:   - kp_pose: 5
+[move_to_node-11] [INFO] [1773400524.111021695] [chipgt.r_air.move_to]:   - kp_cap: 10
+[move_to_node-11] [INFO] [1773400524.111030948] [chipgt.r_air.move_to]:   - max_speed: 4 m/s
+[move_to_node-11] [INFO] [1773400524.111040267] [chipgt.r_air.move_to]:   - max_static_rotation: 0.4 rad/s
+[move_to_node-11] [INFO] [1773400524.111049751] [chipgt.r_air.move_to]:   - max_dynamic_rotation: 0.4 rad/s
+[move_to_node-17] [INFO] [1773400524.127339362] [chipgt.r_ground.move_to]: Loaded parameters:
+[move_to_node-17] [INFO] [1773400524.127953359] [chipgt.r_ground.move_to]:   - controller_frequency: 20 Hz
+[move_to_node-17] [INFO] [1773400524.128308685] [chipgt.r_ground.move_to]:   - position_tolerance: 0.3 m
+[move_to_node-17] [INFO] [1773400524.128613587] [chipgt.r_ground.move_to]:   - angle_start_move: 15°
+[move_to_node-17] [INFO] [1773400524.128640513] [chipgt.r_ground.move_to]:   - angle_start_rotate_only: 30°
+[move_to_node-17] [INFO] [1773400524.128652150] [chipgt.r_ground.move_to]:   - kp_pose: 5
+[move_to_node-17] [INFO] [1773400524.128662021] [chipgt.r_ground.move_to]:   - kp_cap: 10
+[move_to_node-17] [INFO] [1773400524.128671560] [chipgt.r_ground.move_to]:   - max_speed: 4 m/s
+[move_to_node-17] [INFO] [1773400524.128681395] [chipgt.r_ground.move_to]:   - max_static_rotation: 0.4 rad/s
+[move_to_node-17] [INFO] [1773400524.128691136] [chipgt.r_ground.move_to]:   - max_dynamic_rotation: 0.4 rad/s
+[ugv_ranger_manager_node-18] Skillset manager init...
+[ugv_ranger_manager_node-18] Skillset is running...
+[uav_ranger_manager_node-12] Skillset manager init...
+[uav_ranger_manager_node-12] Skillset is running...
+[webots_controller_r_air-5] The specified robot (at /tmp/webots/root/1234/ipc/r_air/extern) is not in the list of robots with <extern> controllers, retrying for another 50 seconds...
+[webots_controller_r_ground-6] The specified robot (at /tmp/webots/root/1234/ipc/r_ground/extern) is not in the list of robots with <extern> controllers, retrying for another 50 seconds...
+[control_node.py-7] [INFO] [1773400524.483754233] [chipgt.r_air.controller]: Control node controller ready.
+[control_node.py-13] [INFO] [1773400524.535239573] [chipgt.r_ground.controller]: Control node controller ready.
+[env_manager_node-2] /usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[env_manager_node-2]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[team_manager_node-4] /usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+[team_manager_node-4]   warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[env_manager_node-2] The Webots simulation has not yet started or there is no robot in the simulation, retrying for another 50 seconds...
+[team_manager_node-4] [INFO] [1773400524.826364871] [chipgt.team_manager]: Team JSON Loaded: Team chipgt: r_air, r_ground
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/up_symk/symk_base.py:1: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+[ample_up_impl.py-19]   import pkg_resources
+[ample_up_impl.py-19] [INFO] [1773400525.442287046] [chipgt.ample]: Creating AMPLE node...
+[ample_up_impl.py-19] [INFO] [1773400525.444725088] [chipgt.ample]: Set domain to: /opt/jazzy_ws/install/ros2ample/share/ros2ample/up/chipgt_domain.pddl
+[ample_up_impl.py-19] [INFO] [1773400525.444916439] [chipgt.ample]: Set problem to: /opt/jazzy_ws/install/ros2ample/share/ros2ample/resource/templates/up_p.pddl.template
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Creating Robot-Language skillset uav_ranger:uav_ranger/uav_ranger.rl
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Creating Robot-Language skillset ugv_ranger:ugv_ranger/ugv_ranger.rl
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Controller team_controller:
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19]  -        move_uav       :    sequence      OK 
+[ample_up_impl.py-19]  -        move_ugv       :    sequence      OK 
+[ample_up_impl.py-19]  -      detect_trap      :    sequence      OK 
+[ample_up_impl.py-19]  -    disarm_trap_air    :    sequence      OK 
+[ample_up_impl.py-19]  -   disarm_trap_ground  :    sequence      OK 
+[ample_up_impl.py-19]  -  disarm_trap_combined :    parallel      OK 
+[ample_up_impl.py-19] Successfully loaded project and parsed 'team_controller' from:
+[ample_up_impl.py-19] /opt/jazzy_ws/src/webots_skillsets/team_controller.json
+[ample_up_impl.py-19] [INFO] [1773400525.604049234] [chipgt.ample]: Creating Load Problem Service
+[ample_up_impl.py-19] [INFO] [1773400525.605647344] [chipgt.ample]: Creating Planning Request Action Client
+[ample_up_impl.py-19] [INFO] [1773400525.614383898] [chipgt.ample]: Connecting to robots clients
+[ample_up_impl.py-19] [INFO] [1773400525.625184640] [chipgt.team_controller]: Mission: all
+[ample_up_impl.py-19] [INFO] [1773400525.625410320] [chipgt.team_controller]: All composite enabled.
+[ample_up_impl.py-19] [INFO] [1773400525.625858040] [chipgt.team_controller]: [0/0] Clients ready.
+[ample_up_impl.py-19] [INFO] [1773400525.629863032] [chipgt.ample]: [1/2] UGV Ranger
+[env_manager_node-2] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[env_manager_node-2] [INFO] [1773400525.972301801] [env_manager]: Environment Manager Ready.
+[env_manager_node-2] [INFO] [1773400525.981741181] [env_manager]: [attempt #1] saving at /opt/jazzy_ws/src/chip-gt-webapp/static/out.png...
+[env_manager_node-2] [INFO] [1773400526.168314967] [env_manager]: [attempt #1] ... Success!
+[team_manager_node-4] [INFO] [1773400526.467512608] [chipgt.team_manager]: Requesting controller for team 'chipgt'
+[team_manager_node-4] The specified robot (at /tmp/webots/root/1234/ipc/chipgt/extern) is not in the list of robots with <extern> controllers, retrying for another 50 seconds...
+[team_manager_node-4] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[team_manager_node-4] [INFO] [1773400527.570298387] [chipgt.team_manager]: Spawning team...
+[ample_up_impl.py-19] [INFO] [1773400527.648524393] [chipgt.ample]: [2/2] UAV Ranger
+[team_manager_node-4] [INFO] [1773400527.856356503] [chipgt.team_manager]:  - [1/2] r_air (type uav) spawned at geometry_msgs.msg.Point(x=5.0, y=5.0, z=2.1453947332438394)
+[team_manager_node-4] [INFO] [1773400528.036349222] [chipgt.team_manager]:  - [2/2] r_ground (type ugv) spawned at geometry_msgs.msg.Point(x=5.0, y=7.0, z=2.0926710844226153)
+[team_manager_node-4] [INFO] [1773400528.040570304] [chipgt.team_manager]: Team 'chipgt' manager ready.
+[webots_controller_r_ground-6] [INFO] [1773400528.447050248] [chipgt.r_ground]: Controller successfully connected to robot in Webots simulation.
+[webots_controller_r_air-5] [INFO] [1773400528.451426447] [chipgt.r_air]: Controller successfully connected to robot in Webots simulation.
+[ample_up_impl.py-19] [INFO] [1773400529.673714219] [chipgt.ample]: Clients ready!
+[ample_up_impl.py-19] [INFO] [1773400529.673892496] [chipgt.ample]: Ample-UP Ready!
+[ample_up_impl.py-19] [INFO] [1773400529.782878806] [chipgt.ample]: No database specified, looking for AUSPEX-KNOW database...
+[ample_up_impl.py-19] [INFO] [1773400529.788934392] [chipgt.ample]: AUSPEX-KNOW Reached!
+[ample_up_impl.py-19] [INFO] [1773400529.789308274] [chipgt.ample]: [AUTORUN] Problem not yet created.
+[ample_up_impl.py-19] [INFO] [1773400530.849315203] [chipgt.ample]: [AUTORUN][0] Loading planning problem...
+[ample_up_impl.py-19] [INFO] [1773400530.850002662] [chipgt.ample]: [AUTORUN][0] Starting planner thread...
+[ample_up_impl.py-19] [INFO] [1773400530.861114430] [chipgt.ample]: [EXECUTION THREAD] [0] Waiting for plan_ready_event...
+[ample_up_impl.py-19] [INFO] [1773400530.861331521] [chipgt.ample]: [PLANNER THREAD] [0] Running planner...
+[ample_up_impl.py-19] [INFO] [1773400530.861518377] [chipgt.ample]: Executing planning...
+[ample_up_impl.py-19] [INFO] [1773400530.962886064] [chipgt.ample]: [enhsp] Running planner on optimistic problem...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400531.215177941] [chipgt.ample]: [enhsp] Planner finished with status: PlanGenerationResultStatus.SOLVED_SATISFICING
+[ample_up_impl.py-19] [INFO] [1773400531.215478652] [chipgt.ample]: [enhsp] Optimistic plan found with 15 actions.
+[ample_up_impl.py-19] [INFO] [1773400531.215683283] [chipgt.ample]: [enhsp] Next targeted trap is area_00_objective_00. Focusing portfolio here.
+[ample_up_impl.py-19] [INFO] [1773400531.215899902] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_00 as t-air...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400531.549228025] [chipgt.ample]: [enhsp] Portfolio plan for t-air cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400531.549467623] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_00 as t-ground...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400531.876705609] [chipgt.ample]: [enhsp] Portfolio plan for t-ground cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400531.876951223] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_00 as t-combi...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400532.228741466] [chipgt.ample]: [enhsp] Portfolio plan for t-combi cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400532.228979448] [chipgt.ample]: [PLANNER THREAD] [0] Plan obtained.
+[ample_up_impl.py-19] [INFO] [1773400532.229126091] [chipgt.ample]: Creating plan instance for export...
+[ample_up_impl.py-19] [INFO] [1773400532.230159695] [chipgt.ample]: Exporting to RL...
+[ample_up_impl.py-19] [INFO] [1773400532.231967249] [chipgt.ample]: sequence plan {
+[ample_up_impl.py-19]   robot {
+[ample_up_impl.py-19]           r_ground: ugv_ranger
+[ample_up_impl.py-19]           r_air: uav_ranger
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19]   input {
+[ample_up_impl.py-19]           area_00_l_init: Waypoint
+[ample_up_impl.py-19]           area_00_l_02: Waypoint
+[ample_up_impl.py-19]           area_00_objective_00: Objective
+[ample_up_impl.py-19]           area_00_objective_01: Objective
+[ample_up_impl.py-19]           area_00_l_00: Waypoint
+[ample_up_impl.py-19]           area_00_l_01: Waypoint
+[ample_up_impl.py-19]           area_00_objective_02: Objective
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19]   body {
+[ample_up_impl.py-19]           action_0 { move_uav[r_air](area_00_l_00) success.any }
+[ample_up_impl.py-19]           action_1 { move_ugv[r_ground](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_2 { detect_trap[r_air](area_00_objective_00) success.succeeded }
+[ample_up_impl.py-19]           action_3 { move_uav[r_air](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_4 { detect_trap[r_air](area_00_objective_01) success.succeeded }
+[ample_up_impl.py-19]           action_5 { move_uav[r_air](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_6 { detect_trap[r_air](area_00_objective_02) success.succeeded }
+[ample_up_impl.py-19]           action_7 { move_uav[r_air](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_8 { disarm_trap_combined[r_air,r_ground](area_00_objective_01) success.succeeded }
+[ample_up_impl.py-19]           action_9 { move_uav[r_air](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_10 { move_ugv[r_ground](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_11 { disarm_trap_combined[r_air,r_ground](area_00_objective_02) success.succeeded }
+[ample_up_impl.py-19]           action_12 { move_uav[r_air](area_00_l_00) success.any }
+[ample_up_impl.py-19]           action_13 { move_ugv[r_ground](area_00_l_00) success.any }
+[ample_up_impl.py-19]           action_14 { disarm_trap_combined[r_air,r_ground](area_00_objective_00) success.succeeded }
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19] }
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19]  -  plan :    sequence      OK 
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Creating robot r_ground:ugv_ranger
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Creating robot r_air:uav_ranger
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] ANTLR runtime and generated code versions disagree: 4.13.2!=4.10.1
+[ample_up_impl.py-19] Successfully created net files at:
+[ample_up_impl.py-19] /opt/jazzy_ws/src/webots_skillsets/.team_controller_nets/
+[ample_up_impl.py-19] 0.028s
+[ample_up_impl.py-19] [INFO] [1773400532.510264076] [chipgt.ample]: Running analysis...
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Calculating state-space...
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Successfully generated state-space:
+[ample_up_impl.py-19] 288 markings, 418 transitions
+[ample_up_impl.py-19] 0.062s
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19]  -- Mission 'plan' - Analysis Result --
+[ample_up_impl.py-19]  
+[ample_up_impl.py-19]   deadlocks   :  False 
+[ample_up_impl.py-19]  double_safe  :  True  
+[ample_up_impl.py-19]    success    :  True  
+[ample_up_impl.py-19]     exits    
+[ample_up_impl.py-19]    ├  success.succeeded   :  True  
+[ample_up_impl.py-19]    ├      interrupt       :  False 
+[ample_up_impl.py-19]    └    failure.failed    :  True  
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Analysis complete. [0.080s]
+[ample_up_impl.py-19] [INFO] [1773400532.702739710] [chipgt.ample]: Model-checking found no errors.
+[ample_up_impl.py-19] [INFO] [1773400532.703186475] [chipgt.ample]: [PLANNER THREAD] [0] Triggering plan_ready_event.
+[ample_up_impl.py-19] [INFO] [1773400532.703564857] [chipgt.ample]: [EXECUTION THREAD] [0] Starting execution...
+[ample_up_impl.py-19] [INFO] [1773400532.703780613] [chipgt.ample]: Plan step 0: move_uav[r_air](area_00_l_init,area_00_l_00)
+[uav_ranger_manager_node-12] [INFO] [1773400535.714564880] [chipgt.r_air.uav_ranger_manager]: Sending disarm goal: pose:
+[uav_ranger_manager_node-12]   header:
+[uav_ranger_manager_node-12]     stamp:
+[uav_ranger_manager_node-12]       sec: 0
+[uav_ranger_manager_node-12]       nanosec: 0
+[uav_ranger_manager_node-12]     frame_id: "map"
+[uav_ranger_manager_node-12]   pose:
+[uav_ranger_manager_node-12]     position:
+[uav_ranger_manager_node-12]       x: 5.00000
+[uav_ranger_manager_node-12]       y: 5.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]     orientation:
+[uav_ranger_manager_node-12]       x: 0.00000
+[uav_ranger_manager_node-12]       y: 0.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]       w: 1.00000
+[uav_ranger_manager_node-12] behavior_tree: ""
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400535.715229238] [chipgt.r_air.uav_ranger_manager]: GoTo goal accepted by server, waiting for result
+[move_to_node-11] [INFO] [1773400535.715821949] [chipgt.r_air.move_to]: move_to has received a new goal of x: 5.00, y: 5.00
+[uav_ranger_manager_node-12] [INFO] [1773400535.716437332] [chipgt.r_air.uav_ranger_manager]: GoTo goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400536.718177347] [chipgt.ample]: Plan step 1: move_ugv[r_ground](area_00_l_init,area_00_l_01)
+[ugv_ranger_manager_node-18] [INFO] [1773400536.718864751] [chipgt.r_ground.ugv_ranger_manager]: Sending go_to goal: pose:
+[ugv_ranger_manager_node-18]   header:
+[ugv_ranger_manager_node-18]     stamp:
+[ugv_ranger_manager_node-18]       sec: 0
+[ugv_ranger_manager_node-18]       nanosec: 0
+[ugv_ranger_manager_node-18]     frame_id: "map"
+[ugv_ranger_manager_node-18]   pose:
+[ugv_ranger_manager_node-18]     position:
+[ugv_ranger_manager_node-18]       x: 5.00000
+[ugv_ranger_manager_node-18]       y: 5.00000
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]     orientation:
+[ugv_ranger_manager_node-18]       x: 0.00000
+[ugv_ranger_manager_node-18]       y: 0.00000
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]       w: 1.00000
+[ugv_ranger_manager_node-18] behavior_tree: ""
+[ugv_ranger_manager_node-18] 
+[ugv_ranger_manager_node-18] [INFO] [1773400536.719285919] [chipgt.r_ground.ugv_ranger_manager]: GoTo goal accepted by server, waiting for result
+[move_to_node-17] [INFO] [1773400536.719594544] [chipgt.r_ground.move_to]: move_to has received a new goal of x: 5.00, y: 5.00
+[ugv_ranger_manager_node-18] [INFO] [1773400546.020027191] [chipgt.r_ground.ugv_ranger_manager]: GoTo goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400547.031159115] [chipgt.ample]: Plan step 2: detect_trap[r_air](area_00_l_00,area_00_objective_00)
+[uav_ranger_manager_node-12] [INFO] [1773400547.031936010] [chipgt.r_air.uav_ranger_manager]: Sending detect goal: position:
+[uav_ranger_manager_node-12]   x: 0.00000
+[uav_ranger_manager_node-12]   y: 0.00000
+[uav_ranger_manager_node-12]   theta: 0.00000
+[uav_ranger_manager_node-12] name: "area_00_objective_00"
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400547.118771883] [chipgt.r_air.uav_ranger_manager]: Detect goal accepted by server, waiting for result
+[basic_detector.py-8] [INFO] [1773400547.132299635] [chipgt.r_air.detector]: Executing goal...
+[basic_detector.py-8] [INFO] [1773400547.132633864] [chipgt.r_air.detector]: Calling service...
+[basic_detector.py-8] [INFO] [1773400547.142945884] [chipgt.r_air.detector]: Detected: 3 - no trap
+[uav_ranger_manager_node-12] [INFO] [1773400547.143408745] [chipgt.r_air.uav_ranger_manager]: Detect goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400548.145035483] [chipgt.ample]: Trap area_00_objective_00 unexpected. Full replan required.
+[ample_up_impl.py-19] [INFO] [1773400548.145409295] [chipgt.ample]: [EXECUTION] [0] Plan failed. Replanning!
+[ample_up_impl.py-19] [INFO] [1773400548.999259554] [chipgt.ample]: [AUTORUN] Problem not yet created.
+[ample_up_impl.py-19] [INFO] [1773400550.010942619] [chipgt.ample]: [AUTORUN][1] Loading planning problem...
+[ample_up_impl.py-19] [INFO] [1773400550.011288869] [chipgt.ample]: [AUTORUN][1] Starting planner thread...
+[ample_up_impl.py-19] [INFO] [1773400550.013072748] [chipgt.ample]: [EXECUTION THREAD] [1] Waiting for plan_ready_event...
+[ample_up_impl.py-19] [INFO] [1773400550.013307982] [chipgt.ample]: [PLANNER THREAD] [1] Running planner...
+[ample_up_impl.py-19] [INFO] [1773400550.013576694] [chipgt.ample]: Executing planning...
+[ample_up_impl.py-19] [INFO] [1773400550.086840882] [chipgt.ample]: [enhsp] Running planner on optimistic problem...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400550.328527418] [chipgt.ample]: [enhsp] Planner finished with status: PlanGenerationResultStatus.SOLVED_SATISFICING
+[ample_up_impl.py-19] [INFO] [1773400550.328795879] [chipgt.ample]: [enhsp] Optimistic plan found with 10 actions.
+[ample_up_impl.py-19] [INFO] [1773400550.328987083] [chipgt.ample]: [enhsp] Next targeted trap is area_00_objective_01. Focusing portfolio here.
+[ample_up_impl.py-19] [INFO] [1773400550.329184824] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_01 as t-air...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400550.671443066] [chipgt.ample]: [enhsp] Portfolio plan for t-air cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400550.671847646] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_01 as t-ground...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400550.963557106] [chipgt.ample]: [enhsp] Portfolio plan for t-ground cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400550.964787791] [chipgt.ample]: [enhsp] Generating portfolio for specific target: area_00_objective_01 as t-combi...
+[ample_up_impl.py-19] /usr/local/lib/python3.12/dist-packages/unified_planning/engines/mixins/oneshot_planner.py:76: UserWarning: We cannot establish whether enhsp can solve this problem!
+[ample_up_impl.py-19]   warn(msg)
+[ample_up_impl.py-19] [INFO] [1773400551.248764880] [chipgt.ample]: [enhsp] Portfolio plan for t-combi cached successfully.
+[ample_up_impl.py-19] [INFO] [1773400551.249013426] [chipgt.ample]: [PLANNER THREAD] [1] Plan obtained.
+[ample_up_impl.py-19] [INFO] [1773400551.249167332] [chipgt.ample]: Creating plan instance for export...
+[ample_up_impl.py-19] [INFO] [1773400551.249800822] [chipgt.ample]: Exporting to RL...
+[ample_up_impl.py-19] [INFO] [1773400551.250842648] [chipgt.ample]: sequence plan {
+[ample_up_impl.py-19]   robot {
+[ample_up_impl.py-19]           r_ground: ugv_ranger
+[ample_up_impl.py-19]           r_air: uav_ranger
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19]   input {
+[ample_up_impl.py-19]           area_00_l_02: Waypoint
+[ample_up_impl.py-19]           area_00_l_init: Waypoint
+[ample_up_impl.py-19]           area_00_objective_01: Objective
+[ample_up_impl.py-19]           area_00_l_01: Waypoint
+[ample_up_impl.py-19]           area_00_objective_02: Objective
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19]   body {
+[ample_up_impl.py-19]           action_0 { move_uav[r_air](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_1 { move_ugv[r_ground](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_2 { detect_trap[r_air](area_00_objective_01) success.succeeded }
+[ample_up_impl.py-19]           action_3 { move_uav[r_air](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_4 { detect_trap[r_air](area_00_objective_02) success.succeeded }
+[ample_up_impl.py-19]           action_5 { move_uav[r_air](area_00_l_01) success.any }
+[ample_up_impl.py-19]           action_6 { disarm_trap_combined[r_air,r_ground](area_00_objective_01) success.succeeded }
+[ample_up_impl.py-19]           action_7 { move_uav[r_air](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_8 { move_ugv[r_ground](area_00_l_02) success.any }
+[ample_up_impl.py-19]           action_9 { disarm_trap_combined[r_air,r_ground](area_00_objective_02) success.succeeded }
+[ample_up_impl.py-19]   }
+[ample_up_impl.py-19] }
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19]  -  plan :    sequence      OK 
+[ample_up_impl.py-19] Successfully created net files at:
+[ample_up_impl.py-19] /opt/jazzy_ws/src/webots_skillsets/.team_controller_nets/
+[ample_up_impl.py-19] 0.019s
+[ample_up_impl.py-19] [INFO] [1773400551.284221144] [chipgt.ample]: Running analysis...
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Calculating state-space...
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Successfully generated state-space:
+[ample_up_impl.py-19] 193 markings, 279 transitions
+[ample_up_impl.py-19] 0.033s
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19]  -- Mission 'plan' - Analysis Result --
+[ample_up_impl.py-19]  
+[ample_up_impl.py-19]   deadlocks   :  False 
+[ample_up_impl.py-19]  double_safe  :  True  
+[ample_up_impl.py-19]    success    :  True  
+[ample_up_impl.py-19]     exits    
+[ample_up_impl.py-19]    ├  success.succeeded   :  True  
+[ample_up_impl.py-19]    ├      interrupt       :  False 
+[ample_up_impl.py-19]    └    failure.failed    :  True  
+[ample_up_impl.py-19] 
+[ample_up_impl.py-19] Analysis complete. [0.050s]
+[ample_up_impl.py-19] [INFO] [1773400551.435372776] [chipgt.ample]: Model-checking found no errors.
+[ample_up_impl.py-19] [INFO] [1773400551.435924138] [chipgt.ample]: [PLANNER THREAD] [1] Triggering plan_ready_event.
+[ample_up_impl.py-19] [INFO] [1773400551.436430127] [chipgt.ample]: [EXECUTION THREAD] [1] Starting execution...
+[ample_up_impl.py-19] [INFO] [1773400551.436886183] [chipgt.ample]: Plan step 0: move_uav[r_air](area_00_l_init,area_00_l_01)
+[uav_ranger_manager_node-12] [INFO] [1773400554.464483219] [chipgt.r_air.uav_ranger_manager]: Sending disarm goal: pose:
+[uav_ranger_manager_node-12]   header:
+[uav_ranger_manager_node-12]     stamp:
+[uav_ranger_manager_node-12]       sec: 0
+[uav_ranger_manager_node-12]       nanosec: 0
+[uav_ranger_manager_node-12]     frame_id: "map"
+[uav_ranger_manager_node-12]   pose:
+[uav_ranger_manager_node-12]     position:
+[uav_ranger_manager_node-12]       x: 5.00000
+[uav_ranger_manager_node-12]       y: 5.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]     orientation:
+[uav_ranger_manager_node-12]       x: 0.00000
+[uav_ranger_manager_node-12]       y: 0.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]       w: 1.00000
+[uav_ranger_manager_node-12] behavior_tree: ""
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400554.464718552] [chipgt.r_air.uav_ranger_manager]: GoTo goal accepted by server, waiting for result
+[uav_ranger_manager_node-12] [INFO] [1773400554.464984597] [chipgt.r_air.uav_ranger_manager]: GoTo goal was reached: returning success
+[move_to_node-11] [INFO] [1773400554.464797056] [chipgt.r_air.move_to]: move_to has received a new goal of x: 5.00, y: 5.00
+[ample_up_impl.py-19] [INFO] [1773400555.467451610] [chipgt.ample]: Plan step 1: move_ugv[r_ground](area_00_l_init,area_00_l_01)
+[ugv_ranger_manager_node-18] [INFO] [1773400555.468400752] [chipgt.r_ground.ugv_ranger_manager]: Sending go_to goal: pose:
+[ugv_ranger_manager_node-18]   header:
+[ugv_ranger_manager_node-18]     stamp:
+[ugv_ranger_manager_node-18]       sec: 0
+[ugv_ranger_manager_node-18]       nanosec: 0
+[ugv_ranger_manager_node-18]     frame_id: "map"
+[ugv_ranger_manager_node-18]   pose:
+[ugv_ranger_manager_node-18]     position:
+[ugv_ranger_manager_node-18]       x: 5.00000
+[ugv_ranger_manager_node-18]       y: 5.00000
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]     orientation:
+[ugv_ranger_manager_node-18]       x: 0.00000
+[ugv_ranger_manager_node-18]       y: 0.00000
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]       w: 1.00000
+[ugv_ranger_manager_node-18] behavior_tree: ""
+[ugv_ranger_manager_node-18] 
+[ugv_ranger_manager_node-18] [INFO] [1773400555.468673103] [chipgt.r_ground.ugv_ranger_manager]: GoTo goal accepted by server, waiting for result
+[ugv_ranger_manager_node-18] [INFO] [1773400555.468936310] [chipgt.r_ground.ugv_ranger_manager]: GoTo goal was reached: returning success
+[move_to_node-17] [INFO] [1773400555.468771789] [chipgt.r_ground.move_to]: move_to has received a new goal of x: 5.00, y: 5.00
+[ample_up_impl.py-19] [INFO] [1773400556.479928734] [chipgt.ample]: Plan step 2: detect_trap[r_air](area_00_l_01,area_00_objective_01)
+[uav_ranger_manager_node-12] [INFO] [1773400556.480856144] [chipgt.r_air.uav_ranger_manager]: Sending detect goal: position:
+[uav_ranger_manager_node-12]   x: 0.00000
+[uav_ranger_manager_node-12]   y: 0.00000
+[uav_ranger_manager_node-12]   theta: 0.00000
+[uav_ranger_manager_node-12] name: "area_00_objective_01"
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400556.515535361] [chipgt.r_air.uav_ranger_manager]: Detect goal accepted by server, waiting for result
+[basic_detector.py-8] [INFO] [1773400556.518074566] [chipgt.r_air.detector]: Executing goal...
+[basic_detector.py-8] [INFO] [1773400556.518620339] [chipgt.r_air.detector]: Calling service...
+[basic_detector.py-8] [INFO] [1773400556.547111156] [chipgt.r_air.detector]: Detected: 0 - ground
+[uav_ranger_manager_node-12] [INFO] [1773400556.547696186] [chipgt.r_air.uav_ranger_manager]: Detect goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400557.549238373] [chipgt.ample]: ⚡ PORTFOLIO HIT! Zero-Latency Swap to 't-ground' plan.
+[ample_up_impl.py-19] [INFO] [1773400557.549430908] [chipgt.ample]: Plan step 3: move_uav[r_air](area_00_l_02,area_00_l_01)
+[uav_ranger_manager_node-12] [INFO] [1773400560.573734303] [chipgt.r_air.uav_ranger_manager]: Sending disarm goal: pose:
+[uav_ranger_manager_node-12]   header:
+[uav_ranger_manager_node-12]     stamp:
+[uav_ranger_manager_node-12]       sec: 0
+[uav_ranger_manager_node-12]       nanosec: 0
+[uav_ranger_manager_node-12]     frame_id: "map"
+[uav_ranger_manager_node-12]   pose:
+[uav_ranger_manager_node-12]     position:
+[uav_ranger_manager_node-12]       x: 23.9031
+[uav_ranger_manager_node-12]       y: 13.5008
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]     orientation:
+[uav_ranger_manager_node-12]       x: 0.00000
+[uav_ranger_manager_node-12]       y: 0.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]       w: 1.00000
+[uav_ranger_manager_node-12] behavior_tree: ""
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400560.574009085] [chipgt.r_air.uav_ranger_manager]: GoTo goal accepted by server, waiting for result
+[move_to_node-11] [INFO] [1773400560.574110536] [chipgt.r_air.move_to]: move_to has received a new goal of x: 23.90, y: 13.50
+[uav_ranger_manager_node-12] [INFO] [1773400571.774454257] [chipgt.r_air.uav_ranger_manager]: GoTo goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400572.777438699] [chipgt.ample]: Plan step 4: detect_trap[r_air](area_00_l_01,area_00_objective_01)
+[uav_ranger_manager_node-12] [INFO] [1773400572.778043036] [chipgt.r_air.uav_ranger_manager]: Sending detect goal: position:
+[uav_ranger_manager_node-12]   x: 0.00000
+[uav_ranger_manager_node-12]   y: 0.00000
+[uav_ranger_manager_node-12]   theta: 0.00000
+[uav_ranger_manager_node-12] name: "area_00_objective_01"
+[uav_ranger_manager_node-12] 
+[uav_ranger_manager_node-12] [INFO] [1773400572.864837113] [chipgt.r_air.uav_ranger_manager]: Detect goal accepted by server, waiting for result
+[basic_detector.py-8] [INFO] [1773400572.873604398] [chipgt.r_air.detector]: Executing goal...
+[basic_detector.py-8] [INFO] [1773400572.874154806] [chipgt.r_air.detector]: Calling service...
+[basic_detector.py-8] [INFO] [1773400572.891716838] [chipgt.r_air.detector]: Detected: 0 - ground
+[uav_ranger_manager_node-12] [INFO] [1773400572.892236282] [chipgt.r_air.uav_ranger_manager]: Detect goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400573.894334125] [chipgt.ample]: ⚡ PORTFOLIO HIT! Zero-Latency Swap to 't-ground' plan.
+[ample_up_impl.py-19] [INFO] [1773400573.894715676] [chipgt.ample]: Plan step 5: move_uav[r_air](area_00_l_01,area_00_l_02)
+[uav_ranger_manager_node-12] [INFO] [1773400576.903373583] [chipgt.r_air.uav_ranger_manager]: Sending disarm goal: pose:
+[uav_ranger_manager_node-12]   header:
+[uav_ranger_manager_node-12]     stamp:
+[uav_ranger_manager_node-12]       sec: 0
+[uav_ranger_manager_node-12]       nanosec: 0
+[uav_ranger_manager_node-12]     frame_id: "map"
+[uav_ranger_manager_node-12]   pose:
+[uav_ranger_manager_node-12]     position:
+[uav_ranger_manager_node-12]       x: 1.63772
+[uav_ranger_manager_node-12]       y: 30.7596
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]     orientation:
+[uav_ranger_manager_node-12]       x: 0.00000
+[uav_ranger_manager_node-12]       y: 0.00000
+[uav_ranger_manager_node-12]       z: 0.00000
+[uav_ranger_manager_node-12]       w: 1.00000
+[uav_ranger_manager_node-12] behavior_tree: ""
+[uav_ranger_manager_node-12] 
+[move_to_node-11] [INFO] [1773400576.903668051] [chipgt.r_air.move_to]: move_to has received a new goal of x: 1.64, y: 30.76
+[uav_ranger_manager_node-12] [INFO] [1773400576.903684384] [chipgt.r_air.uav_ranger_manager]: GoTo goal accepted by server, waiting for result
+[uav_ranger_manager_node-12] [INFO] [1773400599.204005780] [chipgt.r_air.uav_ranger_manager]: GoTo goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400600.207143615] [chipgt.ample]: Plan step 6: disarm_trap_ground[r_ground](area_00_l_01,area_00_objective_01)
+[ugv_ranger_manager_node-18] [INFO] [1773400600.207932385] [chipgt.r_ground.ugv_ranger_manager]: Sending disarm goal: position:
+[ugv_ranger_manager_node-18]   x: 0.00000
+[ugv_ranger_manager_node-18]   y: 0.00000
+[ugv_ranger_manager_node-18]   theta: 0.00000
+[ugv_ranger_manager_node-18] name: "area_00_objective_01"
+[ugv_ranger_manager_node-18] 
+[ugv_ranger_manager_node-18] [INFO] [1773400600.215422558] [chipgt.r_ground.ugv_ranger_manager]: Disarm goal accepted by server, waiting for result
+[env_manager_node-2] [INFO] [1773400600.228174777] [env_manager]: Changed status of 'area_00_objective_01' to                 5
+[basic_disarmer.py-15] [INFO] [1773400600.293002235] [chipgt.r_ground.disarmer]: Disarmed!
+[ugv_ranger_manager_node-18] [INFO] [1773400600.293488180] [chipgt.r_ground.ugv_ranger_manager]: Disarm goal was reached: returning success
+[ample_up_impl.py-19] [INFO] [1773400601.296073640] [chipgt.ample]: Plan step 7: move_ugv[r_ground](area_00_l_01,area_00_l_02)
+[ugv_ranger_manager_node-18] [INFO] [1773400601.296747062] [chipgt.r_ground.ugv_ranger_manager]: Sending go_to goal: pose:
+[ugv_ranger_manager_node-18]   header:
+[ugv_ranger_manager_node-18]     stamp:
+[ugv_ranger_manager_node-18]       sec: 0
+[ugv_ranger_manager_node-18]       nanosec: 0
+[ugv_ranger_manager_node-18]     frame_id: "map"
+[ugv_ranger_manager_node-18]   pose:
+[ugv_ranger_manager_node-18]     position:
+[ugv_ranger_manager_node-18]       x: 1.63772
+[ugv_ranger_manager_node-18]       y: 30.7596
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]     orientation:
+[ugv_ranger_manager_node-18]       x: 0.00000
+[ugv_ranger_manager_node-18]       y: 0.00000
+[ugv_ranger_manager_node-18]       z: 0.00000
+[ugv_ranger_manager_node-18]       w: 1.00000
+[ugv_ranger_manager_node-18] behavior_tree: ""
+[ugv_ranger_manager_node-18] 
+[ugv_ranger_manager_node-18] [INFO] [1773400601.297013355] [chipgt.r_ground.ugv_ranger_manager]: GoTo goal accepted by server, waiting for result
+[move_to_node-17] [INFO] [1773400601.297015225] [chipgt.r_ground.move_to]: move_to has received a new goal of x: 1.64, y: 30.76
+
